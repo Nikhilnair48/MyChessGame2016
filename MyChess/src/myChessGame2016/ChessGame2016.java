@@ -1,7 +1,5 @@
 package myChessGame2016;
 
-import data.Player;
-
 /*
 	CHESSGAME2016 - MY ATTEMPT AT THE CLASSIC GAME OF CHESS!
 	THE GAME MAY BE PLAYED BY TWO PLAYERS, WHO WILL BE ASSIGNED
@@ -18,14 +16,14 @@ import data.Player;
 	WITH THE BOARD AND THE PIECES THROUGH THE 'MOVE' ACTION.
  */
 public class ChessGame2016 {
-	
+
+	public static GameManager chessManager = new GameManager();
 	public static void main(String[] args) {
 		// SET THE TWO PLAYERS, AND BEGIN THE GAME. REST OF THE GAME IS
 		// HANDLED BY THE GAMEMANAGER CLASS
-		Player p1 = new Player(1);
-		Player p2 = new Player(2);
+		/*Player p1 = new Player(1);
+		Player p2 = new Player(2);*/
 
-		GameManager chessManager = new GameManager();
 		chessManager.beginGame();
 	}
 

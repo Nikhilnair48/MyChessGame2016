@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import myChessGame2016.ChessGame2016;
+
 /* 
 	BOARD.JAVA
 	THE BOARD CLASS WILL MAINTAIN THE STATE OF THE BOARD, I.E,
@@ -43,33 +45,30 @@ public class Board {
 	public void initBoard() {
 		// READ THE INITIAL SETTING FROM THE FILE
 		BufferedReader reader;
-		int blackOrWhite = 1; // READ IN THE WHITE PIECES FIRST
+		
+		Player player1 = ChessGame2016.chessManager.getPlayer1();
+		Player player2 = ChessGame2016.chessManager.getPlayer2();
+		
+		HashMap<Point, BoardSquare> player1Pieces = new HashMap<>();
+		HashMap<Point, BoardSquare> player2Pieces = new HashMap<>();
+		
 		try {
-			reader = new BufferedReader(new FileReader(
-					"data/InitialGameBoard.txt"));
+			reader = new BufferedReader(new FileReader("data/InitialGameBoard.txt"));
 			for (int i = 0; i < MAX_ROWS; i++) {
 				int pieceVal;
 				BoardSquare newPiece = new BoardSquare();
 				for (int j = 0; j < MAX_COLS; j++) {
 					pieceVal = reader.read();
 
-					if (i == 6 || i == 7)
-						blackOrWhite = 2;
-					else if (i == 0 || i == 1)
-						blackOrWhite = 1;
-					else
-						blackOrWhite = 0;
-
-					// IF THE SQUARE IS NOT EMPTY, THEN WE HAVE
-					if (blackOrWhite == 1)
-						newPiece = new BoardSquare(new Point(i, j), true,
-								new ChessPiece(1, pieceVal - 48));
-					else if (blackOrWhite == 2)
-						newPiece = new BoardSquare(new Point(i, j), true,
-								new ChessPiece(2, pieceVal - 48));
-					else
+					if (i == 6 || i == 7) { // BLACK PIECES ARE AT ROWS 6 & 7
+						newPiece = new BoardSquare(new Point(i, j), true, new ChessPiece(2, pieceVal - 48));
+						player2Pieces.put(new Point(i, j), newPiece);
+					} else if (i == 0 || i == 1) { // WHITE PIECES ARE AT ROWS 1 & 2
+						newPiece = new BoardSquare(new Point(i, j), true, new ChessPiece(1, pieceVal - 48));
+						player1Pieces.put(new Point(i, j), newPiece);
+					} else { // ALL OTHER SQUARES ARE EMPTY
 						newPiece = new BoardSquare(new Point(i, j), false, null);
-
+					}
 					gameBoard[i][j] = newPiece;
 				}
 				reader.read();
@@ -79,12 +78,19 @@ public class Board {
 		} catch (IOException e) {
 			System.out.println("IOException: " + e.getMessage());
 		}
+	
+		player1.setPlayerPieces(player1Pieces);
+		player2.setPlayerPieces(player2Pieces);
+		
+		ChessGame2016.chessManager.setPlayer1(player1);
+		ChessGame2016.chessManager.setPlayer2(player2);
 	}
 
 	// ONCE THE MOVE HAS BEEN VALIDATED
-	// SET THE FIRST POSITION TO EMPTY, AND MOIVE TO PIECE TO THE SECONT
+	// SET THE FIRST POSITION TO EMPTY, AND MOIVE TO PIECE TO THE SECOND
 	// POSITION
 	public void movePiece(Point p1, Point p2, ChessPiece piece) {
+		
 		gameBoard[p1.x][p1.y].setEmpty(true);
 		gameBoard[p1.x][p1.y].setPiece(null);
 
@@ -92,20 +98,6 @@ public class Board {
 		gameBoard[p2.x][p2.y].setPiece(piece);
 
 		printChessBoard();
-	}
-
-	// TESTING
-	public void printChessBoard() {
-		for (int i = 0; i < MAX_ROWS; i++) {
-			for (int j = 0; j < MAX_COLS; j++) {
-				ChessPiece piece = gameBoard[i][j].getPiece();
-				if (piece == null)
-					System.out.print("0");
-				else
-					System.out.print(piece.getValue());
-			}
-			System.out.println();
-		}
 	}
 
 	// LOGIC FOR PROCESS MOVE - COMING SOON!
@@ -121,5 +113,19 @@ public class Board {
 		// } else {
 		// System.out.println("That move cannot be processed");
 		// }
+	}
+	
+	// TESTING
+	public void printChessBoard() {
+		for (int i = 0; i < MAX_ROWS; i++) {
+			for (int j = 0; j < MAX_COLS; j++) {
+				ChessPiece piece = gameBoard[i][j].getPiece();
+				if (piece == null)
+					System.out.print("0");
+				else
+					System.out.print(piece.getValue());
+			}
+			System.out.println();
+		}
 	}
 }

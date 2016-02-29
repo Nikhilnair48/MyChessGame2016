@@ -19,17 +19,20 @@ import data.Player;
 public class GameManager {
 	private Player player1, player2;
 	private Board board;
+	private int turn; 				// WHICH PLAYER WILL MAKE THE NEXT MOVE?
 	
 	public GameManager() {
 		player1 = new Player(1);
 		player2 = new Player(2);
 		board = new Board();
+		turn = 1;	// PLAYER 1 GETS THE FIRST TURN BY DEFAULT
 	}
 	
 	public GameManager(Player p1, Player p2, Board b) {
 		player1 = p1;
 		player2 = p2;
 		board = b;
+		turn = 1;
 	}
 
 	// STEPS -
@@ -43,15 +46,18 @@ public class GameManager {
 		
 		// WAIT FOR USER INPUT
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-		System.out.println("Enter the from & to position (Ex: '01 02'): ");
+		//System.out.println("Enter the from & to position (Ex: '01 02'): ");
 		String input = "";
 		
-		
+		if (this.getTurn() == 1)
+			System.out.println("Player 1's turn: ");
+		else
+			System.out.println("Player 2's turn: ");
+				
 		// AS OF NOW USER INPUT WILL BE EITHER "QUIT" OR
 		// START POSITION FOLLOWED BY A SPACE AND THEN END POSITION
 		// Ex: "11 21" MOVES THE PIECE FROM INDEX (1,1) to (2,1)
 		try {
-			System.out.println("PLAYER 1's TURN: ");
 			while (!(input = reader.readLine()).equals("quit")) {
 				
 				Point p1 = new Point();
@@ -62,7 +68,8 @@ public class GameManager {
 				p2.y = Integer.parseInt(input.substring(4));
 				
 				// MAKE A MOVE
-				board.processMove(p1, p2);
+				if (this.getTurn() == 1)  player1.move(p1, p2);
+				else player2.move(p1, p2);
 			}
 		} catch (NumberFormatException | IOException e) {
 			System.out.println("Game cannot be started: " + e.getMessage());
@@ -81,4 +88,8 @@ public class GameManager {
 	public Board getBoard() { return board;	}
 
 	public void setBoard(Board board) { this.board = board; }
+
+	public int getTurn() { return turn; }
+	
+	public void setTurn(int nTurn) { turn = nTurn; }
 }

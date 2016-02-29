@@ -1,7 +1,9 @@
 package data;
 
 import java.awt.Point;
-import java.util.ArrayList;
+import java.util.HashMap;
+
+import myChessGame2016.ChessGame2016;
 
 /*
  	PLAYER.JAVA
@@ -24,16 +26,16 @@ public class Player {
 	private int numLosses;
 	private int totalGames;
 	
-	private ArrayList<Integer> playerPieces;
-	private ArrayList<Integer> removedPieces;
+	private HashMap<Point, BoardSquare> playerPieces;
+	private HashMap<Point, BoardSquare> removedPieces;
 	
 	public Player() {
 		numWins = numLosses = totalGames = 0;
-		playerPieces = new ArrayList<>();
-		removedPieces = new ArrayList<>();
+		playerPieces = new HashMap<>();
+		removedPieces = new HashMap<>();
 	}
 	
-	public Player(int nColor, int wins, int losses, int totalG, ArrayList<Integer> pPieces) {
+	public Player(int nColor, int wins, int losses, int totalG, HashMap<Point, BoardSquare> pPieces) {
 		color = nColor;
 		numWins = wins;
 		numLosses = losses;
@@ -46,8 +48,14 @@ public class Player {
 	}
 	
 	public void move(Point p1, Point p2) {
-		// TO BE COMPLETED
+		System.out.println(playerPieces.get(new Point(p1.x, p1.y)));
+		ChessGame2016.chessManager.getBoard().processMove(p1, p2);
 	}
+	
+	public void addChessPiece() {
+		
+	}
+	
 	
 	public int getColor() { return color; }
 
@@ -65,12 +73,12 @@ public class Player {
 
 	public void setTotalGames(int totalGames) { this.totalGames = totalGames; }
 
-	public ArrayList<Integer> getPlayerPieces() { return playerPieces; }
+	public HashMap<Point, BoardSquare> getPlayerPieces() { return playerPieces; }
 
-	public void setPlayerPieces(ArrayList<Integer> playerPieces) { this.playerPieces = playerPieces; }
+	public void setPlayerPieces(HashMap<Point, BoardSquare> playerPieces) { this.playerPieces = playerPieces; }
 
-	public ArrayList<Integer> getRemovedPieces() { return removedPieces; }
+	public HashMap<Point, BoardSquare> getRemovedPieces() { return removedPieces; }
 
-	public void setRemovedPieces(ArrayList<Integer> removedPieces) { this.removedPieces = removedPieces; }
+	public void setRemovedPieces(HashMap<Point, BoardSquare> removedPieces) { this.removedPieces = removedPieces; }
 
 }
