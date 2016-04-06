@@ -14,7 +14,7 @@ import java.awt.Point;
 public class BoardSquare {
 	
 	private Point position;
-	private boolean isEmpty;
+	private boolean isEmpty;	// true = empty; false = not empty
 	private ChessPiece piece;
 	// DO WE REALLY NEED THE COLOR OF THE SQUARE? IDK YET private int color;		// 1 FOR WHITE SQUARE, 2 FOR BLACK SQUARE
 	
@@ -43,7 +43,7 @@ public class BoardSquare {
 	public void setPiece(ChessPiece piece) { this.piece = piece; }
 	
 	public String toString() {
-		String str = " Position: (" + position.x + "), " + position.y + ") " 
+		String str = " Position: (" + position.x + ", " + position.y + ") " 
 				+ " Status: " + isEmpty 
 				+ " Chesspiece: " + piece;
 		

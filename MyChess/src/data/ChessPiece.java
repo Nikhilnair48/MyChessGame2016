@@ -1,21 +1,24 @@
 package data;
 
+import java.awt.Point;
 
-
-public class ChessPiece {
+public abstract class ChessPiece {
 	// IS THE PIECE ON THE BOARD, OR HAS IT BEEN REMOVED?
 	// 0 MEANS PIECE IS OFF THE BOARD, NON-ZERO MEANS IT'S ON THE BAORD
-	private int onBoard;
+	private int onBoard;	// 1 ON BOARD, 0 NOT ON BOARD
 	private int color;	// 1 FOR WHITE, 2 FOR BLACK
 	private int value;
+	
 	
 	public ChessPiece() { }
 	
 	public ChessPiece(int c, int val) {
-		onBoard = 0;
+		onBoard = 1;
 		color = c;
 		value = val;
 	}
+	
+	public abstract boolean isMoveValid(Point p1, Point p2, Integer player);
 	
 	public int isOnBoard() { return onBoard; }
 	

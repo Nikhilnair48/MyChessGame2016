@@ -19,7 +19,7 @@ import data.Player;
 public class GameManager {
 	private Player player1, player2;
 	private Board board;
-	private int turn; 				// WHICH PLAYER WILL MAKE THE NEXT MOVE?
+	public static int turn; 				// WHICH PLAYER WILL MAKE THE NEXT MOVE?
 	
 	public GameManager() {
 		player1 = new Player(1);
@@ -40,16 +40,19 @@ public class GameManager {
 	// SET THE TURN FOR PLAYER '?' - ENSURE THAT OPPOSITE PLAYER'S PIECES ARE DISABLED
 	// SET SCORES, IF NECESSARY
 	// LISTEN FOR MOVES
-	public void beginGame() {
+	public void beginGame() throws ClassNotFoundException {
 		
 		board.initBoard();
+		
+		player1.initPlayer();
+		player2.initPlayer();
 		
 		// WAIT FOR USER INPUT
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		//System.out.println("Enter the from & to position (Ex: '01 02'): ");
 		String input = "";
 		
-		if (this.getTurn() == 1)
+		if (turn == 1)
 			System.out.println("Player 1's turn: ");
 		else
 			System.out.println("Player 2's turn: ");
@@ -68,7 +71,7 @@ public class GameManager {
 				p2.y = Integer.parseInt(input.substring(4));
 				
 				// MAKE A MOVE
-				if (this.getTurn() == 1)  player1.move(p1, p2);
+				if (turn == 1)  player1.move(p1, p2);
 				else player2.move(p1, p2);
 			}
 		} catch (NumberFormatException | IOException e) {
@@ -76,7 +79,13 @@ public class GameManager {
 		}
 		System.out.println("Goodbye");
 	}
-
+	
+	// RETURN THE APPROPRIATE PLAYER DEPENDING ON THE REQUIREMENT (I.E, INT)
+	public Player getCurrentPlayer() { return (turn == 1) ? player1 : player2; }
+	
+	// FLIP THE TURN 
+	public void setNextTurn() { if(turn == 1) turn = 2; else turn = 1; }
+	
 	public Player getPlayer1() { return player1; }
 
 	public void setPlayer1(Player player1) { this.player1 = player1; }
@@ -88,8 +97,4 @@ public class GameManager {
 	public Board getBoard() { return board;	}
 
 	public void setBoard(Board board) { this.board = board; }
-
-	public int getTurn() { return turn; }
-	
-	public void setTurn(int nTurn) { turn = nTurn; }
 }

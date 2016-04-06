@@ -18,12 +18,12 @@ package myChessGame2016;
 public class ChessGame2016 {
 
 	public static GameManager chessManager = new GameManager();
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ClassNotFoundException {
 		// SET THE TWO PLAYERS, AND BEGIN THE GAME. REST OF THE GAME IS
 		// HANDLED BY THE GAMEMANAGER CLASS
 		/*Player p1 = new Player(1);
 		Player p2 = new Player(2);*/
-
+		
 		chessManager.beginGame();
 	}
 
