@@ -19,12 +19,12 @@ import myChessGame2016.GameManager;
 	THE BOARD CLASS WILL MAINTAIN THE STATE OF THE BOARD, I.E,
 	THE STATE OF EACH SQUARE, THE PIECES AND THEIR POSITIONS.
 	WHEN THE PLAYER MAKES A MOVE, IT HAS TO BE VALIDATED ACCORDING
-	TO THE STATE OF THE BOARD BEFORE THE MOVE CAN BE DEEMED MADE.
+	TO THE STATE OF THE BOARD BEFORE THE MOVE CAN BE DEEMED VALID.
  */
 
 public class Board {
 
-	// SIZE OF THE BOARD, AND THE GAME BOARD
+	// BOARD SIZE AND MAX NUMBER OF PIECES
 	public static int MAX_COLS = 8;
 	public static int MAX_ROWS = 8;
 	public static int TOTAL_PIECES = 32;
@@ -68,7 +68,10 @@ public class Board {
 		
 		return newPiece;
 	}
-
+	
+	// READ FROM THE TEXT FILE AND SET THE PIECES ON THE BOARD (gameBoard)
+	// IF THE PIECE BELONGS TO ROWS 0 OR 1 -- ADD TO FIRST PLAYER'S PIECES (HASHMAP)
+	// IF THE PIECE BELONGS TO ROWS 6 OR 7 -- ADD TO SECOND PLAYER'S PIECES (HASHMAP)
 	public void initBoard() {
 		// READ THE INITIAL SETTING FROM THE FILE
 		BufferedReader reader;
@@ -116,90 +119,55 @@ public class Board {
 	}
 
 	// ONCE THE MOVE HAS BEEN VALIDATED
-	// SET THE FIRST POSITION TO EMPTY, AND MOIVE TO PIECE TO THE SECOND
-	// POSITION
+	// SET THE FIRST POSITION TO EMPTY, AND MOVE THE
+	// PIECE FROM THE FIRST TO THE SECOND POSITION
 	public void movePiece(Point p1, Point p2, ChessPiece piece) {
-
-		HashMap<Point, BoardSquare> map = ChessGame2016.chessManager.getCurrentPlayer().getPlayerPieces();
-		map.put(p2, gameBoard[p1.x][p1.y]);
-		map.put(p1, null);
 		
+		// UPDATE THE BOARD
+		gameBoard[p2.x][p2.y] = gameBoard[p1.x][p1.y];
+		//gameBoard[p2.x][p2.y].setPosition(p2);
+		gameBoard[p1.x][p1.y] = new BoardSquare(new Point(p1.x, p1.y), true, null);;
+		
+		// UPDATE THE POSITION FOR THE PLAYER
+		HashMap<Point, BoardSquare> map = ChessGame2016.chessManager.getCurrentPlayer().getPlayerPieces();
+		map.put(p2, gameBoard[p2.x][p2.y]);
+		map.remove(p1);
+		ChessGame2016.chessManager.getCurrentPlayer().setPlayerPieces(map);
+		System.out.println(ChessGame2016.chessManager.getCurrentPlayer().getPlayerPieces().get(p2));
+		
+		// MOVE THE PIECE ON THE BOARD
 		gameBoard[p1.x][p1.y].setEmpty(true);
 		gameBoard[p1.x][p1.y].setPiece(null);
 
 		gameBoard[p2.x][p2.y].setEmpty(false);
 		gameBoard[p2.x][p2.y].setPiece(piece);
 		
+		// SWITCH TURNS
 		ChessGame2016.chessManager.setNextTurn();
-
+		
+		// TESTING
 		printChessBoard();
 	}
-
+	
 	// LOGIC FOR PROCESS MOVE - COMING SOON!
-	public void processMove(Point p1, Point p2, Class<?> className) {
+	public void processMove(Point p1, Point p2, ChessPiece piece) {
 		// ENSURE IT'S PLAYER(1||2)'S TURN, ENSURE THAT THE MOVE IS NOT ILLEGAL
-		
-		if(!isMoveLegal(p1, p2, className)) 
+		if(!isMoveLegal(p1, p2, piece)) {
 			System.out.println("Your move cannot be made. Please try again.\n PLAYER + "  + GameManager.turn + "'s TURN: ");
-		else {
+		} else {
 			movePiece(p1, p2, gameBoard[p1.x][p1.y].getPiece());
 			System.out.println("PLAYER " + GameManager.turn + "'s TURN: ");
 		}
-		
-		/*if (GameManager.turn == 1) {
-			if (!isMoveLegal(p1, p2, className))
-				System.out.println("Your move cannot be made. Please try again.\n" + "PLAYER 1's TURN: ");
-			else {
-				GameManager.turn = 2;
-				movePiece(p1, p2, gameBoard[p1.x][p1.y].getPiece());
-				System.out.println("PLAYER 2's TURN: ");
-			}
-		} else {
-			if (!isMoveLegal(p1, p2, className))
-				System.out.println("Your move cannot be made. Please try again.\n" + "PLAYER 2's TURN: ");
-			else {
-				GameManager.turn = 1;
-				movePiece(p1, p2, gameBoard[p1.x][p1.y].getPiece());
-				System.out.println("PLAYER 1's TURN: ");
-			}
-		}*/
 	}
 
-	public boolean isMoveLegal(Point p1, Point p2, Class<?> className)  {
-		boolean result = true;
+	public boolean isMoveLegal(Point p1, Point p2, ChessPiece piece)  {
+		return piece.isMoveValid(p1, p2, new Integer(GameManager.turn));
+	}
 
-		// ILLEGAL MOVE CASE 1 - IT'S THE THE GIVEN PLAYERS' PIECE; CASE 2 - THE
-		// BOARDSQUARE IS OCCUPIED BY ANOTHER PIECE;
-		// CASE 3 - ATTEMPT TO MOVE FROM AN EMPTY SQUARE (!)
-		if (!ChessGame2016.chessManager.getCurrentPlayer().getPlayerPieces().containsKey(p1)
-				|| gameBoard[p2.x][p2.y].getPiece() != null || gameBoard[p1.x][p1.y].isEmpty()) {
-			result = false;
-		} else {
-
-			//BoardSquare sq = gameBoard[p1.x][p1.y];
+	public boolean isSquareEmpty(Point p) {
+		return gameBoard[p.x][p.y].isEmpty();
+	}
 	
-			try {
-				// CALL THE 'isMoveValid' METHOD ON THE APPROPRIATE CHESS PIECE THAT IS TO BE MOVED
-				Method method = className.getMethod("isMoveValid", Point.class, Point.class, Integer.class);
-				
-				try {
-					
-					// WE NEED A NEW INSTANCE OF CLASSNAME, ELSE WE CANNOT ACCESS THE METHODS (STATIC ONES MAY STILL BE ACCESSED) 
-					method.invoke(className.newInstance(), p1,  p2, new Integer(GameManager.turn));
-					
-				} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-					e.printStackTrace();
-				} catch (InstantiationException e) {
-					e.printStackTrace();
-				}
-			} catch (NoSuchMethodException | SecurityException e) {
-				e.printStackTrace();
-			}
-		}
-		
-		return result;
-	}
-
 	// TESTING
 	public void printChessBoard() {
 		for (int i = 0; i < MAX_ROWS; i++) {

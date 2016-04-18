@@ -63,24 +63,28 @@ public class Player {
 	}
 	
 	public void move(Point p1, Point p2) throws ClassNotFoundException {
-		//System.out.println("here "+playerPieces.get(new Point(p1.x, p1.y)));
 		
 		// TIP TO IMPROVE -- CHECK IF THE PIECE BELONGS TO THE PLAYER HERE, SO WE DON'T HAVE TO CHECK THAT ON THE BOARD 
 		// IN PROCESSMOVE/ISMOVELEGAL
-		if(Board.gameBoard[p1.x][p1.y].getPiece() != null) {
-			Class<?> className = getPieceClass(Board.gameBoard[p1.x][p1.y].getPiece().getValue());
-			ChessGame2016.chessManager.getBoard().processMove(p1, p2, className);
+		
+		// SQUARE CONTAINING PIECE 1 HAS TO BE OCCUPIED
+		// PIECE MUST BELONG TO THE CURRENT PLAYER
+		// SQUARE CONTAINING PIECE 2 HAS TO BE EMPTY
+		if(Board.gameBoard[p1.x][p1.y].getPiece() != null && playerPieces.containsKey(p1) && Board.gameBoard[p2.x][p2.y].isEmpty()) {
+			ChessPiece chessPiece = getPieceClass(Board.gameBoard[p1.x][p1.y].getPiece());
+			ChessGame2016.chessManager.getBoard().processMove(p1, p2, chessPiece);
 		} else {
 			System.out.println("Invalid move. Please try again.");
 		}
 	}
 	
-	public Class<?> getPieceClass(int value) throws ClassNotFoundException {
-
-		Class<?> pieceClass = null;
+	public ChessPiece getPieceClass(ChessPiece piece) throws ClassNotFoundException {
+		
+		int value = piece.getValue();
+		ChessPiece pieceClass = null;
 		switch (value) {
 		case 1:
-			pieceClass = Class.forName("data.ChessPiecePawn");
+			pieceClass = (ChessPiecePawn)piece;
 			break;
 		case 2:
 			//KNIGHT
