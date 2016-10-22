@@ -7,16 +7,15 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-
 import javafx.scene.image.ImageView;
 import main.ChessGame2016.myChessGame2016.ChessGame2016;
 import main.ChessGame2016.pieces.ChessPieceBishop;
+import main.ChessGame2016.pieces.ChessPieceFactory;
 import main.ChessGame2016.pieces.ChessPieceKing;
 import main.ChessGame2016.pieces.ChessPieceKnight;
 import main.ChessGame2016.pieces.ChessPiecePawn;
 import main.ChessGame2016.pieces.ChessPieceQueen;
 import main.ChessGame2016.pieces.ChessPieceRook;
-import main.ChessGame2016.view.ChessGame2016View;
 
 /*
  	PLAYER.JAVA
@@ -71,75 +70,37 @@ public class Player {
 		removedPieces = new ArrayList<>();
 	}
 	
-	public void move(Point p1, Point p2) throws ClassNotFoundException {
-		
-		// TIP TO IMPROVE -- CHECK IF THE PIECE BELONGS TO THE PLAYER HERE, SO WE DON'T HAVE TO CHECK THAT ON THE BOARD 
-		// IN PROCESSMOVE/ISMOVELEGAL
-		
-		// SQUARE CONTAINING PIECE 1 HAS TO BE OCCUPIED
-		// PIECE 1 MUST BELONG TO THE CURRENT PLAYER
-		// SQUARE CONTAINING PIECE 2 CANNOT BELONG TO CURRENT PLAYER
-		if(Board.gameBoard[p1.x][p1.y].getPiece() != null && playerPieces.containsKey(p1) 
-				&& !playerPieces.containsKey(p2)) {
-			ChessPiece chessPiece = getPieceClass(Board.gameBoard[p1.x][p1.y].getPiece());
-			ChessGame2016.chessManager.getBoard().processMove(p1, p2, chessPiece);
-		} else {
-			System.out.println("Invalid move. Please try again.");
-		}
-	}
-	
-	public ChessPiece getPieceClass(ChessPiece piece) throws ClassNotFoundException {
-		
-		int value = piece.getValue();
-		ChessPiece pieceClass = null;
-		switch (value) {
-		case 1:
-			pieceClass = (ChessPiecePawn)piece;
-			break;
-		case 2:
-			//KNIGHT
-			pieceClass = (ChessPieceKnight)piece;
-			break;
-		case 3:
-			//BISHOP
-			pieceClass = (ChessPieceBishop)piece;
-			break;
-		case 4:
-			//ROOK
-			pieceClass = (ChessPieceRook)piece;
-			break;
-		case 5:
-			//KING
-			pieceClass = (ChessPieceKing)piece;
-			break;
-		case 6:
-			//QUEEN
-			pieceClass = (ChessPieceQueen)piece;
-			break;
-		}
-		return pieceClass;
-	}
-	
 	public void initPlayer() {
+		ChessPieceFactory factory = new ChessPieceFactory();
 		if(color == 1) {
 			// READ FROM TXT FILE FOR WHITE
+			ChessGame2016.chessManager.addGuiButtons(factory.createPieceForAPlayer(Constants.CHESSPIECE_PLAYER_1_PREFIX, color));
 			addChessPieces(1);
 		} else {
 			// READ FROM TXT FILE FOR BLACK
+			ChessGame2016.chessManager.addGuiButtons(factory.createPieceForAPlayer(Constants.CHESSPIECE_PLAYER_2_PREFIX, color));
 			addChessPieces(2);
 		}
+	}
+	
+	public String getPieceKey(String playerWho, int val) {
+		return playerWho + Constants.CHESSPIECE_PAWN + "_" + val;
 	}
 	
 	/* BEFORE THE GAME BEGINS, THE CHESS PIECES ARE ASSIGNED TO THE APPROPRIATE PLAYER ON BOTH SIDES */
 	private void addChessPieces(int player) {
 		// READ THE INITIAL SETTING FROM THE FILE
 		BufferedReader reader;
-		
+		String playerWho = "";
 		try {
-			if (player == 1)
+			if (player == 1) {
 				reader = new BufferedReader(new FileReader(player1File));
-			else 
+				playerWho = Constants.CHESSPIECE_PLAYER_1_PREFIX;
+			}
+			else { 
 				reader = new BufferedReader(new FileReader(player2File));
+				playerWho = Constants.CHESSPIECE_PLAYER_2_PREFIX;
+			}
 			
 			for (int i = 0; i < 1; i++) {
 				// READ THE BOARD PIECE ON LINE 1, AND VALUES ON LINE 2
@@ -153,48 +114,65 @@ public class Player {
 				for(String str : coordinatesAsString) {
 					int x = str.charAt(1)-48;
 					int y = str.charAt(3)-48;
-					int value = Integer.parseInt(valuesForPieces[j]);
-					
+					int value = 0;
+					String key = getPieceKey(playerWho, y);
 					Point p = new Point(x, y);
 					if(x == 0 || x == 7) {
+						value = Integer.parseInt(valuesForPieces[j]);
 						switch (value) {
-						case Constants.PAWN:
-							newPiece = new BoardSquare(p, false, 
-									new ChessPiecePawn(player, value, 
-											(ImageView) ChessGame2016View.guiButtons.get(player+"PAWN"), "test"));
-							break;
 						case Constants.ROOK:
-							newPiece = new BoardSquare(p, false, 
-									new ChessPieceRook(player, value,
-											(ImageView) ChessGame2016View.guiButtons.get(player+"ROOK"), "test"));
+							if(y > 4)
+								newPiece = new BoardSquare(p, false, 
+										new ChessPieceRook(player, value,
+												(ImageView) ChessGame2016.chessManager.getGuiButtons().get(playerWho + Constants.CHESSPIECE_ROOK + Constants.CHESSPIECE_SUFFIX_2), playerWho + Constants.CHESSPIECE_ROOK + Constants.CHESSPIECE_SUFFIX_2));
+							else
+								newPiece = new BoardSquare(p, false, 
+										new ChessPieceRook(player, value,
+												(ImageView) ChessGame2016.chessManager.getGuiButtons().get(playerWho + Constants.CHESSPIECE_ROOK + Constants.CHESSPIECE_SUFFIX_1), playerWho + Constants.CHESSPIECE_ROOK + Constants.CHESSPIECE_SUFFIX_1));
 							break;
 						case Constants.KNIGHT:
-							newPiece = new BoardSquare(p, false, 
-									new ChessPieceKnight(player, value,
-											(ImageView) ChessGame2016View.guiButtons.get(player+"KNIGHT"), "test"));
+							if(y > 4)
+								newPiece = new BoardSquare(p, false, 
+										new ChessPieceKnight(player, value,
+												(ImageView) ChessGame2016.chessManager.getGuiButtons().get(playerWho + Constants.CHESSPIECE_KNIGHT + Constants.CHESSPIECE_SUFFIX_2), playerWho + Constants.CHESSPIECE_KNIGHT + Constants.CHESSPIECE_SUFFIX_2));
+							else
+								newPiece = new BoardSquare(p, false, 
+										new ChessPieceKnight(player, value,
+												(ImageView) ChessGame2016.chessManager.getGuiButtons().get(playerWho + Constants.CHESSPIECE_KNIGHT + Constants.CHESSPIECE_SUFFIX_1), playerWho + Constants.CHESSPIECE_KNIGHT + Constants.CHESSPIECE_SUFFIX_1));
 							break;
 						case Constants.BISHOP:
-							newPiece = new BoardSquare(p, false, 
-									new ChessPieceBishop(player, value,
-											(ImageView) ChessGame2016View.guiButtons.get(player+"BISHOP"), "test"));
+							if(y > 4)
+								newPiece = new BoardSquare(p, false, 
+										new ChessPieceBishop(player, value,
+												(ImageView) ChessGame2016.chessManager.getGuiButtons().get(playerWho + Constants.CHESSPIECE_BISHOP + Constants.CHESSPIECE_SUFFIX_2), playerWho + Constants.CHESSPIECE_BISHOP + Constants.CHESSPIECE_SUFFIX_2));
+							else
+								newPiece = new BoardSquare(p, false, 
+										new ChessPieceBishop(player, value,
+												(ImageView) ChessGame2016.chessManager.getGuiButtons().get(playerWho + Constants.CHESSPIECE_BISHOP + Constants.CHESSPIECE_SUFFIX_1), playerWho + Constants.CHESSPIECE_BISHOP + Constants.CHESSPIECE_SUFFIX_1));
 							break;
 						case Constants.QUEEN:
 							newPiece = new BoardSquare(p, false, 
 									new ChessPieceQueen(player, value,
-											(ImageView) ChessGame2016View.guiButtons.get(player+"QUEEN"), "test"));
+											(ImageView) ChessGame2016.chessManager.getGuiButtons().get(playerWho + Constants.CHESSPIECE_QUEEN), playerWho + Constants.CHESSPIECE_QUEEN));
 							break;
 						case Constants.KING:
 							newPiece = new BoardSquare(p, false, 
 									new ChessPieceKing(player, value,
-											(ImageView) ChessGame2016View.guiButtons.get(player+"KING"), "test"));
+											(ImageView) ChessGame2016.chessManager.getGuiButtons().get(playerWho + Constants.CHESSPIECE_KING), playerWho + Constants.CHESSPIECE_KING));
 							break;
 						}
-					} else
+					} else {
+						value = Constants.PAWN;
+						key = getPieceKey(playerWho, y);
 						newPiece = new BoardSquare(p, false, 
-								new ChessPiecePawn(player, Constants.PAWN,
-										(ImageView) ChessGame2016View.guiButtons.get(player+"PAWNS"), "test"));	// PAWNS
-					
+							new ChessPiecePawn(player, value, 
+									(ImageView) ChessGame2016.chessManager.getGuiButtons().get(key), key));	// PAWNS
+					}
+					Board.gameBoard[p.x][p.y] = newPiece;
+					Board.gameBoard[p.x][p.y].setPiece(newPiece.getPiece());
+					Board.gameBoard[p.x][p.y].setEmpty(false);
 					playerPieces.put(p, newPiece);
+					j++;
 				}
 			}
 		} catch (FileNotFoundException e) {
@@ -244,4 +222,64 @@ public class Player {
 		ChessGame2016.chessManager.getBoard().printChessBoard();
 	}
 
+	public Point[] player2Pawns() {
+		Point[] player2Points = new Point[8];
+		
+		player2Points[0] = new Point(0, 6);
+		player2Points[1] = new Point(1, 6);
+		player2Points[2] = new Point(2, 6);
+		player2Points[3] = new Point(3, 6);
+		player2Points[4] = new Point(4, 6);
+		player2Points[5] = new Point(5, 6);
+		player2Points[6] = new Point(6, 6);
+		player2Points[7] = new Point(7, 6);
+		
+		return player2Points;
+	}
+	
+	public Point[] player1Pawns() {
+		Point[] player1Points = new Point[8];
+		
+		player1Points[0] = new Point(0, 1);
+		player1Points[1] = new Point(1, 1);
+		player1Points[2] = new Point(2, 1);
+		player1Points[3] = new Point(3, 1);
+		player1Points[4] = new Point(4, 1);
+		player1Points[5] = new Point(5, 1);
+		player1Points[6] = new Point(6, 1);
+		player1Points[7] = new Point(7, 1);
+		
+		return player1Points;
+	}
+
+	public Point[] getPlayer1Piece() {
+		Point[] player1Points = new Point[8];
+		
+		player1Points[0] = new Point(0, 0);
+		player1Points[1] = new Point(1, 0);
+		player1Points[2] = new Point(2, 0);
+		player1Points[3] = new Point(3, 0);
+		player1Points[4] = new Point(4, 0);
+		player1Points[5] = new Point(5, 0);
+		player1Points[6] = new Point(6, 0);
+		player1Points[7] = new Point(7, 0);
+		
+		return player1Points;
+	}
+	
+	public Point[] getPlayer2Piece() {
+		Point[] player2Points = new Point[8];
+		
+		player2Points[0] = new Point(0, 7);
+		player2Points[1] = new Point(1, 7);;
+		player2Points[2] = new Point(2, 7);
+		player2Points[3] = new Point(3, 7);
+		player2Points[4] = new Point(4, 7);
+		player2Points[5] = new Point(5, 7);
+		player2Points[6] = new Point(6, 7);
+		player2Points[7] = new Point(7, 7);
+		
+		return player2Points;
+	}
+	
 }

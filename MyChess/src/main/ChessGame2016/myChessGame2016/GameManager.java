@@ -1,18 +1,11 @@
 package main.ChessGame2016.myChessGame2016;
 
 import java.awt.Point;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.util.HashMap;
 
 import main.ChessGame2016.data.Board;
-import main.ChessGame2016.data.BoardSquare;
 import main.ChessGame2016.data.ChessGame2016Data;
 import main.ChessGame2016.data.Player;
-import main.ChessGame2016.pieces.ChessPieceBishop;
-import main.ChessGame2016.pieces.ChessPieceKing;
-import main.ChessGame2016.pieces.ChessPieceKnight;
-import main.ChessGame2016.pieces.ChessPieceRook;
 import main.ChessGame2016.view.ChessGame2016View;
 
 /*
@@ -25,26 +18,25 @@ import main.ChessGame2016.view.ChessGame2016View;
 
 public class GameManager {
 	private ChessGame2016View view;
-	private Player player1, player2;
-	private Board board;
-	public static int turn; 				// WHICH PLAYER WILL MAKE THE NEXT MOVE?
+	//public static int turn; 				// WHICH PLAYER WILL MAKE THE NEXT MOVE?
 	private ChessGame2016Data data;
 	
+	private HashMap<String, Object> guiButtons;
+	private HashMap<String, Object> guiDecor;
+	
 	public GameManager() {
-		player1 = new Player(1);
-		player2 = new Player(2);
-		board = new Board();
-		turn = 1;	// PLAYER 1 GETS THE FIRST TURN BY DEFAULT
+		guiButtons = new HashMap<>();
+		guiDecor = new HashMap<>();
+		data = new ChessGame2016Data();		// INITIALIZES THE DATA -> INCLUDES PLAYER1, PLAYER2 & BOARD 
 		view = new ChessGame2016View();
-		data = new ChessGame2016Data();
+		//turn = 1;	// PLAYER 1 GETS THE FIRST TURN BY DEFAULT
 	}
 	
-	public GameManager(Player p1, Player p2, Board b, ChessGame2016View gameView) {
-		player1 = p1;
-		player2 = p2;
-		board = b;
-		turn = 1;
+	public GameManager(ChessGame2016View gameView, HashMap<String, Object> buttons, HashMap<String, Object> decor) {
+		//turn = 1;
 		view = gameView;
+		guiButtons = buttons;
+		guiDecor = decor;
 	}
 
 	// STEPS -
@@ -53,8 +45,12 @@ public class GameManager {
 	// SET SCORES, IF NECESSARY
 	// LISTEN FOR MOVES
 	public void beginGame() throws ClassNotFoundException {
-		
+		System.out.println("Load images");
 		view.initView();
+		System.out.println("Init data");
+		
+		System.out.println("Init view");
+		//view.initView();
 		
 		//BoardSquare testSq = new BoardSquare(new Point(5,4), false, new ChessPieceRook(1, 4));
 		//Board.gameBoard[5][4] = testSq;
@@ -89,7 +85,7 @@ public class GameManager {
 				Point p2 = new Point();
 				p2.x = Integer.parseInt(input.substring(3, 4));
 				p2.y = Integer.parseInt(input.substring(4));
-
+				
 				makeAMove(p1, p2);
 			}
 		} catch (NumberFormatException | IOException e) {
@@ -97,33 +93,45 @@ public class GameManager {
 		}
 	}*/
 	
-	public void makeAMove(Point p1, Point p2) throws ClassNotFoundException {
+	public boolean makeAMove(Point p1, Point p2) {
+		boolean result = false;
 		// MAKE A MOVE
-		if (turn == 1)
-			player1.move(p1, p2);
+		if (ChessGame2016Data.turn == 1)
+			result = data.move(p1, p2);
 		else
-			player2.move(p1, p2);
+			result = data.move(p1, p2);
+		
+		return result;
 	}
 	
-	// RETURN THE APPROPRIATE PLAYER DEPENDING ON THE REQUIREMENT (I.E, INT)
-	public Player getCurrentPlayer() { return (turn == 1) ? player1 : player2; }
+	public Board getBoard() { return data.getBoard();	}
+
+	public void setBoard(Board board) { data.setBoard(board); }
 	
-	public Player getNextPlayer() { return (turn == 1) ? player2 : player1; }
+	// RETURN THE APPROPRIATE PLAYER DEPENDING ON THE REQUIREMENT (I.E, INT)
+	public Player getCurrentPlayer() { return data.getCurrentPlayer(); }
+	
+	public Player getNextPlayer() { return data.getNextPlayer(); }
 	
 	// FLIP THE TURN 
-	public void setNextTurn() { if(turn == 1) turn = 2; else turn = 1; }
-	
-	public Player getPlayer1() { return player1; }
-
-	public void setPlayer1(Player player1) { this.player1 = player1; }
-
-	public Player getPlayer2() { return player2; }
-
-	public void setPlayer2(Player player2) { this.player2 = player2; }
-
-	public Board getBoard() { return board;	}
-
-	public void setBoard(Board board) { this.board = board; }
+	public void setNextTurn() { data.setNextTurn(); }
 	
 	public ChessGame2016Data getGameData() { return data; }
+
+	public HashMap<String, Object> getGuiButtons() { return guiButtons; }
+
+	public void setGuiButtons(HashMap<String, Object> guiButtons) { this.guiButtons = guiButtons; }
+	
+	public void addGuiButtons(HashMap<String, Object> newButtons) {
+		Object[] arr = newButtons.keySet().toArray();
+		
+		for(int i = 0; i < arr.length; i++) {
+			guiButtons.put(String.valueOf(arr[i]), newButtons.get(arr[i]));
+		}
+	}
+
+	public HashMap<String, Object> getGuiDecor() { return guiDecor; }
+
+	public void setGuiDecor(HashMap<String, Object> guiDecor) { this.guiDecor = guiDecor; }
+	
 }

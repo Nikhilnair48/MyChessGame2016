@@ -2,13 +2,12 @@ package main.ChessGame2016.pieces;
 
 import java.awt.Point;
 import java.util.ArrayList;
-
 import javafx.scene.image.ImageView;
 import main.ChessGame2016.data.Board;
 import main.ChessGame2016.data.BoardSquare;
+import main.ChessGame2016.data.ChessGame2016Data;
 import main.ChessGame2016.data.ChessPiece;
 import main.ChessGame2016.myChessGame2016.ChessGame2016;
-import main.ChessGame2016.myChessGame2016.GameManager;
 
 public class ChessPiecePawn extends ChessPiece {
 	private boolean isFirstMove;
@@ -25,7 +24,10 @@ public class ChessPiecePawn extends ChessPiece {
 	public ChessPiecePawn() { }
 	
 	/* INSTANTIATE OBJ WITH COLOR AND VALUE */
-	public ChessPiecePawn(int col, int value, ImageView imgV, String id) { super(col, value, imgV, id); }
+	public ChessPiecePawn(int col, int value, ImageView imgV, String id) { 
+		super(col, value, imgV, id); 
+		isFirstMove = true;
+	}
 
 	@Override
 	public boolean isMoveValid(Point p1, Point p2, Integer player) {
@@ -34,7 +36,7 @@ public class ChessPiecePawn extends ChessPiece {
 		int yDifference = Math.abs(p2.y - p1.y);
 		
 		// ATTEMPTING TO MOVE GREATER THAN 2 SQUARES - NOPE!
-		if(xDifference > 2 || yDifference > 2) { 
+		if(xDifference > 2 || yDifference > 1) { 
 			result = false;  
 		}
 		
@@ -43,18 +45,15 @@ public class ChessPiecePawn extends ChessPiece {
 			result = false;  
 		}
 
-		// IF THE PAWN IS MOVING FOR THE FIRST TIME, FILP THE FLAG 
-		// TO PREVENT THE PAWN FROM MOVING 2 SQUARES IN THE FUTURE
-		if(isFirstMove && result) isFirstMove = false;
-		
 		// SET THE DIRECTION TO MOVE TO POSITIVE IF IT'S PLAYER 1'S TURN
 		// WHEN IT'S PLAYER 2'S TURN, directionToMove NEEDS TO BE -1
 		// SINCE THE PIECES ARE MOVING DOWN ON THE BOARD
-		if(GameManager.turn == 1) directionToMove = 1;
+		if(ChessGame2016Data.turn == 1) directionToMove = 1;
 		else directionToMove = -1;
 		
+		ArrayList<Point> possibleMoves = generatePossibleMoves(p1, p2);
 		// IS THE PAWN TRYING TO ATTACK?
-		if(result && generatePossibleMoves(p1, p2).contains(p2)
+		if(result && possibleMoves.contains(p2)
 				&& !Board.gameBoard[p2.x][p2.y].isEmpty()) {
 			System.out.println("About to attack");
 			
@@ -65,11 +64,15 @@ public class ChessPiecePawn extends ChessPiece {
 			
 			// REMOVE THE PIECE FROM THE BOARD
 			Board.gameBoard[p2.x][p2.y].setEmpty(true);
-			Board.gameBoard[p2.x][p2.y].setPiece(null);	
-		} else if(result && generatePossibleMoves(p1, p2).contains(p2)
-				&& Board.gameBoard[p2.x][p2.y].isEmpty()) {
-			result = true;
-		} else result = false;
+			Board.gameBoard[p2.x][p2.y].setPiece(null);
+		} else if(!possibleMoves.contains(p2)	//result &&
+				&& !Board.gameBoard[p2.x][p2.y].isEmpty()) {
+			result = false;
+		} //else result = false;
+		
+		// IF THE PAWN IS MOVING FOR THE FIRST TIME, FILP THE FLAG 
+		// TO PREVENT THE PAWN FROM MOVING 2 SQUARES IN THE FUTURE
+		if(isFirstMove && result) isFirstMove = false;
 		
 		return result;
 	}
@@ -77,8 +80,9 @@ public class ChessPiecePawn extends ChessPiece {
 	public ArrayList<Point> generatePossibleMoves(Point p1, Point p2) {
 		ArrayList<Point> possibleMoves = new ArrayList<Point>();
 				
+		System.out.println("starting x " + p1.x + " starting y " + p1.y);
 		// MOVE FORWARD BY ONE SQUARE
-		if((p1.x + (1 * directionToMove)) < Board.MAX_ROWS 
+		if((p1.x + (1 * directionToMove)) < Board.MAX_COLS 
 				&& Board.gameBoard[p1.x + (1 * directionToMove)][p1.y].isEmpty())
 			possibleMoves.add(new Point(p1.x + (1 * directionToMove), p1.y));
 		
@@ -101,7 +105,7 @@ public class ChessPiecePawn extends ChessPiece {
 				&& !Board.gameBoard[p1.x + (1 * directionToMove)][p1.y+1].isEmpty())
 			possibleMoves.add(new Point(p1.x + (1 * directionToMove), p1.y+1));
 		
-		System.out.println(possibleMoves);
+		System.out.println("chesspiecepawn: possiblemoves - "+ possibleMoves);
 		
 		return possibleMoves;
 	}

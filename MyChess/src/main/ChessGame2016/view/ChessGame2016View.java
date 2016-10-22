@@ -2,21 +2,10 @@ package main.ChessGame2016.view;
 
 import java.awt.Point;
 import java.util.HashMap;
-
-import main.ChessGame2016.data.BoardSquare;
-import main.ChessGame2016.data.ChessGame2016Data;
-import main.ChessGame2016.data.ChessPieceCreationInfo;
 import main.ChessGame2016.data.Constants;
-import main.ChessGame2016.handlers.BishopHandler;
 import main.ChessGame2016.handlers.BoardHandler;
 import main.ChessGame2016.handlers.CloseGameHandler;
-import main.ChessGame2016.handlers.KingHandler;
-import main.ChessGame2016.handlers.KnightHandler;
-import main.ChessGame2016.handlers.PawnHandler;
-import main.ChessGame2016.handlers.QueenHandler;
-import main.ChessGame2016.handlers.RookHandler;
 import main.ChessGame2016.myChessGame2016.ChessGame2016;
-import main.ChessGame2016.pieces.ChessPieceFactory;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -30,12 +19,8 @@ import javafx.stage.Stage;
 
 public class ChessGame2016View extends Application {
 	
-	public static HashMap<String, Object> guiButtons;
-	public static HashMap<String, Object> guiDecor;
 	public static HashMap<String, Object> buttonsToMove;
 
-	private ChessPieceFactory factory;
-	
 	public static String keyOfClickedPiece = null;
 	public static Point point1 = null;
 	public static Point point2 = null;
@@ -43,20 +28,17 @@ public class ChessGame2016View extends Application {
 	public static Canvas canvas = new Canvas(512, 512);
 	
 	public ChessGame2016View() {
-		guiButtons = new HashMap<>();
-		guiDecor = new HashMap<>();
 		buttonsToMove = new HashMap<>();
-		factory = new ChessPieceFactory();
 	}
 
 	public void initView() {
 		launch();
 	}
 	
-	public void init() throws Exception {
+	/*public void init() throws Exception {
 		ChessGame2016.chessManager.getGameData().initData();
 		System.out.println("data initialized!");
-	}
+	}*/
 
 	@Override
 	public void start(Stage stage) throws Exception {
@@ -66,10 +48,21 @@ public class ChessGame2016View extends Application {
 		
 		group.getChildren().add(canvas);
 		
-		readBoardImage(scene, stage);
+		ChessGame2016.chessManager.getGameData().initData();
 		
-		readImagePieces(Constants.CHESSPIECE_PLAYER_1_PREFIX, getPlayer1Piece(), scene, stage);
-		readImagePieces(Constants.CHESSPIECE_PLAYER_2_PREFIX, getPlayer2Piece(), scene, stage);
+		readBoardImage(scene);
+		
+		HashMap<String, Object> guiButtons = ChessGame2016.chessManager.getGuiButtons();
+		Object[] arr = guiButtons.keySet().toArray();
+		for(int i = 0; i < arr.length; i++) {
+			ImageView imgV = (ImageView) ChessGame2016.chessManager.getGuiButtons().get(arr[i]);
+			((Group)scene.getRoot()).getChildren().add(imgV);
+		}
+		/*ImageView imgV = (ImageView)ChessGame2016.chessManager.getGuiButtons().get("1_rook_1");
+		imgV.setX(0);
+		imgV.setY(0);
+		RookHandler rookHandler = new RookHandler(null);
+		imgV.addEventFilter(MouseEvent.ANY, rookHandler);*/
 		
 		Button closeButton = new Button("END IT");
 		CloseGameHandler handler = new CloseGameHandler(closeButton);
@@ -84,12 +77,12 @@ public class ChessGame2016View extends Application {
 		timer.start();
 		
 		((Group)scene.getRoot()).getChildren().add(vbox);
-		
+		System.out.println(((Group)scene.getRoot()).getChildren().size());
 		stage.setScene(scene);
 		stage.show();
 	}
 	
-	public void readBoardImage(Scene scene, Stage stage) {
+	public void readBoardImage(Scene scene) {
 		Image image = new Image(Constants.baseImgDiretory + "GameBoard.png");
 		ImageView imgV = new ImageView(image);
 		
@@ -101,7 +94,7 @@ public class ChessGame2016View extends Application {
 		
 	}
 	
-	public void readImagePieces(String playerWho, Point[] playerPiecePoints, Scene scene, Stage stage) {
+	/*public void readImagePieces(String playerWho, Point[] playerPiecePoints, Scene scene, Stage stage) {
 		
 		// A ROOK THAT'LL BE WHITE, IS WORTH 4 POINTS - REDUNDANT, IT'S IMAGEVIEW, AND IT'S VALUES 
 		//ChessPieceRook rook = new ChessPieceRook(1, 4, new ImageView(new Image(Constants.playerOneDirectory + Constants.CHESSPIECE_ROOK + Constants.IMAGE_EXT_PNG)));
@@ -112,7 +105,7 @@ public class ChessGame2016View extends Application {
 		RookHandler rookHandler = new RookHandler(square.getPiece());
 		square.getPiece().getImageView().addEventFilter(MouseEvent.ANY, rookHandler);
 		guiButtons.put(playerWho + Constants.CHESSPIECE_ROOK + Constants.CHESSPIECE_SUFFIX_1, square.getPiece().getImageView());
-		((Group)scene.getRoot()).getChildren().add(square.getPiece().getImageView());
+		//((Group)scene.getRoot()).getChildren().add(square.getPiece().getImageView());
 		
 		pieceInfo= new ChessPieceCreationInfo(Constants.playerOneDirectory, Constants.IMAGE_EXT_PNG, Constants.CHESSPIECE_ROOK,
 				playerWho, Constants.CHESSPIECE_SUFFIX_2);
@@ -120,7 +113,7 @@ public class ChessGame2016View extends Application {
 		rookHandler = new RookHandler(square.getPiece());
 		square.getPiece().getImageView().addEventFilter(MouseEvent.ANY, rookHandler);
 		guiButtons.put(playerWho + Constants.CHESSPIECE_ROOK + Constants.CHESSPIECE_SUFFIX_2, square.getPiece().getImageView());
-		((Group)scene.getRoot()).getChildren().add(square.getPiece().getImageView());
+		//((Group)scene.getRoot()).getChildren().add(square.getPiece().getImageView());
 		
 		pieceInfo= new ChessPieceCreationInfo(Constants.playerOneDirectory, Constants.IMAGE_EXT_PNG, Constants.CHESSPIECE_KNIGHT,
 				playerWho, Constants.CHESSPIECE_SUFFIX_1);
@@ -128,7 +121,7 @@ public class ChessGame2016View extends Application {
 		KnightHandler knightHandler = new KnightHandler(square.getPiece());
 		square.getPiece().getImageView().addEventFilter(MouseEvent.ANY, knightHandler);
 		guiButtons.put(playerWho + Constants.CHESSPIECE_KNIGHT + Constants.CHESSPIECE_SUFFIX_1, square.getPiece().getImageView());
-		((Group)scene.getRoot()).getChildren().add(square.getPiece().getImageView());
+		//((Group)scene.getRoot()).getChildren().add(square.getPiece().getImageView());
 		
 		pieceInfo= new ChessPieceCreationInfo(Constants.playerOneDirectory, Constants.IMAGE_EXT_PNG, Constants.CHESSPIECE_KNIGHT,
 				playerWho, Constants.CHESSPIECE_SUFFIX_2);
@@ -136,7 +129,7 @@ public class ChessGame2016View extends Application {
 		knightHandler = new KnightHandler(square.getPiece());
 		square.getPiece().getImageView().addEventFilter(MouseEvent.ANY, knightHandler);
 		guiButtons.put(playerWho + Constants.CHESSPIECE_KNIGHT + Constants.CHESSPIECE_SUFFIX_2, square.getPiece().getImageView());
-		((Group)scene.getRoot()).getChildren().add(square.getPiece().getImageView());
+		//((Group)scene.getRoot()).getChildren().add(square.getPiece().getImageView());
 		
 		pieceInfo = new ChessPieceCreationInfo(Constants.playerOneDirectory, Constants.IMAGE_EXT_PNG, Constants.CHESSPIECE_BISHOP,
 				playerWho, Constants.CHESSPIECE_SUFFIX_1);
@@ -144,7 +137,7 @@ public class ChessGame2016View extends Application {
 		BishopHandler bishopHandler = new BishopHandler(square.getPiece());
 		square.getPiece().getImageView().addEventFilter(MouseEvent.ANY, bishopHandler);
 		guiButtons.put(playerWho + Constants.CHESSPIECE_BISHOP + Constants.CHESSPIECE_SUFFIX_1, square.getPiece().getImageView());
-		((Group)scene.getRoot()).getChildren().add(square.getPiece().getImageView());
+		//((Group)scene.getRoot()).getChildren().add(square.getPiece().getImageView());
 		
 		pieceInfo = new ChessPieceCreationInfo(Constants.playerOneDirectory, Constants.IMAGE_EXT_PNG, Constants.CHESSPIECE_BISHOP,
 				playerWho, Constants.CHESSPIECE_SUFFIX_2);
@@ -152,7 +145,7 @@ public class ChessGame2016View extends Application {
 		bishopHandler = new BishopHandler(square.getPiece());
 		square.getPiece().getImageView().addEventFilter(MouseEvent.ANY, bishopHandler);
 		guiButtons.put(playerWho + Constants.CHESSPIECE_BISHOP + Constants.CHESSPIECE_SUFFIX_2, square.getPiece().getImageView());
-		((Group)scene.getRoot()).getChildren().add(square.getPiece().getImageView());
+		//((Group)scene.getRoot()).getChildren().add(square.getPiece().getImageView());
 		
 		pieceInfo = new ChessPieceCreationInfo(Constants.playerOneDirectory, Constants.IMAGE_EXT_PNG, Constants.CHESSPIECE_QUEEN,
 				playerWho, Constants.CHESSPIECE_SUFFIX_1);
@@ -160,7 +153,7 @@ public class ChessGame2016View extends Application {
 		QueenHandler queenHandler = new QueenHandler(square.getPiece());
 		square.getPiece().getImageView().addEventFilter(MouseEvent.ANY, queenHandler);
 		guiButtons.put(playerWho + Constants.CHESSPIECE_QUEEN + Constants.CHESSPIECE_SUFFIX_1, square.getPiece().getImageView());
-		((Group)scene.getRoot()).getChildren().add(square.getPiece().getImageView());
+		//((Group)scene.getRoot()).getChildren().add(square.getPiece().getImageView());
 		
 		pieceInfo = new ChessPieceCreationInfo(Constants.playerOneDirectory, Constants.IMAGE_EXT_PNG, Constants.CHESSPIECE_KING,
 				playerWho, Constants.CHESSPIECE_SUFFIX_1);
@@ -168,7 +161,7 @@ public class ChessGame2016View extends Application {
 		KingHandler kingHandler = new KingHandler(square.getPiece());
 		square.getPiece().getImageView().addEventFilter(MouseEvent.ANY, kingHandler);
 		guiButtons.put(playerWho + Constants.CHESSPIECE_KING + Constants.CHESSPIECE_SUFFIX_1, square.getPiece().getImageView());
-		((Group)scene.getRoot()).getChildren().add(square.getPiece().getImageView());
+		//((Group)scene.getRoot()).getChildren().add(square.getPiece().getImageView());
 		
 		PawnHandler pawnHandler = null;
 		
@@ -186,9 +179,9 @@ public class ChessGame2016View extends Application {
 			square.getPiece().getImageView().addEventFilter(MouseEvent.ANY, pawnHandler);
 			guiButtons.put(playerWho + Constants.CHESSPIECE_PAWN + "_" + i, square.getPiece().getImageView());
 			System.out.println(playerWho + Constants.CHESSPIECE_PAWN + "_" + i);
-			((Group)scene.getRoot()).getChildren().add(square.getPiece().getImageView());
+			//((Group)scene.getRoot()).getChildren().add(square.getPiece().getImageView());
 		}
-	}
+	}*/
 	
 	public Point[] player2Pawns() {
 		Point[] player2Points = new Point[8];

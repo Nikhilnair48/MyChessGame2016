@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import javafx.scene.image.ImageView;
 import main.ChessGame2016.data.Board;
+import main.ChessGame2016.data.ChessGame2016Data;
 import main.ChessGame2016.data.ChessPiece;
 import main.ChessGame2016.myChessGame2016.ChessGame2016;
 import main.ChessGame2016.myChessGame2016.GameManager;
@@ -25,7 +26,7 @@ public class ChessPieceKnight extends ChessPiece {
 		// SET THE DIRECTION TO MOVE TO POSITIVE IF IT'S PLAYER 1'S TURN
 		// WHEN IT'S PLAYER 2'S TURN, directionToMove NEEDS TO BE -1
 		// SINCE THE PIECES ARE MOVING DOWN ON THE BOARD
-		if (GameManager.turn == 1)
+		if (ChessGame2016Data.turn == 1)
 			directionToMove = 1;
 		else
 			directionToMove = -1;

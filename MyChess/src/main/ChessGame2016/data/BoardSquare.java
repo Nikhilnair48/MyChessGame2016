@@ -21,6 +21,7 @@ public class BoardSquare {
 	public BoardSquare() {
 		piece = null;
 		isEmpty = true;
+		position = new Point();
 	}
 	
 	public BoardSquare(Point p, boolean status, ChessPiece cPiece) {	//, int c

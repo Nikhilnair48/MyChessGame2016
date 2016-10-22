@@ -26,5 +26,4 @@ public class ChessGame2016 {
 		//launch(args);
 		chessManager.beginGame();
 	}
-	
 }
