@@ -13,24 +13,32 @@ public class ChessPieceKing extends ChessPiece {
 
 	@Override
 	public boolean isMoveValid(Point p1, Point p2, Integer player) {
+		boolean result = true;
 		
-		generatePossibleMoves(p1, p2);
+		int xDifference = Math.abs(p2.x - p1.x);
+		int yDifference = Math.abs(p2.y - p1.y);
 		
-		return true;
+		if(xDifference > 1 || yDifference > 2)
+			result = false;
+		
+		if(!generatePossibleMoves(p1, p2).contains(p2) && Board.gameBoard[p2.x][p2.y].isEmpty())
+			result = false;
+		
+		return result;
 	}
 
 	@Override
 	public ArrayList<Point> generatePossibleMoves(Point p1, Point p2) {
 		ArrayList<Point> possibleMoves = new ArrayList<>();
 		
-		// MOVE LEFT/RIGHT BY 1  
+		// MOVE FORWARD/BACKWARD BY 1  
 		if(p1.x+1 < Board.MAX_ROWS)
 			possibleMoves.add(new Point(p1.x+1, p1.y));
 		
 		if((p1.x-1) > 0)
 			possibleMoves.add(new Point(p1.x-1, p1.y));
 		
-		// MOVE FORWARD/BACKWARD BY 1
+		// MOVE LEFT/RIGHT BY 1
 		if((p1.y+1) < Board.MAX_COLS) 
 			possibleMoves.add(new Point(p1.x, p1.y+1));
 		

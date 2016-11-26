@@ -2,7 +2,9 @@ package main.ChessGame2016.pieces;
 
 import java.awt.Point;
 import java.util.ArrayList;
+
 import javafx.scene.image.ImageView;
+import main.ChessGame2016.data.Board;
 import main.ChessGame2016.data.ChessPiece;
 
 public class ChessPieceQueen extends ChessPiece {
@@ -11,12 +13,163 @@ public class ChessPieceQueen extends ChessPiece {
 
 	@Override
 	public boolean isMoveValid(Point p1, Point p2, Integer player) {
-		return false;
+		ArrayList<Point> list = generatePossibleMoves(p1, p2);
+		
+		return list.contains(p2);
 	}
 
 	@Override
 	public ArrayList<Point> generatePossibleMoves(Point p1, Point p2) {
-		return null;
+		ArrayList<Point> possibleMoves = new ArrayList<>();
+		
+		// POSSIBLE MOVES FORWARD
+		boolean result = true;
+		int i = 1;
+		boolean pieceToAttackDetected = false;
+		while(result) {
+			if((p1.x+i) < Board.MAX_ROWS
+					&& !pieceToAttackDetected) {
+				possibleMoves.add(new Point(p1.x+i, p1.y));
+				
+				if(!Board.gameBoard[p1.x+i][p1.y].isEmpty() 
+						&& Board.gameBoard[p1.x+i][p1.y].getPiece().getColor() != this.getColor())
+					pieceToAttackDetected = true;
+				
+				i++;
+			} else {
+				result = false;
+			}
+		}
+		
+		// POSSIBLE MOVES BACKWARD
+		result = true;
+		i = 1;
+		pieceToAttackDetected = false;
+		while(result) {
+			if((p1.x-i) >= 0
+					&& !pieceToAttackDetected) {
+				possibleMoves.add(new Point(p1.x-i, p1.y));
+				
+				if(!Board.gameBoard[p1.x-i][p1.y].isEmpty()
+						&& Board.gameBoard[p1.x-i][p1.y].getPiece().getColor() != this.getColor())
+					pieceToAttackDetected = true;
+				i++;
+			} else {
+				result = false;
+			}
+		}
+		
+		// POSSIBLE MOVES TO THE RIGHT
+		result = true;
+		i = 1;
+		pieceToAttackDetected = false;
+		while(result) {
+			if((p1.y+i) < Board.MAX_COLS
+					&& !pieceToAttackDetected) {
+				possibleMoves.add(new Point(p1.x, p1.y+i));
+				
+				if(!Board.gameBoard[p1.x][p1.y+i].isEmpty()
+						&& Board.gameBoard[p1.x][p1.y+i].getPiece().getColor() != this.getColor())
+					pieceToAttackDetected = true;
+				
+				i++;
+			} else {
+				result = false;
+			}
+		}
+		
+		// POSSIBLE MOVES TO THE LEFT
+		result = true;
+		i = 1;
+		pieceToAttackDetected = false;
+		while(result) {
+			if((p1.y-i) >= 0
+					&& !pieceToAttackDetected) {
+				possibleMoves.add(new Point(p1.x, p1.y-i));
+				
+				if(!Board.gameBoard[p1.x][p1.y-i].isEmpty()
+						&& Board.gameBoard[p1.x][p1.y-i].getPiece().getColor() != this.getColor())
+					pieceToAttackDetected = true;
+				
+				i++;
+			} else {
+				result = false;
+			}
+		}
+		
+		// POSSIBLE MOVES GOING FORWARD LEFT
+		result = true;
+		i = 1;
+		pieceToAttackDetected = false;
+		while (result) {
+			if ((p1.x + i) < Board.MAX_ROWS && (p1.y + i) < Board.MAX_COLS
+					&& !pieceToAttackDetected) {
+				possibleMoves.add(new Point(p1.x + i, p1.y + i));
+
+				if (!Board.gameBoard[p1.x + i][p1.y + i].isEmpty())
+					pieceToAttackDetected = true;
+				i++;
+			} else {
+				result = false;
+			}
+		}
+		
+		// POSSIBLE MOVES GOING BACKWARD LEFT
+		result = true;
+		i = 1;
+		pieceToAttackDetected = false;
+		while (result) {
+			if ((p1.x + i) < Board.MAX_ROWS && (p1.y - i) >= 0
+					&& !pieceToAttackDetected) {
+				possibleMoves.add(new Point(p1.x + i, p1.y - i));
+
+				if (!Board.gameBoard[p1.x + i][p1.y - i].isEmpty())
+					pieceToAttackDetected = true;
+
+				i++;
+			} else {
+				result = false;
+			}
+		}
+
+		// POSSIBLE MOVES GOING FORWARD RIGHT
+		result = true;
+		i = 1;
+		pieceToAttackDetected = false;
+		while (result) {
+			if ((p1.x - i) >= 0 && (p1.y + i) < Board.MAX_COLS
+					&& !pieceToAttackDetected) {
+				possibleMoves.add(new Point(p1.x - i, p1.y + i));
+
+				if (!Board.gameBoard[p1.x - i][p1.y + i].isEmpty())
+					pieceToAttackDetected = true;
+
+				i++;
+			} else {
+				result = false;
+			}
+		}
+
+		// POSSIBLE MOVES GOING BACKWARD RIGHT
+		result = true;
+		i = 1;
+		pieceToAttackDetected = false;
+		while (result) {
+			if ((p1.x - i) >= 0 && (p1.y - i) >= 0 && !pieceToAttackDetected) {
+				possibleMoves.add(new Point(p1.x - i, p1.y - i));
+
+				if (!Board.gameBoard[p1.x - i][p1.y - i].isEmpty())
+					pieceToAttackDetected = true;
+
+				i++;
+			} else {
+				result = false;
+			}
+		}
+		
+		System.out.println(possibleMoves);
+		System.out.println(possibleMoves.size());
+		return possibleMoves;
 	}
 
 }

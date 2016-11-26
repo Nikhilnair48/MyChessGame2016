@@ -4,10 +4,8 @@ import java.awt.Point;
 import java.util.ArrayList;
 import javafx.scene.image.ImageView;
 import main.ChessGame2016.data.Board;
-import main.ChessGame2016.data.BoardSquare;
 import main.ChessGame2016.data.ChessGame2016Data;
 import main.ChessGame2016.data.ChessPiece;
-import main.ChessGame2016.myChessGame2016.ChessGame2016;
 
 public class ChessPiecePawn extends ChessPiece {
 	private boolean isFirstMove;
@@ -53,7 +51,7 @@ public class ChessPiecePawn extends ChessPiece {
 		
 		ArrayList<Point> possibleMoves = generatePossibleMoves(p1, p2);
 		// IS THE PAWN TRYING TO ATTACK?
-		if(result && possibleMoves.contains(p2)
+		/*if(result && possibleMoves.contains(p2)
 				&& !Board.gameBoard[p2.x][p2.y].isEmpty()) {
 			System.out.println("About to attack");
 			
@@ -65,7 +63,7 @@ public class ChessPiecePawn extends ChessPiece {
 			// REMOVE THE PIECE FROM THE BOARD
 			Board.gameBoard[p2.x][p2.y].setEmpty(true);
 			Board.gameBoard[p2.x][p2.y].setPiece(null);
-		} else if(!possibleMoves.contains(p2)	//result &&
+		} else*/ if(!possibleMoves.contains(p2)	//result &&
 				&& !Board.gameBoard[p2.x][p2.y].isEmpty()) {
 			result = false;
 		} //else result = false;

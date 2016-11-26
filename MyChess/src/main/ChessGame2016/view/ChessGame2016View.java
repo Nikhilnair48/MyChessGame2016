@@ -2,6 +2,7 @@ package main.ChessGame2016.view;
 
 import java.awt.Point;
 import java.util.HashMap;
+import util.ChessGame2016Properties;
 import main.ChessGame2016.data.Constants;
 import main.ChessGame2016.handlers.BoardHandler;
 import main.ChessGame2016.handlers.CloseGameHandler;
@@ -25,7 +26,9 @@ public class ChessGame2016View extends Application {
 	public static Point point1 = null;
 	public static Point point2 = null;
 	
-	public static Canvas canvas = new Canvas(512, 512);
+	public static Canvas canvas = new Canvas(1280, 800);
+	Group group = new Group();
+	Scene scene;
 	
 	public ChessGame2016View() {
 		buttonsToMove = new HashMap<>();
@@ -35,36 +38,26 @@ public class ChessGame2016View extends Application {
 		launch();
 	}
 	
-	/*public void init() throws Exception {
-		ChessGame2016.chessManager.getGameData().initData();
-		System.out.println("data initialized!");
-	}*/
-
 	@Override
 	public void start(Stage stage) throws Exception {
-		Group group = new Group();
-		Scene scene = new Scene(group);
+		scene = new Scene(group);
 		stage.setScene(scene);
 		
 		group.getChildren().add(canvas);
 		
 		ChessGame2016.chessManager.getGameData().initData();
 		
-		readBoardImage(scene);
+		((Group)scene.getRoot()).getChildren().add(readSplashScreenBackground());
+		/*readBoardImage(scene);
 		
 		HashMap<String, Object> guiButtons = ChessGame2016.chessManager.getGuiButtons();
 		Object[] arr = guiButtons.keySet().toArray();
 		for(int i = 0; i < arr.length; i++) {
 			ImageView imgV = (ImageView) ChessGame2016.chessManager.getGuiButtons().get(arr[i]);
 			((Group)scene.getRoot()).getChildren().add(imgV);
-		}
-		/*ImageView imgV = (ImageView)ChessGame2016.chessManager.getGuiButtons().get("1_rook_1");
-		imgV.setX(0);
-		imgV.setY(0);
-		RookHandler rookHandler = new RookHandler(null);
-		imgV.addEventFilter(MouseEvent.ANY, rookHandler);*/
+		}*/
 		
-		Button closeButton = new Button("END IT");
+		/*Button closeButton = new Button("END IT");
 		CloseGameHandler handler = new CloseGameHandler(closeButton);
 		closeButton.addEventHandler(MouseEvent.ANY, handler);
 		
@@ -73,17 +66,35 @@ public class ChessGame2016View extends Application {
 		vbox.setLayoutY(500);
 		vbox.getChildren().add(closeButton);
 		
+		Image image = new Image(ChessGame2016Properties.getProperty("trump"));
+		ImageView imgV = new ImageView(image);
+		
+		imgV.setX(0);
+		imgV.setY(0);*/
+		
+		SplashScreen splash = new SplashScreen(stage, canvas);
+		
 		ChessGame2016AnimationTimer timer = new ChessGame2016AnimationTimer();
 		timer.start();
 		
-		((Group)scene.getRoot()).getChildren().add(vbox);
-		System.out.println(((Group)scene.getRoot()).getChildren().size());
+		//((Group)scene.getRoot()).getChildren().add(vbox);
+		//System.out.println(((Group)scene.getRoot()).getChildren().size());
 		stage.setScene(scene);
 		stage.show();
 	}
 	
+	public ImageView readSplashScreenBackground() {
+		Image image = new Image(ChessGame2016Properties.getProperty("background"));
+		ImageView imgV = new ImageView(image);
+		
+		imgV.setX(0);
+		imgV.setY(0);
+		
+		return imgV;
+	}
+	
 	public void readBoardImage(Scene scene) {
-		Image image = new Image(Constants.baseImgDiretory + "GameBoard.png");
+		Image image = new Image(Constants.baseImgDiretory + "GameBoardUpdated.png");
 		ImageView imgV = new ImageView(image);
 		
 		imgV.setX(0);
@@ -93,6 +104,8 @@ public class ChessGame2016View extends Application {
 		((Group)scene.getRoot()).getChildren().add(imgV);
 		
 	}
+	
+	public Scene getScene() { return scene; }
 	
 	/*public void readImagePieces(String playerWho, Point[] playerPiecePoints, Scene scene, Stage stage) {
 		
@@ -183,63 +196,4 @@ public class ChessGame2016View extends Application {
 		}
 	}*/
 	
-	public Point[] player2Pawns() {
-		Point[] player2Points = new Point[8];
-		
-		player2Points[0] = new Point(0, 6);
-		player2Points[1] = new Point(1, 6);
-		player2Points[2] = new Point(2, 6);
-		player2Points[3] = new Point(3, 6);
-		player2Points[4] = new Point(4, 6);
-		player2Points[5] = new Point(5, 6);
-		player2Points[6] = new Point(6, 6);
-		player2Points[7] = new Point(7, 6);
-		
-		return player2Points;
-	}
-	
-	public Point[] player1Pawns() {
-		Point[] player1Points = new Point[8];
-		
-		player1Points[0] = new Point(0, 1);
-		player1Points[1] = new Point(1, 1);
-		player1Points[2] = new Point(2, 1);
-		player1Points[3] = new Point(3, 1);
-		player1Points[4] = new Point(4, 1);
-		player1Points[5] = new Point(5, 1);
-		player1Points[6] = new Point(6, 1);
-		player1Points[7] = new Point(7, 1);
-		
-		return player1Points;
-	}
-
-	public Point[] getPlayer1Piece() {
-		Point[] player1Points = new Point[8];
-		
-		player1Points[0] = new Point(0, 0);
-		player1Points[1] = new Point(1, 0);
-		player1Points[2] = new Point(2, 0);
-		player1Points[3] = new Point(3, 0);
-		player1Points[4] = new Point(4, 0);
-		player1Points[5] = new Point(5, 0);
-		player1Points[6] = new Point(6, 0);
-		player1Points[7] = new Point(7, 0);
-		
-		return player1Points;
-	}
-	
-	public Point[] getPlayer2Piece() {
-		Point[] player2Points = new Point[8];
-		
-		player2Points[0] = new Point(0, 7);
-		player2Points[1] = new Point(1, 7);;
-		player2Points[2] = new Point(2, 7);
-		player2Points[3] = new Point(3, 7);
-		player2Points[4] = new Point(4, 7);
-		player2Points[5] = new Point(5, 7);
-		player2Points[6] = new Point(6, 7);
-		player2Points[7] = new Point(7, 7);
-		
-		return player2Points;
-	}
 }

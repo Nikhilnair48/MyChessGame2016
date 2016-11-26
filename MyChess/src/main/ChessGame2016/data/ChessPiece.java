@@ -54,11 +54,18 @@ public abstract class ChessPiece {
 	public int getValue() { return value; }
 	
 	public void setValue(int value) { this.value = value; }
-	
+
+	@Override
 	public String toString() {
+		return "ChessPiece [onBoard=" + onBoard + ", color=" + color
+				+ ", value=" + value + ", imageView=" + imageView + ", ID="
+				+ ID + "]";
+	}
+	
+	/*public String toString() {
 		String str = "onBoard status: " + onBoard 
 				+ " Color (1-White;2-Black): " + color
 				+ " Value: " + value;
 		return str;
-	}
+	}*/
 }

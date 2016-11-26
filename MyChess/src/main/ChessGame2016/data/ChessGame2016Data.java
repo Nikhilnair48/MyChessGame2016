@@ -3,6 +3,7 @@ package main.ChessGame2016.data;
 import java.awt.Point;
 import java.util.HashMap;
 
+import javafx.scene.image.ImageView;
 import main.ChessGame2016.myChessGame2016.ChessGame2016;
 import main.ChessGame2016.pieces.ChessPieceBishop;
 import main.ChessGame2016.pieces.ChessPieceKing;
@@ -47,21 +48,38 @@ public class ChessGame2016Data {
 	// PIECE FROM THE FIRST TO THE SECOND POSITION
 	public void movePiece(Point p1, Point p2, ChessPiece piece) {
 		
-		// UPDATE THE BOARD
-		/*Board.gameBoard[p2.x][p2.y] = Board.gameBoard[p1.x][p1.y];
-		//board.gameBoard[p2.x][p2.y].setPosition(p2);
-		Board.gameBoard[p1.x][p1.y].setPiece(null);
-		//Board.gameBoard[p1.x][p1.y] = new BoardSquare(new Point(p1.x, p1.y), true, null);
-		*/
+		// IF THE MOVE WAS INDEED AN ATTACK, MOVE THE VICTIM TO JAIL.
+		if (!Board.gameBoard[p2.x][p2.y].isEmpty()) {
+			System.out.println("DETECTED ATTACK IN THE DATA LAYER - 1");
+			// POOR APPROACH, BUT THIS WILL RETRIEVE THE ID OF THE IMAGE VIEW OF THE PIECE TO BE ATTACKED
+			String ID = Board.gameBoard[p2.x][p2.y].getPiece().getID();
+			ImageView imgV = (ImageView) ChessGame2016.chessManager.getGuiButtons().get(ID);
+
+			Point p = ChessGame2016.chessManager.getNextPlayer().getRemovedPlayerPieceCoordinate();
+			System.out.println("point " + p + " piece ID " + ID);
+			imgV.setX(p.x);
+			imgV.setY(p.y);
+			imgV.setFitWidth(imgV.getImage().getWidth()/2);
+			
+			ChessGame2016.chessManager.getGuiButtons().put(ID, imgV);
+		}
+		
 		// UPDATE THE POSITION FOR THE PLAYER
-		Player player = this.getCurrentPlayer();
-		HashMap<Point, BoardSquare> map = player.getPlayerPieces();
+		HashMap<Point, BoardSquare> map = getCurrentPlayer().getPlayerPieces();
 		BoardSquare square = Board.gameBoard[p1.x][p1.y];
 		square.setPosition(p2);
 		map.put(p2, square);
 		map.remove(p1);
-		player.setPlayerPieces(map);
-		//System.out.println(player.getPlayerPieces().get(p2));
+		getCurrentPlayer().setPlayerPieces(map);
+		
+		// IF THE MOVE IS AN ATTACK
+		if(!getCurrentPlayer().getPlayerPieces().containsKey(p1) && !Board.gameBoard[p2.x][p2.y].isEmpty()) {
+
+			// MOVE THE PIECE THAT IS BEING ATTACKED FROM THE OPPOSTING PLAYERS' PIECES
+			BoardSquare toBeRemoved = Board.gameBoard[p2.x][p2.y];
+			ChessGame2016.chessManager.getNextPlayer().addToRemovedPieces(toBeRemoved.getPiece());
+			ChessGame2016.chessManager.getNextPlayer().getPlayerPieces().remove(p2);
+		}
 		
 		// MOVE THE PIECE ON THE BOARD
 		Board.gameBoard[p1.x][p1.y].setEmpty(true);

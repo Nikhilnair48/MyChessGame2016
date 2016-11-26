@@ -1,11 +1,7 @@
 package main.ChessGame2016.pieces;
 
 import java.awt.Point;
-import java.io.File;
 import java.util.HashMap;
-
-import javax.imageio.ImageIO;
-
 import main.ChessGame2016.data.BoardSquare;
 import main.ChessGame2016.data.ChessPiece;
 import main.ChessGame2016.data.ChessPieceCreationInfo;
@@ -16,11 +12,9 @@ import main.ChessGame2016.handlers.KnightHandler;
 import main.ChessGame2016.handlers.PawnHandler;
 import main.ChessGame2016.handlers.QueenHandler;
 import main.ChessGame2016.handlers.RookHandler;
-import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
 //import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 
 public class ChessPieceFactory {
@@ -52,7 +46,7 @@ public class ChessPieceFactory {
 		return square;
 	}
 	
-	public HashMap<String, Object> createPieceForAPlayer(String playerWho, int color) {	// color to determine whether the pieces are black or white
+	public HashMap<String, Object> createPieceForAPlayer(String playerWho, int color, String imagesDirectory) {	// color to determine whether the pieces are black or white
 		
 		HashMap<String, Object> playerImageViews = new HashMap<>();
 		Point[] playerPiecePoints = null;
@@ -66,7 +60,7 @@ public class ChessPieceFactory {
 		// A ROOK THAT'LL BE WHITE, IS WORTH 4 POINTS - REDUNDANT, IT'S IMAGEVIEW, AND IT'S VALUES 
 		//ChessPieceRook rook = new ChessPieceRook(1, 4, new ImageView(new Image(Constants.playerOneDirectory + Constants.CHESSPIECE_ROOK + Constants.IMAGE_EXT_PNG)));
 
-		ChessPieceCreationInfo pieceInfo= new ChessPieceCreationInfo(Constants.playerOneDirectory, Constants.IMAGE_EXT_PNG, Constants.CHESSPIECE_ROOK,
+		ChessPieceCreationInfo pieceInfo= new ChessPieceCreationInfo(imagesDirectory, Constants.IMAGE_EXT_PNG, Constants.CHESSPIECE_ROOK,
 				playerWho, Constants.CHESSPIECE_SUFFIX_1);
 		BoardSquare square = createChessPiece(pieceInfo, playerPiecePoints[0], color, Constants.ROOK);
 		RookHandler rookHandler = new RookHandler(square.getPiece());
@@ -74,7 +68,7 @@ public class ChessPieceFactory {
 		playerImageViews.put(playerWho + Constants.CHESSPIECE_ROOK + Constants.CHESSPIECE_SUFFIX_1, square.getPiece().getImageView());	//square.getPiece().getImageView()
 		//((Group)scene.getRoot()).getChildren().add(square.getPiece().getImageView());
 		
-		pieceInfo= new ChessPieceCreationInfo(Constants.playerOneDirectory, Constants.IMAGE_EXT_PNG, Constants.CHESSPIECE_ROOK,
+		pieceInfo= new ChessPieceCreationInfo(imagesDirectory, Constants.IMAGE_EXT_PNG, Constants.CHESSPIECE_ROOK,
 				playerWho, Constants.CHESSPIECE_SUFFIX_2);
 		square = createChessPiece(pieceInfo, playerPiecePoints[7], color, Constants.ROOK);
 		rookHandler = new RookHandler(square.getPiece());
@@ -82,7 +76,7 @@ public class ChessPieceFactory {
 		playerImageViews.put(playerWho + Constants.CHESSPIECE_ROOK + Constants.CHESSPIECE_SUFFIX_2, square.getPiece().getImageView());
 		//((Group)scene.getRoot()).getChildren().add(square.getPiece().getImageView());
 		
-		pieceInfo= new ChessPieceCreationInfo(Constants.playerOneDirectory, Constants.IMAGE_EXT_PNG, Constants.CHESSPIECE_KNIGHT,
+		pieceInfo= new ChessPieceCreationInfo(imagesDirectory, Constants.IMAGE_EXT_PNG, Constants.CHESSPIECE_KNIGHT,
 				playerWho, Constants.CHESSPIECE_SUFFIX_1);
 		square = createChessPiece(pieceInfo, playerPiecePoints[1], color, Constants.KNIGHT);
 		KnightHandler knightHandler = new KnightHandler(square.getPiece());
@@ -90,7 +84,7 @@ public class ChessPieceFactory {
 		playerImageViews.put(playerWho + Constants.CHESSPIECE_KNIGHT + Constants.CHESSPIECE_SUFFIX_1, square.getPiece().getImageView());
 		//((Group)scene.getRoot()).getChildren().add(square.getPiece().getImageView());
 		
-		pieceInfo= new ChessPieceCreationInfo(Constants.playerOneDirectory, Constants.IMAGE_EXT_PNG, Constants.CHESSPIECE_KNIGHT,
+		pieceInfo= new ChessPieceCreationInfo(imagesDirectory, Constants.IMAGE_EXT_PNG, Constants.CHESSPIECE_KNIGHT,
 				playerWho, Constants.CHESSPIECE_SUFFIX_2);
 		square = createChessPiece(pieceInfo, playerPiecePoints[6], color, Constants.KNIGHT);
 		knightHandler = new KnightHandler(square.getPiece());
@@ -98,7 +92,7 @@ public class ChessPieceFactory {
 		playerImageViews.put(playerWho + Constants.CHESSPIECE_KNIGHT + Constants.CHESSPIECE_SUFFIX_2, square.getPiece().getImageView());
 		//((Group)scene.getRoot()).getChildren().add(square.getPiece().getImageView());
 		
-		pieceInfo = new ChessPieceCreationInfo(Constants.playerOneDirectory, Constants.IMAGE_EXT_PNG, Constants.CHESSPIECE_BISHOP,
+		pieceInfo = new ChessPieceCreationInfo(imagesDirectory, Constants.IMAGE_EXT_PNG, Constants.CHESSPIECE_BISHOP,
 				playerWho, Constants.CHESSPIECE_SUFFIX_1);
 		square = createChessPiece(pieceInfo, playerPiecePoints[2], color, Constants.BISHOP);
 		BishopHandler bishopHandler = new BishopHandler(square.getPiece());
@@ -106,7 +100,7 @@ public class ChessPieceFactory {
 		playerImageViews.put(playerWho + Constants.CHESSPIECE_BISHOP + Constants.CHESSPIECE_SUFFIX_1, square.getPiece().getImageView());
 		//((Group)scene.getRoot()).getChildren().add(square.getPiece().getImageView());
 		
-		pieceInfo = new ChessPieceCreationInfo(Constants.playerOneDirectory, Constants.IMAGE_EXT_PNG, Constants.CHESSPIECE_BISHOP,
+		pieceInfo = new ChessPieceCreationInfo(imagesDirectory, Constants.IMAGE_EXT_PNG, Constants.CHESSPIECE_BISHOP,
 				playerWho, Constants.CHESSPIECE_SUFFIX_2);
 		square = createChessPiece(pieceInfo, playerPiecePoints[5], color, Constants.BISHOP);
 		bishopHandler = new BishopHandler(square.getPiece());
@@ -114,7 +108,7 @@ public class ChessPieceFactory {
 		playerImageViews.put(playerWho + Constants.CHESSPIECE_BISHOP + Constants.CHESSPIECE_SUFFIX_2, square.getPiece().getImageView());
 		//((Group)scene.getRoot()).getChildren().add(square.getPiece().getImageView());
 		
-		pieceInfo = new ChessPieceCreationInfo(Constants.playerOneDirectory, Constants.IMAGE_EXT_PNG, Constants.CHESSPIECE_QUEEN,
+		pieceInfo = new ChessPieceCreationInfo(imagesDirectory, Constants.IMAGE_EXT_PNG, Constants.CHESSPIECE_QUEEN,
 				playerWho, Constants.CHESSPIECE_SUFFIX_1);
 		square = createChessPiece(pieceInfo, playerPiecePoints[3], color, Constants.QUEEN);
 		QueenHandler queenHandler = new QueenHandler(square.getPiece());
@@ -122,7 +116,7 @@ public class ChessPieceFactory {
 		playerImageViews.put(playerWho + Constants.CHESSPIECE_QUEEN + Constants.CHESSPIECE_SUFFIX_1, square.getPiece().getImageView());
 		//((Group)scene.getRoot()).getChildren().add(square.getPiece().getImageView());
 		
-		pieceInfo = new ChessPieceCreationInfo(Constants.playerOneDirectory, Constants.IMAGE_EXT_PNG, Constants.CHESSPIECE_KING,
+		pieceInfo = new ChessPieceCreationInfo(imagesDirectory, Constants.IMAGE_EXT_PNG, Constants.CHESSPIECE_KING,
 				playerWho, Constants.CHESSPIECE_SUFFIX_1);
 		square = createChessPiece(pieceInfo, playerPiecePoints[4], color, Constants.KING);
 		KingHandler kingHandler = new KingHandler(square.getPiece());
@@ -139,7 +133,7 @@ public class ChessPieceFactory {
 			points = player2Pawns();
 		
 		for(int i = 0; i < 8; i++) {
-			pieceInfo = new ChessPieceCreationInfo(Constants.playerOneDirectory, Constants.IMAGE_EXT_PNG, Constants.CHESSPIECE_PAWN,
+			pieceInfo = new ChessPieceCreationInfo(imagesDirectory, Constants.IMAGE_EXT_PNG, Constants.CHESSPIECE_PAWN,
 					playerWho, "_" + i);
 			square = createChessPiece(pieceInfo, points[i] , color, Constants.PAWN);	//new Point(i, 1)
 			pawnHandler = new PawnHandler(square.getPiece());

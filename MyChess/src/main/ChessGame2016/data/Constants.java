@@ -32,8 +32,21 @@ public class Constants {
 	public static String CHESSPIECE_QUEEN = "queen";
 	public static String GAMEBOARD = "GameBoard";
 	
-	public static int CHESSPIECE_HEIGHT = 100;
-	public static int CHESSPIECE_WIDTH = 100;
+	public static final int CHESSPIECE_HEIGHT = 100;
+	public static final int CHESSPIECE_WIDTH = 100;
+	
+	public static final int REMOVED_PIECES_HEIGHT = 50;
+	public static final int REMOVED_PIECES_WIDTH = 50;
+	public static final int NUM_PIECES_IN_REMOVED_PIECES_ROW = 8;
+	
+	public static final int PLAYER_1_REMOVED_PIECES_ROW_1_Y = 100;
+	public static final int PLAYER_1_REMOVED_PIECES_ROW_2_Y = 200;
+	public static final int PLAYER_2_REMOVED_PIECES_ROW_1_Y = 600;
+	public static final int PLAYER_2_REMOVED_PIECES_ROW_2_Y = 700;
 	
 	public static final String IMAGE_EXT_PNG = ".png";
+	
+	public static final String SPLASH_SCREEN = "SPLASH_SCREEN";
+	public static final String SETTINGS_SCREEN = "SETTINGS_SCREEN";
+	public static final String GAME_SCREEN = "GAME_SCREEN";
 }

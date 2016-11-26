@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+
 import javafx.scene.image.ImageView;
 import main.ChessGame2016.myChessGame2016.ChessGame2016;
 import main.ChessGame2016.pieces.ChessPieceBishop;
@@ -62,7 +63,7 @@ public class Player {
 		}
 		removedPieces = new ArrayList<>();
 	}
-	
+
 	public Player(int c) {
 		color = c;
 		numWins = numLosses = totalGames = 0;
@@ -74,11 +75,11 @@ public class Player {
 		ChessPieceFactory factory = new ChessPieceFactory();
 		if(color == 1) {
 			// READ FROM TXT FILE FOR WHITE
-			ChessGame2016.chessManager.addGuiButtons(factory.createPieceForAPlayer(Constants.CHESSPIECE_PLAYER_1_PREFIX, color));
+			ChessGame2016.chessManager.addGuiButtons(factory.createPieceForAPlayer(Constants.CHESSPIECE_PLAYER_1_PREFIX, color, Constants.playerOneDirectory));
 			addChessPieces(1);
 		} else {
 			// READ FROM TXT FILE FOR BLACK
-			ChessGame2016.chessManager.addGuiButtons(factory.createPieceForAPlayer(Constants.CHESSPIECE_PLAYER_2_PREFIX, color));
+			ChessGame2016.chessManager.addGuiButtons(factory.createPieceForAPlayer(Constants.CHESSPIECE_PLAYER_2_PREFIX, color, Constants.playerTwoDirectory));
 			addChessPieces(2);
 		}
 	}
@@ -123,42 +124,42 @@ public class Player {
 						case Constants.ROOK:
 							if(y > 4)
 								newPiece = new BoardSquare(p, false, 
-										new ChessPieceRook(player, value,
-												(ImageView) ChessGame2016.chessManager.getGuiButtons().get(playerWho + Constants.CHESSPIECE_ROOK + Constants.CHESSPIECE_SUFFIX_2), playerWho + Constants.CHESSPIECE_ROOK + Constants.CHESSPIECE_SUFFIX_2));
+									new ChessPieceRook(player, value,
+											(ImageView) ChessGame2016.chessManager.getGuiButtons().get(playerWho + Constants.CHESSPIECE_ROOK + Constants.CHESSPIECE_SUFFIX_2), playerWho + Constants.CHESSPIECE_ROOK + Constants.CHESSPIECE_SUFFIX_2));
 							else
 								newPiece = new BoardSquare(p, false, 
-										new ChessPieceRook(player, value,
-												(ImageView) ChessGame2016.chessManager.getGuiButtons().get(playerWho + Constants.CHESSPIECE_ROOK + Constants.CHESSPIECE_SUFFIX_1), playerWho + Constants.CHESSPIECE_ROOK + Constants.CHESSPIECE_SUFFIX_1));
+									new ChessPieceRook(player, value,
+											(ImageView) ChessGame2016.chessManager.getGuiButtons().get(playerWho + Constants.CHESSPIECE_ROOK + Constants.CHESSPIECE_SUFFIX_1), playerWho + Constants.CHESSPIECE_ROOK + Constants.CHESSPIECE_SUFFIX_1));
 							break;
 						case Constants.KNIGHT:
 							if(y > 4)
 								newPiece = new BoardSquare(p, false, 
-										new ChessPieceKnight(player, value,
-												(ImageView) ChessGame2016.chessManager.getGuiButtons().get(playerWho + Constants.CHESSPIECE_KNIGHT + Constants.CHESSPIECE_SUFFIX_2), playerWho + Constants.CHESSPIECE_KNIGHT + Constants.CHESSPIECE_SUFFIX_2));
+									new ChessPieceKnight(player, value,
+											(ImageView) ChessGame2016.chessManager.getGuiButtons().get(playerWho + Constants.CHESSPIECE_KNIGHT + Constants.CHESSPIECE_SUFFIX_2), playerWho + Constants.CHESSPIECE_KNIGHT + Constants.CHESSPIECE_SUFFIX_2));
 							else
 								newPiece = new BoardSquare(p, false, 
-										new ChessPieceKnight(player, value,
-												(ImageView) ChessGame2016.chessManager.getGuiButtons().get(playerWho + Constants.CHESSPIECE_KNIGHT + Constants.CHESSPIECE_SUFFIX_1), playerWho + Constants.CHESSPIECE_KNIGHT + Constants.CHESSPIECE_SUFFIX_1));
+									new ChessPieceKnight(player, value,
+											(ImageView) ChessGame2016.chessManager.getGuiButtons().get(playerWho + Constants.CHESSPIECE_KNIGHT + Constants.CHESSPIECE_SUFFIX_1), playerWho + Constants.CHESSPIECE_KNIGHT + Constants.CHESSPIECE_SUFFIX_1));
 							break;
 						case Constants.BISHOP:
 							if(y > 4)
 								newPiece = new BoardSquare(p, false, 
-										new ChessPieceBishop(player, value,
-												(ImageView) ChessGame2016.chessManager.getGuiButtons().get(playerWho + Constants.CHESSPIECE_BISHOP + Constants.CHESSPIECE_SUFFIX_2), playerWho + Constants.CHESSPIECE_BISHOP + Constants.CHESSPIECE_SUFFIX_2));
+									new ChessPieceBishop(player, value,
+											(ImageView) ChessGame2016.chessManager.getGuiButtons().get(playerWho + Constants.CHESSPIECE_BISHOP + Constants.CHESSPIECE_SUFFIX_2), playerWho + Constants.CHESSPIECE_BISHOP + Constants.CHESSPIECE_SUFFIX_2));
 							else
 								newPiece = new BoardSquare(p, false, 
-										new ChessPieceBishop(player, value,
-												(ImageView) ChessGame2016.chessManager.getGuiButtons().get(playerWho + Constants.CHESSPIECE_BISHOP + Constants.CHESSPIECE_SUFFIX_1), playerWho + Constants.CHESSPIECE_BISHOP + Constants.CHESSPIECE_SUFFIX_1));
+									new ChessPieceBishop(player, value,
+											(ImageView) ChessGame2016.chessManager.getGuiButtons().get(playerWho + Constants.CHESSPIECE_BISHOP + Constants.CHESSPIECE_SUFFIX_1), playerWho + Constants.CHESSPIECE_BISHOP + Constants.CHESSPIECE_SUFFIX_1));
 							break;
 						case Constants.QUEEN:
 							newPiece = new BoardSquare(p, false, 
 									new ChessPieceQueen(player, value,
-											(ImageView) ChessGame2016.chessManager.getGuiButtons().get(playerWho + Constants.CHESSPIECE_QUEEN), playerWho + Constants.CHESSPIECE_QUEEN));
+											(ImageView) ChessGame2016.chessManager.getGuiButtons().get(playerWho + Constants.CHESSPIECE_QUEEN + Constants.CHESSPIECE_SUFFIX_1), playerWho + Constants.CHESSPIECE_QUEEN + Constants.CHESSPIECE_SUFFIX_1));
 							break;
 						case Constants.KING:
 							newPiece = new BoardSquare(p, false, 
 									new ChessPieceKing(player, value,
-											(ImageView) ChessGame2016.chessManager.getGuiButtons().get(playerWho + Constants.CHESSPIECE_KING), playerWho + Constants.CHESSPIECE_KING));
+											(ImageView) ChessGame2016.chessManager.getGuiButtons().get(playerWho + Constants.CHESSPIECE_KING + Constants.CHESSPIECE_SUFFIX_1), playerWho + Constants.CHESSPIECE_KING + Constants.CHESSPIECE_SUFFIX_1));
 							break;
 						}
 					} else {
@@ -208,7 +209,7 @@ public class Player {
 	
 	public void addToRemovedPieces(ChessPiece piece) {
 		piece.setOnBoard(0);	// UPDATE THE VALUE TO REFLECT THE CURRENT STATE OF THE PIECE
-		this.removedPieces.add(piece); 
+		this.removedPieces.add(piece);
 	}
 	
 	/* TESTING PURPOSES */
@@ -222,6 +223,20 @@ public class Player {
 		ChessGame2016.chessManager.getBoard().printChessBoard();
 	}
 
+	public Point getRemovedPlayerPieceCoordinate() {
+		Point p = new Point();
+		
+		if(color == 1) {
+			p.x = Constants.piecesForEachPlayer * Constants.CHESSPIECE_WIDTH + (removedPieces.size() * Constants.REMOVED_PIECES_WIDTH);
+			p.y = (removedPieces.size() >= 8) ? Constants.PLAYER_1_REMOVED_PIECES_ROW_2_Y : Constants.PLAYER_1_REMOVED_PIECES_ROW_1_Y;
+		} else {
+			p.x = Constants.piecesForEachPlayer * Constants.CHESSPIECE_WIDTH + (removedPieces.size() * Constants.REMOVED_PIECES_WIDTH);
+			p.y = (removedPieces.size() >= 8) ? Constants.PLAYER_2_REMOVED_PIECES_ROW_2_Y : Constants.PLAYER_2_REMOVED_PIECES_ROW_1_Y;
+		}
+		System.out.println(p);
+		return p;
+	}
+	
 	public Point[] player2Pawns() {
 		Point[] player2Points = new Point[8];
 		

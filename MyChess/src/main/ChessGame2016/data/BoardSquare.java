@@ -42,14 +42,22 @@ public class BoardSquare {
 	public ChessPiece getPiece() { return piece; }
 
 	public void setPiece(ChessPiece piece) { this.piece = piece; }
-	
+
+	@Override
 	public String toString() {
+		return "BoardSquare [position=" + position + ", isEmpty=" + isEmpty
+				+ ", piece=" + piece + "]";
+	}
+	
+	/*public String toString() {
 		String str = " Position: (" + position.x + ", " + position.y + ") " 
 				+ " Status: " + isEmpty 
 				+ " Chesspiece: " + piece;
 		
 		return str;
-	}
+	}*/
+	
+	
 	
 	/*public int getColor() { return color; }
 	

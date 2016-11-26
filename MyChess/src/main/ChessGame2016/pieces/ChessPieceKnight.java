@@ -2,13 +2,10 @@ package main.ChessGame2016.pieces;
 
 import java.awt.Point;
 import java.util.ArrayList;
-
 import javafx.scene.image.ImageView;
 import main.ChessGame2016.data.Board;
 import main.ChessGame2016.data.ChessGame2016Data;
 import main.ChessGame2016.data.ChessPiece;
-import main.ChessGame2016.myChessGame2016.ChessGame2016;
-import main.ChessGame2016.myChessGame2016.GameManager;
 
 public class ChessPieceKnight extends ChessPiece {
 
@@ -36,8 +33,7 @@ public class ChessPieceKnight extends ChessPiece {
 
 		ArrayList<Point> possibleMoves = generatePossibleMoves(p1, p2);
 		// IS THE KNIGHT TRYING TO ATTACK?
-		if (result && possibleMoves.contains(p2)
-				&& !Board.gameBoard[p2.x][p2.y].isEmpty()) {
+		/*if (result && possibleMoves.contains(p2) && !Board.gameBoard[p2.x][p2.y].isEmpty()) {
 			System.out.println("About to attack - KNIGHT");
 			
 			// IF SO, MOVE THE PIECE THAT IS BEING ATTACKED FROM THE OPPOSTING PLAYERS' PIECES
@@ -47,12 +43,12 @@ public class ChessPieceKnight extends ChessPiece {
 			Board.gameBoard[p2.x][p2.y].setEmpty(true);
 			Board.gameBoard[p2.x][p2.y].setPiece(null);
 			
-		} else if(result && possibleMoves.contains(p2)	// MOVING TO AN EMPTY BOARD SQUARE
+		} else */if(result && possibleMoves.contains(p2)	// MOVING TO AN EMPTY BOARD SQUARE
 				&& Board.gameBoard[p2.x][p2.y].isEmpty()) {
-			
-		} else {	// NO OTHER CASES TO CHECK FOR MOVE TO BE VALID
 			result = false;
-		}
+		} /*else {	// NO OTHER CASES TO CHECK FOR MOVE TO BE VALID
+			result = false;
+		}*/
 
 		return result;
 	}
@@ -81,8 +77,6 @@ public class ChessPieceKnight extends ChessPiece {
 				&& (p1.y - 2) >= 0)	//&& Board.gameBoard[p1.x + (1 * directionToMove)][p1.y - 2].isEmpty()
 			possibleMoves.add(new Point(p1.x + (1 * directionToMove * -1), p1.y - 2));
 		
-		//System.out.println("moves " + possibleMoves);
-		
 		// MOVE 2 FORWARD 1 RIGHT
 		if (p1.x + (2 * directionToMove) < Board.MAX_ROWS
 				&& (p1.y + 1) < Board.MAX_COLS)	//&& Board.gameBoard[p1.x + (2 * directionToMove)][p1.y + 1].isEmpty()
@@ -103,7 +97,7 @@ public class ChessPieceKnight extends ChessPiece {
 				&& (p1.y - 2) >= 0)	//&& Board.gameBoard[p1.x + (1 * directionToMove)][p1.y - 2].isEmpty()
 			possibleMoves.add(new Point(p1.x + (1 * directionToMove), p1.y - 2));
 		
-		//System.out.println(possibleMoves);
+		System.out.println(possibleMoves);
 		return possibleMoves;
 	}
 

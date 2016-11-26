@@ -2,12 +2,9 @@ package main.ChessGame2016.pieces;
 
 import java.awt.Point;
 import java.util.ArrayList;
-
 import javafx.scene.image.ImageView;
 import main.ChessGame2016.data.Board;
-import main.ChessGame2016.data.BoardSquare;
 import main.ChessGame2016.data.ChessPiece;
-import main.ChessGame2016.myChessGame2016.ChessGame2016;
 
 // ENTERING A RELATIONSHIP IS LIKE WALING INTO THE NO MANS LAND.
 // YOU COULD EITHER WAIT IN THE TRENCH FOREVER OR
@@ -17,43 +14,18 @@ import main.ChessGame2016.myChessGame2016.ChessGame2016;
 // TO DO A CRIME. DO IT, DELETE MEMORY AND NOW YOU WILL NO LONGER LIE ABOUT IT! 
 
 public class ChessPieceBishop extends ChessPiece {
-
+	
 	public ChessPieceBishop(int col, int value, ImageView imgV, String id) { super(col, value, imgV, id); }
-
+	
 	@Override
 	public boolean isMoveValid(Point p1, Point p2, Integer player) {
-		boolean result = false;
-		
 		// ALL POSSIBLE MOVES FOR THE BISHOP FROM POINT p1
 		// INCLUDES MOVES THAT 
 		ArrayList<Point> possibleMoves = generatePossibleMoves(p1, p2);
 		
-		// WE'RE ABOUT TO ATTACK! 
-		// PREPARE THE BOARD BY REMOVING THE PIECE TO BE ATTACKED
-		if(possibleMoves.contains(p2) 
-				&& !Board.gameBoard[p2.x][p2.y].isEmpty()) {
-			
-			System.out.println("About to attack");
-			
-			// REMOVE THE PIECE THAT IS BEING ATTACKED FROM THE OPPOSTING PLAYERS' PIECES
-			// ADD THE REMOVED PIECE TO THE APPROPRIATE LIST OF THE OPPOSING PLAYER AND THEN REMOVE IT
-			BoardSquare toBeRemoved = Board.gameBoard[p2.x][p2.y]; 
-			ChessGame2016.chessManager.getNextPlayer().addToRemovedPieces(toBeRemoved.getPiece());
-			ChessGame2016.chessManager.getNextPlayer().getPlayerPieces().remove(p2);
-			
-			// REMOVE THE PIECE FROM THE BOARD
-			Board.gameBoard[p2.x][p2.y].setEmpty(true);
-			Board.gameBoard[p2.x][p2.y].setPiece(null);
-			
-			result = true;
-		} else if (possibleMoves.contains(p2) 	// MOVING TO AN EMPTY SQUARE
-				&& Board.gameBoard[p2.x][p2.y].isEmpty()) {
-			
-			result = true;
-		}
-		return result;
+		return possibleMoves.contains(p2);
 	}
-
+	
 	@Override
 	public ArrayList<Point> generatePossibleMoves(Point p1, Point p2) {
 		
@@ -133,7 +105,5 @@ public class ChessPieceBishop extends ChessPiece {
 		System.out.println(possibleMoves.size());
 		return possibleMoves;
 	}
-	
-	
 	
 }
