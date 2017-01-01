@@ -3,7 +3,11 @@ package main.ChessGame2016.data;
 import java.awt.Point;
 import java.util.HashMap;
 
+import javafx.scene.Group;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import main.ChessGame2016.handlers.CloseGameHandler;
 import main.ChessGame2016.myChessGame2016.ChessGame2016;
 import main.ChessGame2016.pieces.ChessPieceBishop;
 import main.ChessGame2016.pieces.ChessPieceKing;
@@ -11,6 +15,7 @@ import main.ChessGame2016.pieces.ChessPieceKnight;
 import main.ChessGame2016.pieces.ChessPiecePawn;
 import main.ChessGame2016.pieces.ChessPieceQueen;
 import main.ChessGame2016.pieces.ChessPieceRook;
+import main.ChessGame2016.view.ChessGame2016View;
 
 public class ChessGame2016Data {
 	
@@ -36,11 +41,27 @@ public class ChessGame2016Data {
 		board.initBoard();
 		player1.initPlayer();
 		player2.initPlayer();
+		addGuiButtons();
 		
 		/*if (turn == 1)
 			System.out.println("Player 1's turn: ");
 		else
 			System.out.println("Player 2's turn: ");*/
+	}
+	
+	public void addGuiButtons() {
+		
+		Image closeButton = new Image(Constants.baseImgDirectory + "/End_Game.png");
+		ImageView imgV = new ImageView();
+		imgV.setImage(closeButton);
+		imgV.setFitWidth(160);
+		imgV.setFitHeight(40);
+		CloseGameHandler handler = new CloseGameHandler(imgV);
+		imgV.addEventHandler(MouseEvent.ANY, handler);
+		imgV.setX(800);
+		imgV.setY(300);
+
+		ChessGame2016.chessManager.getGuiButtons().put("GameScreen_End_Game", imgV);
 	}
 	
 	// ONCE THE MOVE HAS BEEN VALIDATED

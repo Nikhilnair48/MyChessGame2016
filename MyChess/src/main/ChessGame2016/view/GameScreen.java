@@ -3,35 +3,21 @@ package main.ChessGame2016.view;
 import java.awt.Point;
 import java.util.Set;
 
+import main.ChessGame2016.myChessGame2016.ChessGame2016;
+import javafx.scene.Group;
+import javafx.scene.Scene;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.ImageView;
-import main.ChessGame2016.data.Constants;
-import main.ChessGame2016.myChessGame2016.ChessGame2016;
+import javafx.stage.Stage;
 
-public class ChessGame2016ScreenManager {
+public class GameScreen {
 	
-	private String currentScreen;
-	
-	public ChessGame2016ScreenManager() {
-		currentScreen = Constants.GAME_SCREEN;
-	}
-	
-	public void renderCurrentScreen() {
-		if(currentScreen.equals(Constants.SPLASH_SCREEN))
-			renderSplashScreen();
-		else if(currentScreen.equals(Constants.SETTINGS_SCREEN))
-			renderSettingsScreen();
-		else if(currentScreen.equals(Constants.GAME_SCREEN))
-			renderGameScreen();
-	}
-	
-	public void renderSplashScreen() {	}
-	
-	public void renderSettingsScreen() {
+	public GameScreen(Stage stage) {	//, Canvas canvas
+		Group group = new Group();
+		Scene scene = new Scene(group);
 		
-	}
-	
-	public void renderGameScreen() {
+		group.getChildren().add(ChessGame2016View.canvas);
+		
 		Set<String> keyset = ChessGame2016.chessManager.getGuiButtons().keySet();
 		Object[] imageView = keyset.toArray();
 		GraphicsContext gc = ChessGame2016View.canvas.getGraphicsContext2D();
@@ -65,7 +51,11 @@ public class ChessGame2016ScreenManager {
 			ImageView imgV = (ImageView) ChessGame2016.chessManager.getGuiButtons().get(imageView[i]);
 			gc.drawImage(imgV.getImage(), imgV.getX(), imgV.getY());
 			//System.out.println("imgv with key " + imageView[i] + " is " + imgV.isVisible());
-		}		
+		}
+		
+		stage.setScene(scene);
+		stage.show();
+		
 	}
 	
 	public Point flipPointToFitMatrix(Point p) {

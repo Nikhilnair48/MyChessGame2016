@@ -12,7 +12,7 @@ public class Constants {
 	public static final int KING = 5;
 	public static final int QUEEN = 6;
 	
-	public static final String baseImgDiretory = "img/";
+	public static final String baseImgDirectory = "img/";
 	public static final String piecesParentDirectory = "img/pieces/";
 	public static final String playerOneDirectory = "img/pieces/white/";
 	public static final String playerTwoDirectory = "img/pieces/black/";

@@ -43,7 +43,7 @@ public class ChessPieceKnight extends ChessPiece {
 			Board.gameBoard[p2.x][p2.y].setEmpty(true);
 			Board.gameBoard[p2.x][p2.y].setPiece(null);
 			
-		} else */if(result && possibleMoves.contains(p2)	// MOVING TO AN EMPTY BOARD SQUARE
+		} else */if(result && !possibleMoves.contains(p2)	// MOVING TO AN EMPTY BOARD SQUARE
 				&& Board.gameBoard[p2.x][p2.y].isEmpty()) {
 			result = false;
 		} /*else {	// NO OTHER CASES TO CHECK FOR MOVE TO BE VALID

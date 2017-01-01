@@ -26,9 +26,10 @@ public class ChessGame2016View extends Application {
 	public static Point point1 = null;
 	public static Point point2 = null;
 	
-	public static Canvas canvas = new Canvas(1280, 800);
+	public static Canvas canvas = new Canvas(1200, 800);
 	Group group = new Group();
-	Scene scene;
+	public static Scene scene;
+	public static Stage stage;
 	
 	public ChessGame2016View() {
 		buttonsToMove = new HashMap<>();
@@ -38,24 +39,26 @@ public class ChessGame2016View extends Application {
 		launch();
 	}
 	
+	public Stage getStage() { return stage;	}
+	
 	@Override
 	public void start(Stage stage) throws Exception {
 		scene = new Scene(group);
 		stage.setScene(scene);
 		
 		group.getChildren().add(canvas);
-		
+		//ChessGame2016View.stage = stage;
 		ChessGame2016.chessManager.getGameData().initData();
 		
-		((Group)scene.getRoot()).getChildren().add(readSplashScreenBackground());
-		/*readBoardImage(scene);
+		//((Group)scene.getRoot()).getChildren().add(readSplashScreenBackground());
+		readBoardImage(scene);
 		
 		HashMap<String, Object> guiButtons = ChessGame2016.chessManager.getGuiButtons();
 		Object[] arr = guiButtons.keySet().toArray();
 		for(int i = 0; i < arr.length; i++) {
 			ImageView imgV = (ImageView) ChessGame2016.chessManager.getGuiButtons().get(arr[i]);
 			((Group)scene.getRoot()).getChildren().add(imgV);
-		}*/
+		}
 		
 		/*Button closeButton = new Button("END IT");
 		CloseGameHandler handler = new CloseGameHandler(closeButton);
@@ -64,15 +67,15 @@ public class ChessGame2016View extends Application {
 		VBox vbox = new VBox();
 		vbox.setLayoutX(500);
 		vbox.setLayoutY(500);
-		vbox.getChildren().add(closeButton);
+		vbox.getChildren().add(closeButton);*/
 		
 		Image image = new Image(ChessGame2016Properties.getProperty("trump"));
 		ImageView imgV = new ImageView(image);
 		
 		imgV.setX(0);
-		imgV.setY(0);*/
+		imgV.setY(0);
 		
-		SplashScreen splash = new SplashScreen(stage, canvas);
+		//SplashScreen splash = new SplashScreen(this.stage, canvas);
 		
 		ChessGame2016AnimationTimer timer = new ChessGame2016AnimationTimer();
 		timer.start();
@@ -94,7 +97,7 @@ public class ChessGame2016View extends Application {
 	}
 	
 	public void readBoardImage(Scene scene) {
-		Image image = new Image(Constants.baseImgDiretory + "GameBoardUpdated.png");
+		Image image = new Image(Constants.baseImgDirectory + "GameBoardUpdated.png");
 		ImageView imgV = new ImageView(image);
 		
 		imgV.setX(0);
