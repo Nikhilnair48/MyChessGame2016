@@ -1,6 +1,5 @@
 package main.ChessGame2016.view;
 
-import main.ChessGame2016.handlers.CloseGameHandler;
 import main.ChessGame2016.handlers.PlayGameButtonHandler;
 import util.ChessGame2016Properties;
 import javafx.scene.Group;
@@ -35,14 +34,14 @@ public class SplashScreen {
 		vbox.getChildren().add(closeButton);*/
 		
 		Button playButton = new Button("PLAY");
-		PlayGameButtonHandler playGameButtonHandler = new PlayGameButtonHandler(playButton);
+		PlayGameButtonHandler playGameButtonHandler = new PlayGameButtonHandler(playButton, stage);
 		playButton.addEventHandler(MouseEvent.ANY, playGameButtonHandler);
 		//playButton.setOnAction(eve -> new PlayGameButtonHandler(playButton));
 		
 		VBox playButtonBox = new VBox();
 		playButtonBox.setMinSize(100, 100);
-		playButtonBox.setLayoutX(550);
-		playButtonBox.setLayoutY(450);
+		playButtonBox.setLayoutX(325);
+		playButtonBox.setLayoutY(325);
 		playButtonBox.getChildren().add(playButton);
 		
 		Image image = new Image(ChessGame2016Properties.getProperty("trump"));
@@ -60,7 +59,8 @@ public class SplashScreen {
 	public ImageView readSplashScreenBackground() {
 		Image image = new Image(ChessGame2016Properties.getProperty("background"));
 		ImageView imgV = new ImageView(image);
-		
+		imgV.setFitWidth(800);
+		imgV.setFitHeight(800);
 		imgV.setX(0);
 		imgV.setY(0);
 		

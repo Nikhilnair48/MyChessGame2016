@@ -2,14 +2,14 @@ package main.ChessGame2016.data;
 
 import java.awt.Point;
 import java.util.HashMap;
-
-import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import main.ChessGame2016.handlers.CloseGameHandler;
+import main.ChessGame2016.handlers.QueenHandler;
 import main.ChessGame2016.myChessGame2016.ChessGame2016;
 import main.ChessGame2016.pieces.ChessPieceBishop;
+import main.ChessGame2016.pieces.ChessPieceFactory;
 import main.ChessGame2016.pieces.ChessPieceKing;
 import main.ChessGame2016.pieces.ChessPieceKnight;
 import main.ChessGame2016.pieces.ChessPiecePawn;
@@ -41,7 +41,7 @@ public class ChessGame2016Data {
 		board.initBoard();
 		player1.initPlayer();
 		player2.initPlayer();
-		addGuiButtons();
+		
 		
 		/*if (turn == 1)
 			System.out.println("Player 1's turn: ");
@@ -86,9 +86,32 @@ public class ChessGame2016Data {
 		}
 		
 		// UPDATE THE POSITION FOR THE PLAYER
+		//BoardSquare square = null;
 		HashMap<Point, BoardSquare> map = getCurrentPlayer().getPlayerPieces();
 		BoardSquare square = Board.gameBoard[p1.x][p1.y];
+		// UPGRADE PAWN TO QUEEN
+		if(square.getPiece().getValue() == Constants.PAWN && p2.x == Board.MAX_COLS-1) {
+			ChessPieceFactory factory = new ChessPieceFactory();
+			square = factory.createChessPiece(new ChessPieceCreationInfo(Constants.playerOneDirectory, Constants.IMAGE_EXT_PNG, Constants.CHESSPIECE_QUEEN, Board.gameBoard[p1.x][p1.y].getPiece().getPrefixOfID() + "_", Constants.CHESSPIECE_SUFFIX_2),
+					new Point(p2.y, p2.x), ChessGame2016.chessManager.getCurrentPlayer().getColor(), Constants.QUEEN, new ChessPieceQueen());
+			QueenHandler handler = new QueenHandler(square.getPiece());
+			square.getPiece().getImageView().addEventFilter(MouseEvent.ANY, handler);
+			System.out.println("UPGRADE PAWN TO QUEEN");
+			// REMOVE THE PAWN SO THAT IT WON'T BE RENDERED ON SCREEN
+			HashMap<String, Object> guiButtonsMap = ChessGame2016.chessManager.getGuiButtons();
+			guiButtonsMap.remove(piece.getID());
+			
+			ChessGame2016.chessManager.setGuiButtons(guiButtonsMap);
+			ChessGame2016View.keysOfIDsToBeRemoved.push(piece.getImageView());
+			ChessGame2016View.keysOfIDsToBeAdded.push(square.getPiece().getImageView());
+			//System.out.println()
+			ChessGame2016.chessManager.getGuiButtons().put(square.getPiece().getID(), square.getPiece().getImageView());
+			//ChessGame2016View.keyOfClickedPiece = square.getPiece().getID();
+		}
+		
 		square.setPosition(p2);
+		// REPLACE PAWN WITH THE NEW PIECE
+		piece = square.getPiece();
 		map.put(p2, square);
 		map.remove(p1);
 		getCurrentPlayer().setPlayerPieces(map);

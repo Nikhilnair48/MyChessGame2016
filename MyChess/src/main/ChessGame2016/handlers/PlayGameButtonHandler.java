@@ -5,12 +5,17 @@ import main.ChessGame2016.view.GameScreen;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 public class PlayGameButtonHandler implements EventHandler<MouseEvent> {
 	
 	private Button playButton;
 
 	public PlayGameButtonHandler(Button button) {
+		playButton = button;
+	}
+	
+	public PlayGameButtonHandler(Button button, Stage stage) {
 		playButton = button;
 	}
 	

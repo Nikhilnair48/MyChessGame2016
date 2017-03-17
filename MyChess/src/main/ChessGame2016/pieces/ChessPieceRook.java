@@ -8,6 +8,8 @@ import main.ChessGame2016.data.ChessPiece;
 
 public class ChessPieceRook extends ChessPiece {
 	
+	public ChessPieceRook() { }
+	
 	public ChessPieceRook(int col, int value, ImageView imgV, String id) { super(col, value, imgV, id); }
 	
 	public boolean isMoveValid(Point p1, Point p2, Integer player) {

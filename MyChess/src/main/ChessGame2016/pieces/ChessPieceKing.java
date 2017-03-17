@@ -9,6 +9,8 @@ import main.ChessGame2016.data.ChessPiece;
 
 public class ChessPieceKing extends ChessPiece {
 	
+	public ChessPieceKing() { }
+	
 	public ChessPieceKing(int col, int value, ImageView imgV, String id) { super(col, value, imgV, id); }
 
 	@Override

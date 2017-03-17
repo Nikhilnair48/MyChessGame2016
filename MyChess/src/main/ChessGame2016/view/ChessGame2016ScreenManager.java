@@ -3,6 +3,7 @@ package main.ChessGame2016.view;
 import java.awt.Point;
 import java.util.Set;
 
+import javafx.scene.Group;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.ImageView;
 import main.ChessGame2016.data.Constants;
@@ -32,8 +33,7 @@ public class ChessGame2016ScreenManager {
 	}
 	
 	public void renderGameScreen() {
-		Set<String> keyset = ChessGame2016.chessManager.getGuiButtons().keySet();
-		Object[] imageView = keyset.toArray();
+		
 		GraphicsContext gc = ChessGame2016View.canvas.getGraphicsContext2D();
 		
 		if(ChessGame2016View.buttonsToMove.containsKey("1")) {
@@ -47,11 +47,13 @@ public class ChessGame2016ScreenManager {
 				ChessGame2016View.point2 = flipPointToFitMatrix(ChessGame2016View.point2);
 				
 				ImageView imgV = (ImageView) ChessGame2016.chessManager.getGuiButtons().get(ChessGame2016View.keyOfClickedPiece);
-				double x = ChessGame2016View.point2.getX();
-				double y = ChessGame2016View.point2.getY();
-			
-				imgV.setX(x * 100);
-				imgV.setY(y * 100);
+				if(imgV != null) {
+					double x = ChessGame2016View.point2.getX();
+					double y = ChessGame2016View.point2.getY();
+				
+					imgV.setX(x * 100);
+					imgV.setY(y * 100);
+				}
 			}
 			
 			ChessGame2016View.buttonsToMove.remove("1");
@@ -61,9 +63,22 @@ public class ChessGame2016ScreenManager {
 		
 		gc.clearRect(0, 0, ChessGame2016View.canvas.getWidth(), ChessGame2016View.canvas.getHeight());
 		
+		if(ChessGame2016View.keysOfIDsToBeRemoved.size() > 0) {
+			((Group)ChessGame2016View.scene.getRoot()).getChildren().remove(ChessGame2016View.keysOfIDsToBeRemoved.pop());
+		}
+		
+		if(ChessGame2016View.keysOfIDsToBeAdded.size() > 0) {
+			System.out.println("adding new shieeeet");
+			((Group)ChessGame2016View.scene.getRoot()).getChildren().add(ChessGame2016View.keysOfIDsToBeAdded.remove(0));
+		}
+		
+		Set<String> keyset = ChessGame2016.chessManager.getGuiButtons().keySet();
+		Object[] imageView = keyset.toArray();
+
 		for(int i = 0; i < imageView.length; i++) {
 			ImageView imgV = (ImageView) ChessGame2016.chessManager.getGuiButtons().get(imageView[i]);
 			gc.drawImage(imgV.getImage(), imgV.getX(), imgV.getY());
+			
 			//System.out.println("imgv with key " + imageView[i] + " is " + imgV.isVisible());
 		}		
 	}

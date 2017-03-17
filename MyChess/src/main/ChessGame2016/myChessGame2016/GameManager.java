@@ -122,6 +122,8 @@ public class GameManager {
 
 	public void setGuiButtons(HashMap<String, Object> guiButtons) { this.guiButtons = guiButtons; }
 	
+	public Object removeGuiButton(String key) { return guiButtons.remove(key); }
+	
 	public void addGuiButtons(HashMap<String, Object> newButtons) {
 		Object[] arr = newButtons.keySet().toArray();
 		

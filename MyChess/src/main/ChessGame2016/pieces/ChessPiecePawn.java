@@ -51,19 +51,7 @@ public class ChessPiecePawn extends ChessPiece {
 		
 		ArrayList<Point> possibleMoves = generatePossibleMoves(p1, p2);
 		// IS THE PAWN TRYING TO ATTACK?
-		/*if(result && possibleMoves.contains(p2)
-				&& !Board.gameBoard[p2.x][p2.y].isEmpty()) {
-			System.out.println("About to attack");
-			
-			// IF SO, MOVE THE PIECE THAT IS BEING ATTACKED FROM THE OPPOSTING PLAYERS' PIECES
-			BoardSquare toBeRemoved = Board.gameBoard[p2.x][p2.y];
-			ChessGame2016.chessManager.getNextPlayer().addToRemovedPieces(toBeRemoved.getPiece());
-			ChessGame2016.chessManager.getNextPlayer().getPlayerPieces().remove(p2);
-			
-			// REMOVE THE PIECE FROM THE BOARD
-			Board.gameBoard[p2.x][p2.y].setEmpty(true);
-			Board.gameBoard[p2.x][p2.y].setPiece(null);
-		} else*/ if(!possibleMoves.contains(p2)	//result &&
+		if(!possibleMoves.contains(p2)	//result &&
 				&& !Board.gameBoard[p2.x][p2.y].isEmpty()) {
 			result = false;
 		} //else result = false;
@@ -113,29 +101,3 @@ public class ChessPiecePawn extends ChessPiece {
 	public boolean getIsFirstMove() { return isFirstMove; }
 	
 }
-
-/*
-int yDiff = p2.y - p1.y;
-		int xDiff = p2.x - p1.x;
-		// MOVE 1 UP
-		
-		// MOVE 1 SQUARE FORWARD
-		if(xDiff == 1) {
-			System.out.println("diff is 1"); 
-			possibleMoves.add(new Point(p2.x, p2.y));
-		} else if (xDiff == 1 && yDiff == 1 && board.gameBoard[p2.x])
-		
-		// MOVE 2 SQUARES FORWARD
-		// BUG IF DIFFERENCE IS TWO AND A PIECE IS BETWEEN THE FIRST AND SECOND POSITION -WE JUMP!
-		if(xDiff == 2 && board.gameBoard[p2.x][p2.y].getPiece() != null) { 
-			System.out.println("difference is 2");
-			for(int i = p1.x+1; i < p1.x+3; i++) {
-				if(board.isSquareEmpty(new Point(i, p1.y))) {
-					System.out.println("should be ok");
-				}
-			}
-		}
-		// MOVE 1 UP, 1 TO THE LEFT (ATTACK)
-		
-		// MOVE 1 UP, 1 TO THE RIGHT (ATTACK)
-*/

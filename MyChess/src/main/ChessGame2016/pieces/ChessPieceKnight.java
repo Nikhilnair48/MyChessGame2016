@@ -10,6 +10,8 @@ import main.ChessGame2016.data.ChessPiece;
 public class ChessPieceKnight extends ChessPiece {
 
 	private int directionToMove;
+	
+	public ChessPieceKnight() { }
 
 	public ChessPieceKnight(int col, int value, ImageView imgV, String id) { super(col, value, imgV, id); }
 
