@@ -1,6 +1,12 @@
 package main.ChessGame2016.view;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import main.ChessGame2016.data.Constants;
+import main.ChessGame2016.handlers.CloseGameHandler;
 import main.ChessGame2016.handlers.PlayGameButtonHandler;
+import main.ChessGame2016.myChessGame2016.ChessGame2016;
 import util.ChessGame2016Properties;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -13,58 +19,82 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class SplashScreen {
+	
+	private Image backgroundImage;
+	private ImageView playImgV;
+	
 
-	public SplashScreen(Stage stage, Canvas canvas) {
-		Group group = new Group();
-		Scene scene = new Scene(group);
+	public SplashScreen() {
 		
-		group.getChildren().add(canvas);
+	}
+	
+	public List<ImageView> getButtons() {
+		ArrayList<ImageView> list = new ArrayList<ImageView>();
 		
-		((Group)scene.getRoot()).getChildren().add(readSplashScreenBackground());
-		
-		/*Button closeButton = new Button("EXIT");
-		CloseGameHandler handler = new CloseGameHandler(closeButton);
-		closeButton.addEventHandler(MouseEvent.ANY, handler);
-		
-		VBox vbox = new VBox();
-		vbox.setMinSize(100, 100);
-		vbox.setLayoutX(550);
-		vbox.setLayoutY(600);
-		
-		vbox.getChildren().add(closeButton);*/
-		
-		Button playButton = new Button("PLAY");
-		PlayGameButtonHandler playGameButtonHandler = new PlayGameButtonHandler(playButton, stage);
+		/*Button playButton = new Button("PLAY");
+		PlayGameButtonHandler playGameButtonHandler = new PlayGameButtonHandler(playButton);
 		playButton.addEventHandler(MouseEvent.ANY, playGameButtonHandler);
-		//playButton.setOnAction(eve -> new PlayGameButtonHandler(playButton));
 		
 		VBox playButtonBox = new VBox();
 		playButtonBox.setMinSize(100, 100);
-		playButtonBox.setLayoutX(325);
-		playButtonBox.setLayoutY(325);
+		playButtonBox.setLayoutX(400);
+		playButtonBox.setLayoutY(400);
 		playButtonBox.getChildren().add(playButton);
 		
-		Image image = new Image(ChessGame2016Properties.getProperty("trump"));
-		ImageView imgV = new ImageView(image);
+		Button exitButton = new Button("EXIT");
+		CloseGameHandler exitGameButtonHandler = new CloseGameHandler(exitButton);
+		exitButton.addEventHandler(MouseEvent.ANY, exitGameButtonHandler);
 		
-		imgV.setX(0);
-		imgV.setY(0);
-		//((Group)scene.getRoot()).getChildren().add(vbox);
-		((Group)scene.getRoot()).getChildren().add(playButtonBox);
+		VBox exitButtonBox  = new VBox();
+		exitButtonBox.setMinSize(100, 100);
+		exitButtonBox.setLayoutX(450);
+		exitButtonBox.setLayoutY(400);
+		exitButtonBox.getChildren().add(exitButton);
 		
-		stage.setScene(scene);
-		stage.show();
+		list.add(playButtonBox);
+		list.add(exitButtonBox);*/
+		
+		Image playImg = new Image(ChessGame2016Properties.getProperty("playGame"));
+		playImgV = new ImageView(playImg);
+		
+		PlayGameButtonHandler playHandler = new PlayGameButtonHandler(playImgV);
+		playImgV.addEventHandler(MouseEvent.ANY, playHandler);
+		
+		list.add(playImgV);
+		
+		return list;
+		
 	}
 	
-	public ImageView readSplashScreenBackground() {
+	public List<ImageView> readSplashScreenBackground() {
+		
+		ArrayList<ImageView> list = new ArrayList<ImageView>();
 		Image image = new Image(ChessGame2016Properties.getProperty("background"));
 		ImageView imgV = new ImageView(image);
 		imgV.setFitWidth(800);
 		imgV.setFitHeight(800);
 		imgV.setX(0);
 		imgV.setY(0);
+		list.add(imgV);
+		
+		return list;
+	}
+	
+	/*public ImageView addGuiButton() {
+		System.out.println("called addGUIButtons");
+		Image closeButton = new Image(Constants.baseImgDirectory + "/End_Game.png");
+		ImageView imgV = new ImageView();
+		imgV.setImage(closeButton);
+		imgV.setFitWidth(160);
+		imgV.setFitHeight(80);
+		imgV.setX(400);
+		imgV.setY(800);
+		CloseGameHandler handler = new CloseGameHandler(imgV);
+		imgV.addEventHandler(MouseEvent.ANY, handler);
 		
 		return imgV;
-	}
+		
+		//ChessGame2016.chessManager.getGuiButtons().put("GameScreen_End_Game", imgV);
+	}*/
 	
 }

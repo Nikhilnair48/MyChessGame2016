@@ -49,21 +49,6 @@ public class ChessGame2016Data {
 			System.out.println("Player 2's turn: ");*/
 	}
 	
-	public void addGuiButtons() {
-		
-		Image closeButton = new Image(Constants.baseImgDirectory + "/End_Game.png");
-		ImageView imgV = new ImageView();
-		imgV.setImage(closeButton);
-		imgV.setFitWidth(160);
-		imgV.setFitHeight(40);
-		CloseGameHandler handler = new CloseGameHandler(imgV);
-		imgV.addEventHandler(MouseEvent.ANY, handler);
-		imgV.setX(800);
-		imgV.setY(300);
-
-		ChessGame2016.chessManager.getGuiButtons().put("GameScreen_End_Game", imgV);
-	}
-	
 	// ONCE THE MOVE HAS BEEN VALIDATED
 	// SET THE FIRST POSITION TO EMPTY, AND MOVE THE
 	// PIECE FROM THE FIRST TO THE SECOND POSITION

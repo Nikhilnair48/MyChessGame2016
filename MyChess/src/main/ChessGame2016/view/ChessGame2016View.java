@@ -2,14 +2,18 @@ package main.ChessGame2016.view;
 
 import java.awt.Point;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Stack;
 
 import util.ChessGame2016Properties;
 import main.ChessGame2016.data.Constants;
 import main.ChessGame2016.handlers.BoardHandler;
 import main.ChessGame2016.handlers.CloseGameHandler;
+import main.ChessGame2016.handlers.PlayGameButtonHandler;
 import main.ChessGame2016.myChessGame2016.ChessGame2016;
 import javafx.application.Application;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -18,6 +22,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -37,11 +42,16 @@ public class ChessGame2016View extends Application {
 	public static Stack<ImageView> keysOfIDsToBeRemoved = new Stack<ImageView>();
 	public static Stack<ImageView> keysOfIDsToBeAdded = new Stack<ImageView>();
 	
-	FlowPane splashPane = new FlowPane();
-	FlowPane gamePane = new FlowPane();
+	private StackPane splashPane;
+	private StackPane gamePane;
+	
+	public static Scene splashScene;
+	public static Scene gameScene;
 	
 	public ChessGame2016View() {
 		buttonsToMove = new HashMap<>();
+		splashPane = new StackPane();
+		gamePane = new StackPane();
 	}
 
 	public void initView() {
@@ -52,47 +62,37 @@ public class ChessGame2016View extends Application {
 	
 	@Override
 	public void start(Stage stage) throws Exception {
-		//scene = new Scene(group);
-		ChessGame2016View.stage = stage;
-		
-		group.getChildren().add(canvas);
-		//ChessGame2016View.stage = stage;
 		ChessGame2016.chessManager.getGameData().initData();
-		/*
-		//((Group)scene.getRoot()).getChildren().add(readSplashScreenBackground());
-		//readBoardImage(scene);
 		
-		HashMap<String, Object> guiButtons = ChessGame2016.chessManager.getGuiButtons();
-		Object[] arr = guiButtons.keySet().toArray();
-		for(int i = 0; i < arr.length; i++) {
-			ImageView imgV = (ImageView) ChessGame2016.chessManager.getGuiButtons().get(arr[i]);
-			((Group)scene.getRoot()).getChildren().add(imgV);
+		ChessGame2016View.stage = stage;
+		group.getChildren().add(canvas);
+		
+		SplashScreen splash = new SplashScreen();
+		List<ImageView> imgViews = splash.readSplashScreenBackground();
+		for(ImageView imgView : imgViews) {
+			splashPane.getChildren().add(imgView);
 		}
 		
-		Button closeButton = new Button("END IT");
-		CloseGameHandler handler = new CloseGameHandler(closeButton);
-		closeButton.addEventHandler(MouseEvent.ANY, handler);
+		List<ImageView> splashButtons = splash.getButtons();
+		for(ImageView imgV : splashButtons) {
+			StackPane.setMargin(imgV, new Insets(imgV.getLayoutX(), 0, 0, imgV.getLayoutY()));
+			splashPane.getChildren().add(imgV);
+		}
 		
-		VBox vbox = new VBox();
-		vbox.setLayoutX(500);
-		vbox.setLayoutY(500);
-		vbox.getChildren().add(closeButton);
+		splashScene = new Scene(splashPane, 800, 800);
 		
-		Image image = new Image(ChessGame2016Properties.getProperty("trump"));
-		ImageView imgV = new ImageView(image);
-		
-		imgV.setX(0);
-		imgV.setY(0);*/
-		
-		SplashScreen splash = new SplashScreen(ChessGame2016View.stage, canvas);
+		GameScreen gameScreen = new GameScreen();
+		imgViews = gameScreen.getGuiButtons();
+		for(ImageView imgView : imgViews) {
+			gamePane.getChildren().add(imgView);
+		}
+		gameScene = new Scene(gamePane, 1200, 800);
 		
 		ChessGame2016AnimationTimer timer = new ChessGame2016AnimationTimer();
 		timer.start();
 		
-		//((Group)scene.getRoot()).getChildren().add(vbox);
-		//System.out.println(((Group)scene.getRoot()).getChildren().size());
-		/*stage.setScene(scene);
-		stage.show();*/
+		stage.setScene(splashScene);
+		stage.show();
 	}
 	
 	public ImageView readSplashScreenBackground() {

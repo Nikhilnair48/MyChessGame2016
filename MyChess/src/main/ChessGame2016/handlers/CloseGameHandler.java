@@ -1,15 +1,17 @@
 package main.ChessGame2016.handlers;
 
 import javafx.event.EventHandler;
+import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class CloseGameHandler implements EventHandler<MouseEvent> {
 
-	private ImageView button;
+	//private ImageView button;
+	private Button button;
 	
-	public CloseGameHandler(ImageView imgV) {
+	public CloseGameHandler(Button imgV) {
 		button = imgV;
 	}
 	
