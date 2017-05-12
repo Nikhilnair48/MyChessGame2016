@@ -84,7 +84,7 @@ public class Player {
 		}
 	}
 	
-	public String getPieceKey(String playerWho, int val) {
+	private String getPieceKey(String playerWho, int val) {
 		return playerWho + Constants.CHESSPIECE_PAWN + "_" + val;
 	}
 	

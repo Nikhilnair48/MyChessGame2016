@@ -8,10 +8,10 @@ import javafx.stage.Stage;
 
 public class CloseGameHandler implements EventHandler<MouseEvent> {
 
-	//private ImageView button;
-	private Button button;
+	private ImageView button;
+	//private Button button;
 	
-	public CloseGameHandler(Button imgV) {
+	public CloseGameHandler(ImageView imgV) {
 		button = imgV;
 	}
 	

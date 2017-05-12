@@ -23,14 +23,13 @@ public class Constants {
 	public static String CHESSPIECE_SUFFIX_1 = "_1";
 	public static String CHESSPIECE_SUFFIX_2 = "_2";
 	
-	
 	public static String CHESSPIECE_PAWN = "pawn";
 	public static String CHESSPIECE_KNIGHT = "knight";
 	public static String CHESSPIECE_BISHOP = "bishop";
 	public static String CHESSPIECE_ROOK = "rook";
 	public static String CHESSPIECE_KING = "king";
 	public static String CHESSPIECE_QUEEN = "queen";
-	public static String GAMEBOARD = "GameBoard";
+	public static String GAMEBOARD = "gameBoard";
 	
 	public static final int CHESSPIECE_HEIGHT = 100;
 	public static final int CHESSPIECE_WIDTH = 100;

@@ -78,7 +78,6 @@ public class ChessGame2016ScreenManager {
 		for(int i = 0; i < imageView.length; i++) {
 			ImageView imgV = (ImageView) ChessGame2016.chessManager.getGuiButtons().get(imageView[i]);
 			gc.drawImage(imgV.getImage(), imgV.getX(), imgV.getY());
-			
 			//System.out.println("imgv with key " + imageView[i] + " is " + imgV.isVisible());
 		}		
 	}

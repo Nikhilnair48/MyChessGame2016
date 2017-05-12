@@ -49,16 +49,6 @@ public class BoardSquare {
 				+ ", piece=" + piece + "]";
 	}
 	
-	/*public String toString() {
-		String str = " Position: (" + position.x + ", " + position.y + ") " 
-				+ " Status: " + isEmpty 
-				+ " Chesspiece: " + piece;
-		
-		return str;
-	}*/
-	
-	
-	
 	/*public int getColor() { return color; }
 	
 	public void setColor(int nColor) { color = nColor; }*/

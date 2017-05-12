@@ -77,6 +77,7 @@ public class ChessGame2016Data {
 		// UPGRADE PAWN TO QUEEN
 		if(square.getPiece().getValue() == Constants.PAWN && p2.x == Board.MAX_COLS-1) {
 			ChessPieceFactory factory = new ChessPieceFactory();
+			// Constants.playerOneDirectory should be reconsidered to handle both players
 			square = factory.createChessPiece(new ChessPieceCreationInfo(Constants.playerOneDirectory, Constants.IMAGE_EXT_PNG, Constants.CHESSPIECE_QUEEN, Board.gameBoard[p1.x][p1.y].getPiece().getPrefixOfID() + "_", Constants.CHESSPIECE_SUFFIX_2),
 					new Point(p2.y, p2.x), ChessGame2016.chessManager.getCurrentPlayer().getColor(), Constants.QUEEN, new ChessPieceQueen());
 			QueenHandler handler = new QueenHandler(square.getPiece());
@@ -116,6 +117,8 @@ public class ChessGame2016Data {
 
 		Board.gameBoard[p2.x][p2.y].setEmpty(false);
 		Board.gameBoard[p2.x][p2.y].setPiece(piece);
+
+		//checkForCheck();
 		
 		// SWITCH TURNS
 		ChessGame2016.chessManager.setNextTurn();
@@ -123,6 +126,10 @@ public class ChessGame2016Data {
 		// TESTING
 		printChessBoard();
 	}
+	
+	/*public void checkForCheck() {
+		ChessGame2016.chessManager.getCurrentPlayer().getPlayerPieces()
+	}*/
 
 	public boolean processMove(Point p1, Point p2, ChessPiece piece) {
 		boolean result = false;

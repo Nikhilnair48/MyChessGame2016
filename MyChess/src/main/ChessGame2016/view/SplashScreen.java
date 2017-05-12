@@ -2,7 +2,6 @@ package main.ChessGame2016.view;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import main.ChessGame2016.data.Constants;
 import main.ChessGame2016.handlers.CloseGameHandler;
 import main.ChessGame2016.handlers.PlayGameButtonHandler;
@@ -22,55 +21,48 @@ public class SplashScreen {
 	
 	private Image backgroundImage;
 	private ImageView playImgV;
-	
+	private ImageView recordImgV;
+	private ImageView exitImgV;
 
-	public SplashScreen() {
-		
-	}
+	public SplashScreen() { }
 	
+	// READ THE NECESSARY IMAGES, CREATE IMAGEVIEWS AND ADD TO THE LIST TO BE RETURNED
 	public List<ImageView> getButtons() {
 		ArrayList<ImageView> list = new ArrayList<ImageView>();
-		
-		/*Button playButton = new Button("PLAY");
-		PlayGameButtonHandler playGameButtonHandler = new PlayGameButtonHandler(playButton);
-		playButton.addEventHandler(MouseEvent.ANY, playGameButtonHandler);
-		
-		VBox playButtonBox = new VBox();
-		playButtonBox.setMinSize(100, 100);
-		playButtonBox.setLayoutX(400);
-		playButtonBox.setLayoutY(400);
-		playButtonBox.getChildren().add(playButton);
-		
-		Button exitButton = new Button("EXIT");
-		CloseGameHandler exitGameButtonHandler = new CloseGameHandler(exitButton);
-		exitButton.addEventHandler(MouseEvent.ANY, exitGameButtonHandler);
-		
-		VBox exitButtonBox  = new VBox();
-		exitButtonBox.setMinSize(100, 100);
-		exitButtonBox.setLayoutX(450);
-		exitButtonBox.setLayoutY(400);
-		exitButtonBox.getChildren().add(exitButton);
-		
-		list.add(playButtonBox);
-		list.add(exitButtonBox);*/
-		
+
 		Image playImg = new Image(ChessGame2016Properties.getProperty("playGame"));
 		playImgV = new ImageView(playImg);
-		
 		PlayGameButtonHandler playHandler = new PlayGameButtonHandler(playImgV);
 		playImgV.addEventHandler(MouseEvent.ANY, playHandler);
+		playImgV.setX(0);
+		playImgV.setY(0);
+		
+		Image exitImg = new Image(ChessGame2016Properties.getProperty("records"));
+		exitImgV = new ImageView(exitImg);
+		exitImgV.setX(250);
+		exitImgV.setY(0);
+		CloseGameHandler exitHandler = new CloseGameHandler(exitImgV);
+		exitImgV.addEventHandler(MouseEvent.ANY, exitHandler);
+		
+		Image recordImg = new Image(ChessGame2016Properties.getProperty("exit"));
+		recordImgV = new ImageView(recordImg);
+		recordImgV.setX(500);
+		recordImgV.setY(0);
+		CloseGameHandler recordHandler = new CloseGameHandler(recordImgV);
+		recordImgV.addEventHandler(MouseEvent.ANY, recordHandler);
 		
 		list.add(playImgV);
+		list.add(exitImgV);
+		list.add(recordImgV);
 		
 		return list;
-		
 	}
 	
 	public List<ImageView> readSplashScreenBackground() {
 		
 		ArrayList<ImageView> list = new ArrayList<ImageView>();
-		Image image = new Image(ChessGame2016Properties.getProperty("background"));
-		ImageView imgV = new ImageView(image);
+		backgroundImage = new Image(ChessGame2016Properties.getProperty("background"));
+		ImageView imgV = new ImageView(backgroundImage);
 		imgV.setFitWidth(800);
 		imgV.setFitHeight(800);
 		imgV.setX(0);
@@ -79,22 +71,4 @@ public class SplashScreen {
 		
 		return list;
 	}
-	
-	/*public ImageView addGuiButton() {
-		System.out.println("called addGUIButtons");
-		Image closeButton = new Image(Constants.baseImgDirectory + "/End_Game.png");
-		ImageView imgV = new ImageView();
-		imgV.setImage(closeButton);
-		imgV.setFitWidth(160);
-		imgV.setFitHeight(80);
-		imgV.setX(400);
-		imgV.setY(800);
-		CloseGameHandler handler = new CloseGameHandler(imgV);
-		imgV.addEventHandler(MouseEvent.ANY, handler);
-		
-		return imgV;
-		
-		//ChessGame2016.chessManager.getGuiButtons().put("GameScreen_End_Game", imgV);
-	}*/
-	
 }
