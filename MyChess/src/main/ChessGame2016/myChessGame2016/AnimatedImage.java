@@ -1,7 +1,7 @@
 package main.ChessGame2016.myChessGame2016;
 
 import javafx.scene.image.Image;
-
+// TEST ONLY
 public class AnimatedImage
 {
     public Image[] frames;

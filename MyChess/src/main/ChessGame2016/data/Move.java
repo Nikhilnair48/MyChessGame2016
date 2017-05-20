@@ -1,5 +1,10 @@
 package main.ChessGame2016.data;
 
+/*
+ TO CREATE A CUSTOM MOVE OR TO NOT MAKE A CUSTOM MOVE OBJECT IS THE QUESTION...
+ LET'S GO WITH JAVA.LANG.POINT
+ */
+
 public class Move {
 	
 	private int startX;

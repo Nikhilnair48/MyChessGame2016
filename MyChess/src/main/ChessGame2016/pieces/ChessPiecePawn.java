@@ -2,10 +2,12 @@ package main.ChessGame2016.pieces;
 
 import java.awt.Point;
 import java.util.ArrayList;
+
 import javafx.scene.image.ImageView;
 import main.ChessGame2016.data.Board;
 import main.ChessGame2016.data.ChessGame2016Data;
 import main.ChessGame2016.data.ChessPiece;
+import main.ChessGame2016.data.Constants;
 
 public class ChessPiecePawn extends ChessPiece {
 	private boolean isFirstMove;
@@ -68,25 +70,25 @@ public class ChessPiecePawn extends ChessPiece {
 				
 		System.out.println("starting x " + p1.x + " starting y " + p1.y);
 		// MOVE FORWARD BY ONE SQUARE
-		if((p1.x + (1 * directionToMove)) < Board.MAX_COLS 
+		if((p1.x + (1 * directionToMove)) < Constants.MAX_COLS 
 				&& Board.gameBoard[p1.x + (1 * directionToMove)][p1.y].isEmpty())
 			possibleMoves.add(new Point(p1.x + (1 * directionToMove), p1.y));
 		
 		// MOVE FORWARD BY TWO SQUARES
-		if((p1.x + (2 * directionToMove)) < Board.MAX_COLS 
+		if((p1.x + (2 * directionToMove)) < Constants.MAX_COLS 
 				&& Board.gameBoard[p1.x + (2 * directionToMove)][p1.y].isEmpty())
 			possibleMoves.add(new Point(p1.x + (2 * directionToMove), p1.y));
 		
 		// MOVE FORWARD BY ONE SQUARE AND LEFT BY ONE SQUARE
-		if((p1.x + (1 * directionToMove)) < Board.MAX_ROWS 
-				&& p1.y-1 < Board.MAX_COLS // MIGHT NOT BE NECESSARY
+		if((p1.x + (1 * directionToMove)) < Constants.MAX_ROWS 
+				&& p1.y-1 < Constants.MAX_COLS // MIGHT NOT BE NECESSARY
 				&& p1.y-1 >= 0
 				&& !Board.gameBoard[p1.x + (1 * directionToMove)][p1.y-1].isEmpty())
 			possibleMoves.add(new Point(p1.x + (1 * directionToMove), p1.y-1));
 		
 		// MOVE FORWARD BY ONE SQUARE AND RIGHT BY ONE SQUARE
-		if((p1.x + (1 * directionToMove)) < Board.MAX_ROWS 
-				&& p1.y+1 < Board.MAX_COLS
+		if((p1.x + (1 * directionToMove)) < Constants.MAX_ROWS 
+				&& p1.y+1 < Constants.MAX_COLS
 				&& p1.y+1 > 0 // MIGHT NOT BE NECESSARY
 				&& !Board.gameBoard[p1.x + (1 * directionToMove)][p1.y+1].isEmpty())
 			possibleMoves.add(new Point(p1.x + (1 * directionToMove), p1.y+1));
@@ -100,4 +102,7 @@ public class ChessPiecePawn extends ChessPiece {
 	
 	public boolean getIsFirstMove() { return isFirstMove; }
 	
+	public void loadImageForPawn() {
+		
+	}
 }

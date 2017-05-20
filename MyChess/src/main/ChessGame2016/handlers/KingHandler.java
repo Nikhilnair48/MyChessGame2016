@@ -24,6 +24,7 @@ public class KingHandler implements EventHandler<MouseEvent>{
 		if(ChessGame2016View.point1 == null && event.getEventType().equals(MouseEvent.MOUSE_CLICKED)) {
 			firstPosition = new Point((int) event.getX() / 100, (int) event.getY() / 100);
 			ChessGame2016View.point1 = firstPosition;
+			ChessGame2016View.keyOfClickedPiece =  king.getPrefixOfID() + "_" + Constants.CHESSPIECE_KING + "_" + king.getSuffixOfID();
 			/*if(king.getColor() == 1)	// PLAYER 1's KING
 				ChessGame2016View.keyOfClickedPiece =  king.getPrefixOfID() + "_" + Constants.CHESSPIECE_KING + "_" + king.getSuffixOfID();
 			else	// ELSE, PLAYER 2'S KING

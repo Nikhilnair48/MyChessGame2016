@@ -1,5 +1,8 @@
 package main.ChessGame2016.myChessGame2016;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 /*
 	CHESSGAME2016 - MY ATTEMPT AT THE CLASSIC GAME OF CHESS!
 	THE GAME MAY BE PLAYED BY TWO PLAYERS, WHO WILL BE ASSIGNED
@@ -17,13 +20,14 @@ package main.ChessGame2016.myChessGame2016;
  */
 public class ChessGame2016 {
 
+	private static final Logger logger = LogManager.getLogger("ChessGame2016");
 	public static GameManager chessManager = new GameManager();
+	
 	public static void main(String[] args) throws ClassNotFoundException {
+		logger.info("Starting ChessGame...");
+		
 		// SET THE TWO PLAYERS, AND BEGIN THE GAME. REST OF THE GAME IS
 		// HANDLED BY THE GAMEMANAGER CLASS
-		//Player p1 = new Player(1);
-		//Player p2 = new Player(2);
-		//launch(args);
 		chessManager.beginGame();
 	}
 }

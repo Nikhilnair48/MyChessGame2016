@@ -39,12 +39,11 @@ public class ChessGame2016ScreenManager {
 		if(ChessGame2016View.buttonsToMove.containsKey("1")) {
 			System.out.println("point 2 "+ ChessGame2016View.point2 + " point 1 " + ChessGame2016View.point1);
 			
-			ChessGame2016View.point1 = flipPointToFitMatrix(ChessGame2016View.point1);
-			ChessGame2016View.point2 = flipPointToFitMatrix(ChessGame2016View.point2);
-			
-			if(ChessGame2016.chessManager.makeAMove(ChessGame2016View.point1, ChessGame2016View.point2)) {
-				ChessGame2016View.point1 = flipPointToFitMatrix(ChessGame2016View.point1);
-				ChessGame2016View.point2 = flipPointToFitMatrix(ChessGame2016View.point2);
+			// POINTS ARE FLIPPED BEFORE INTERACTING WITH THE DATA LAYER
+			// BECAUSE VIEW USES A MESSED UP COORDINATE SYSTEM
+			// WHERE EVERYTHING IS FLIPPED. COULD CHANGE THE BOARD IN THE DATA LAYER -- OR THIS. SO, THIS.
+			if(ChessGame2016.chessManager.makeAMove(new Point((int)ChessGame2016View.point1.getY(), (int)ChessGame2016View.point1.getX()), 
+					new Point((int)ChessGame2016View.point2.getY(), (int)ChessGame2016View.point2.getX()))) {
 				
 				ImageView imgV = (ImageView) ChessGame2016.chessManager.getGuiButtons().get(ChessGame2016View.keyOfClickedPiece);
 				if(imgV != null) {
@@ -61,33 +60,26 @@ public class ChessGame2016ScreenManager {
 			ChessGame2016View.point2 = null;
 		}
 		
+		// CLEAR EVERYTHING. THEN RENDER AGAIN.
 		gc.clearRect(0, 0, ChessGame2016View.canvas.getWidth(), ChessGame2016View.canvas.getHeight());
 		
+		// BEFORE WE RENDER, REMOVE UNNECESSARY IMAGEVIEWS, BUTTONS, ETC
 		if(ChessGame2016View.keysOfIDsToBeRemoved.size() > 0) {
 			((Group)ChessGame2016View.scene.getRoot()).getChildren().remove(ChessGame2016View.keysOfIDsToBeRemoved.pop());
 		}
 		
+		// BEFORE WE RENDER, ADD ANY NEW KEYS FOR THE USER
 		if(ChessGame2016View.keysOfIDsToBeAdded.size() > 0) {
-			System.out.println("adding new shieeeet");
 			((Group)ChessGame2016View.scene.getRoot()).getChildren().add(ChessGame2016View.keysOfIDsToBeAdded.remove(0));
 		}
 		
+		// GET ALL THE UI RELATED STUFF FROM GUIBUTTONS & DISPLAY
 		Set<String> keyset = ChessGame2016.chessManager.getGuiButtons().keySet();
 		Object[] imageView = keyset.toArray();
-
+		
 		for(int i = 0; i < imageView.length; i++) {
 			ImageView imgV = (ImageView) ChessGame2016.chessManager.getGuiButtons().get(imageView[i]);
 			gc.drawImage(imgV.getImage(), imgV.getX(), imgV.getY());
-			//System.out.println("imgv with key " + imageView[i] + " is " + imgV.isVisible());
 		}		
 	}
-	
-	public Point flipPointToFitMatrix(Point p) {
-		Point temp = new Point(p.x, p.y);
-		p.x = p.y;
-		p.y = temp.x;
-		
-		return p;
-	}
-
 }

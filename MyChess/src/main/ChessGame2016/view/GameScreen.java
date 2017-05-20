@@ -1,6 +1,5 @@
 package main.ChessGame2016.view;
 
-import java.awt.Point;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -30,14 +29,6 @@ public class GameScreen {
 		}
 		
 		return list;
-	}
-	
-	public Point flipPointToFitMatrix(Point p) {
-		Point temp = new Point(p.x, p.y);
-		p.x = p.y;
-		p.y = temp.x;
-		
-		return p;
 	}
 	
 	private ImageView readBoardImage() {

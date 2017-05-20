@@ -1,12 +1,22 @@
 package main.ChessGame2016.data;
 
 import java.awt.Point;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import util.ChessGame2016Properties;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import main.ChessGame2016.handlers.CloseGameHandler;
+import main.ChessGame2016.handlers.BishopHandler;
+import main.ChessGame2016.handlers.KingHandler;
+import main.ChessGame2016.handlers.KnightHandler;
+import main.ChessGame2016.handlers.PawnHandler;
 import main.ChessGame2016.handlers.QueenHandler;
+import main.ChessGame2016.handlers.RookHandler;
 import main.ChessGame2016.myChessGame2016.ChessGame2016;
 import main.ChessGame2016.pieces.ChessPieceBishop;
 import main.ChessGame2016.pieces.ChessPieceFactory;
@@ -39,14 +49,129 @@ public class ChessGame2016Data {
 	
 	public void initData() {
 		board.initBoard();
-		player1.initPlayer();
-		player2.initPlayer();
 		
+		readPlayerFiles(player1, ChessGame2016Properties.getProperty("player1StartingPos"), Constants.CHESSPIECE_PLAYER_1_PREFIX);
+		readPlayerFiles(player2, ChessGame2016Properties.getProperty("player2StartingPos"), Constants.CHESSPIECE_PLAYER_2_PREFIX);
 		
-		/*if (turn == 1)
-			System.out.println("Player 1's turn: ");
+		System.out.println("guibuttons: ");
+		//ChessGame2016.chessManager.getGuiButtons().forEach((k, v)->System.out.println("key " + k));
+	}
+	
+	private void readPlayerFiles(Player player, String playerFile, String playerKey) {
+		BufferedReader reader;
+		List<String> playerFileLines = null;
+		try {	
+			reader = new BufferedReader(new FileReader(playerFile));
+			
+			playerFileLines = new ArrayList<String>();
+			String line = "";
+			while((line = reader.readLine()) != null) {
+				playerFileLines.add(line);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		addPlayerPieces(player, playerFileLines, playerKey);
+	}
+
+	private void addPlayerPieces(Player player, List<String> playerData, String playerKey) {
+		for(String pieceData : playerData) {
+			ChessPiece newPiece = null;
+			String[] data = pieceData.split(";");		// INDEX 0 PROVIDES THE COORDINATE ON THE BOARD, 1 PROVIDES THE VALUE OF THE PIECE 
+			
+			int x = Integer.parseInt(data[0].split(",")[0]);
+			int y = Integer.parseInt(data[0].split(",")[1]);
+			int value = Integer.parseInt(data[1]);
+			Point point = new Point(x, y);			// USE THIS TO INSERT THE PIECE ON THE BOARD AND INIT THE BOARD
+			String pieceKey = "";
+			ImageView imgV = null;
+			switch(value) {
+				case Constants.ROOK:
+					pieceKey = playerKey + Constants.CHESSPIECE_ROOK + Constants.CHESSPIECE_SUFFIX_1;
+					imgV = loadImageViewForPlayer(point, ChessGame2016Properties.getProperty(playerKey + Constants.CHESSPIECE_ROOK));
+					while(player.getPlayerPieces().containsKey(pieceKey)) {
+						ChessPiece piece = player.getPlayerPieces().get(pieceKey);
+						pieceKey = playerKey + Constants.CHESSPIECE_ROOK + Constants.CHESSPIECE_DIVIDER + ((Integer.parseInt(piece.getSuffixOfID()) + 1) );
+					}
+					newPiece = new ChessPieceRook(player.getColor(), value,
+							imgV, pieceKey);
+					RookHandler rHandler = new RookHandler(newPiece);
+					imgV.addEventHandler(MouseEvent.ANY, rHandler);
+					break;
+				case Constants.KNIGHT:
+					pieceKey = playerKey + Constants.CHESSPIECE_KNIGHT + Constants.CHESSPIECE_SUFFIX_1;
+					imgV = loadImageViewForPlayer(point, ChessGame2016Properties.getProperty(playerKey + Constants.CHESSPIECE_KNIGHT));
+					while(player.getPlayerPieces().containsKey(pieceKey)) {
+						ChessPiece piece = player.getPlayerPieces().get(pieceKey);
+						pieceKey = playerKey + Constants.CHESSPIECE_KNIGHT + Constants.CHESSPIECE_DIVIDER + ((Integer.parseInt(piece.getSuffixOfID()) + 1) );
+					}
+					newPiece = new ChessPieceKnight(player.getColor(), value,
+									imgV, pieceKey);
+					KnightHandler kHandler = new KnightHandler(newPiece);
+					imgV.addEventHandler(MouseEvent.ANY, kHandler);
+					break;
+				case Constants.BISHOP:
+					pieceKey = playerKey + Constants.CHESSPIECE_BISHOP + Constants.CHESSPIECE_SUFFIX_1;
+					imgV = loadImageViewForPlayer(point, ChessGame2016Properties.getProperty(playerKey + Constants.CHESSPIECE_BISHOP));
+					while(player.getPlayerPieces().containsKey(pieceKey)) {
+						ChessPiece piece = player.getPlayerPieces().get(pieceKey);
+						pieceKey = playerKey + Constants.CHESSPIECE_BISHOP + Constants.CHESSPIECE_DIVIDER + ((Integer.parseInt(piece.getSuffixOfID()) + 1) );
+					}
+					newPiece = new ChessPieceBishop(player.getColor(), value,
+									imgV, pieceKey);
+					BishopHandler bHandler = new BishopHandler(newPiece);
+					imgV.addEventHandler(MouseEvent.ANY, bHandler);
+					break;
+				case Constants.QUEEN:
+					pieceKey = playerKey + Constants.CHESSPIECE_QUEEN + Constants.CHESSPIECE_SUFFIX_1;
+					imgV = loadImageViewForPlayer(point, ChessGame2016Properties.getProperty(playerKey + Constants.CHESSPIECE_QUEEN));
+					newPiece = new ChessPieceQueen(player.getColor(), value,
+									imgV, pieceKey);
+					QueenHandler qHandler = new QueenHandler(newPiece);
+					imgV.addEventHandler(MouseEvent.ANY, qHandler);
+					break;
+				case Constants.KING:
+					pieceKey = playerKey + Constants.CHESSPIECE_KING + Constants.CHESSPIECE_SUFFIX_1;
+					imgV = loadImageViewForPlayer(point, ChessGame2016Properties.getProperty(playerKey + Constants.CHESSPIECE_KING));
+					newPiece = new ChessPieceKing(player.getColor(), value,
+									imgV, pieceKey);
+					KingHandler kiHandler = new KingHandler(newPiece);
+					imgV.addEventHandler(MouseEvent.ANY, kiHandler);
+					break;
+				case Constants.PAWN:
+					pieceKey = playerKey + Constants.CHESSPIECE_PAWN + Constants.CHESSPIECE_SUFFIX_1;
+					imgV = loadImageViewForPlayer(point, ChessGame2016Properties.getProperty(playerKey + Constants.CHESSPIECE_PAWN));
+					while(player.getPlayerPieces().containsKey(pieceKey)) {
+						ChessPiece piece = player.getPlayerPieces().get(pieceKey);
+						pieceKey = playerKey + Constants.CHESSPIECE_PAWN + Constants.CHESSPIECE_DIVIDER + ((Integer.parseInt(piece.getSuffixOfID()) + 1) );
+					}
+					newPiece = new ChessPiecePawn(player.getColor(), value,
+									imgV, pieceKey);
+					PawnHandler pHandler = new PawnHandler(newPiece);
+					imgV.addEventHandler(MouseEvent.ANY, pHandler);
+					break;
+			}
+			player.getPlayerPieces().put(pieceKey, newPiece);
+			ChessGame2016.chessManager.getBoard().setPieceOnBoard(point, newPiece);	// LOAD THE PIECE ON THE GAME BOARD
+			ChessGame2016.chessManager.addGuiButton(pieceKey, imgV);
+		}
+		
+		if(player.getColor() == 1)
+			player1 = player;
 		else
-			System.out.println("Player 2's turn: ");*/
+			player2 = player;
+	}
+	
+	public ImageView loadImageViewForPlayer(Point point, String path) {
+		Image img = new Image(path); 
+		ImageView imgV = new ImageView(img);
+		imgV.setX(point.getY() * 100);
+		imgV.setY(point.getX() * 100);
+		imgV.setFitHeight(Constants.CHESSPIECE_HEIGHT);
+		imgV.setFitWidth(Constants.CHESSPIECE_WIDTH);
+		imgV.setPreserveRatio(true);
+		
+		return imgV;
 	}
 	
 	// ONCE THE MOVE HAS BEEN VALIDATED
@@ -72,10 +197,9 @@ public class ChessGame2016Data {
 		
 		// UPDATE THE POSITION FOR THE PLAYER
 		//BoardSquare square = null;
-		HashMap<Point, BoardSquare> map = getCurrentPlayer().getPlayerPieces();
 		BoardSquare square = Board.gameBoard[p1.x][p1.y];
 		// UPGRADE PAWN TO QUEEN
-		if(square.getPiece().getValue() == Constants.PAWN && p2.x == Board.MAX_COLS-1) {
+		if(piece.getValue() == Constants.PAWN && p2.x == Constants.MAX_COLS-1) {
 			ChessPieceFactory factory = new ChessPieceFactory();
 			// Constants.playerOneDirectory should be reconsidered to handle both players
 			square = factory.createChessPiece(new ChessPieceCreationInfo(Constants.playerOneDirectory, Constants.IMAGE_EXT_PNG, Constants.CHESSPIECE_QUEEN, Board.gameBoard[p1.x][p1.y].getPiece().getPrefixOfID() + "_", Constants.CHESSPIECE_SUFFIX_2),
@@ -94,13 +218,13 @@ public class ChessGame2016Data {
 			ChessGame2016.chessManager.getGuiButtons().put(square.getPiece().getID(), square.getPiece().getImageView());
 			//ChessGame2016View.keyOfClickedPiece = square.getPiece().getID();
 		}
-		
+		/*
 		square.setPosition(p2);
 		// REPLACE PAWN WITH THE NEW PIECE
 		piece = square.getPiece();
 		map.put(p2, square);
 		map.remove(p1);
-		getCurrentPlayer().setPlayerPieces(map);
+		getCurrentPlayer().setPlayerPieces(map);*/
 		
 		// IF THE MOVE IS AN ATTACK
 		if(!getCurrentPlayer().getPlayerPieces().containsKey(p1) && !Board.gameBoard[p2.x][p2.y].isEmpty()) {
@@ -108,7 +232,7 @@ public class ChessGame2016Data {
 			// MOVE THE PIECE THAT IS BEING ATTACKED FROM THE OPPOSTING PLAYERS' PIECES
 			BoardSquare toBeRemoved = Board.gameBoard[p2.x][p2.y];
 			ChessGame2016.chessManager.getNextPlayer().addToRemovedPieces(toBeRemoved.getPiece());
-			ChessGame2016.chessManager.getNextPlayer().getPlayerPieces().remove(p2);
+			ChessGame2016.chessManager.getNextPlayer().getPlayerPieces().remove(toBeRemoved.getPiece().getID());
 		}
 		
 		// MOVE THE PIECE ON THE BOARD
@@ -155,15 +279,16 @@ public class ChessGame2016Data {
 		// TIP TO IMPROVE -- CHECK IF THE PIECE BELONGS TO THE PLAYER HERE, SO WE DON'T HAVE TO CHECK THAT ON THE BOARD 
 		// IN PROCESSMOVE/ISMOVELEGAL
 		Player player = this.getCurrentPlayer();
-		HashMap<Point, BoardSquare> playerPieces = player.getPlayerPieces();
+		HashMap<String, ChessPiece> playerPieces = player.getPlayerPieces();
+		ChessPiece piece_1 = Board.gameBoard[p1.x][p1.y].getPiece();
+		ChessPiece piece_2 = Board.gameBoard[p2.x][p2.y].getPiece();
 		
 		// SQUARE CONTAINING PIECE 1 HAS TO BE OCCUPIED
 		// PIECE 1 MUST BELONG TO THE CURRENT PLAYER
 		// SQUARE CONTAINING PIECE 2 CANNOT BELONG TO CURRENT PLAYER
-		if(Board.gameBoard[p1.x][p1.y].getPiece() != null && playerPieces.containsKey(p1) 
-				&& !playerPieces.containsKey(p2)) {
-			ChessPiece chessPiece = getPieceClass(Board.gameBoard[p1.x][p1.y].getPiece());
-			result = processMove(p1, p2, chessPiece);
+		if(piece_1 != null && playerPieces.containsKey(piece_1.getID()) 
+				&& (piece_2 == null || !playerPieces.containsKey(piece_2.getID()))) {
+			result = processMove(p1, p2, piece_1);
 		} else {
 			result = false;
 			System.out.println("Invalid move. Please try again.");
@@ -171,42 +296,10 @@ public class ChessGame2016Data {
 		return result;
 	}
 	
-	public ChessPiece getPieceClass(ChessPiece piece) {
-		
-		int value = piece.getValue();
-		ChessPiece pieceClass = null;
-		switch (value) {
-		case 1:
-			pieceClass = (ChessPiecePawn)piece;
-			break;
-		case 2:
-			//KNIGHT
-			pieceClass = (ChessPieceKnight)piece;
-			break;
-		case 3:
-			//BISHOP
-			pieceClass = (ChessPieceBishop)piece;
-			break;
-		case 4:
-			//ROOK
-			pieceClass = (ChessPieceRook)piece;
-			break;
-		case 5:
-			//KING
-			pieceClass = (ChessPieceKing)piece;
-			break;
-		case 6:
-			//QUEEN
-			pieceClass = (ChessPieceQueen)piece;
-			break;
-		}
-		return pieceClass;
-	}
-	
 	// TESTING
 	public void printChessBoard() {
-		for (int i = 0; i < Board.MAX_ROWS; i++) {
-			for (int j = 0; j < Board.MAX_COLS; j++) {
+		for (int i = 0; i < Constants.MAX_ROWS; i++) {
+			for (int j = 0; j < Constants.MAX_COLS; j++) {
 				ChessPiece piece = Board.gameBoard[i][j].getPiece();
 				if (piece == null)
 					System.out.print("0");

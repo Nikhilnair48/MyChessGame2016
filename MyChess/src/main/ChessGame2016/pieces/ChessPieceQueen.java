@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import javafx.scene.image.ImageView;
 import main.ChessGame2016.data.Board;
 import main.ChessGame2016.data.ChessPiece;
+import main.ChessGame2016.data.Constants;
 
 public class ChessPieceQueen extends ChessPiece {
 	
@@ -29,7 +30,7 @@ public class ChessPieceQueen extends ChessPiece {
 		int i = 1;
 		boolean pieceToAttackDetected = false;
 		while(result) {
-			if((p1.x+i) < Board.MAX_ROWS
+			if((p1.x+i) < Constants.MAX_ROWS
 					&& !pieceToAttackDetected) {
 				possibleMoves.add(new Point(p1.x+i, p1.y));
 				
@@ -66,7 +67,7 @@ public class ChessPieceQueen extends ChessPiece {
 		i = 1;
 		pieceToAttackDetected = false;
 		while(result) {
-			if((p1.y+i) < Board.MAX_COLS
+			if((p1.y+i) < Constants.MAX_COLS
 					&& !pieceToAttackDetected) {
 				possibleMoves.add(new Point(p1.x, p1.y+i));
 				
@@ -104,7 +105,7 @@ public class ChessPieceQueen extends ChessPiece {
 		i = 1;
 		pieceToAttackDetected = false;
 		while (result) {
-			if ((p1.x + i) < Board.MAX_ROWS && (p1.y + i) < Board.MAX_COLS
+			if ((p1.x + i) < Constants.MAX_ROWS && (p1.y + i) < Constants.MAX_COLS
 					&& !pieceToAttackDetected) {
 				possibleMoves.add(new Point(p1.x + i, p1.y + i));
 
@@ -121,7 +122,7 @@ public class ChessPieceQueen extends ChessPiece {
 		i = 1;
 		pieceToAttackDetected = false;
 		while (result) {
-			if ((p1.x + i) < Board.MAX_ROWS && (p1.y - i) >= 0
+			if ((p1.x + i) < Constants.MAX_ROWS && (p1.y - i) >= 0
 					&& !pieceToAttackDetected) {
 				possibleMoves.add(new Point(p1.x + i, p1.y - i));
 
@@ -139,7 +140,7 @@ public class ChessPieceQueen extends ChessPiece {
 		i = 1;
 		pieceToAttackDetected = false;
 		while (result) {
-			if ((p1.x - i) >= 0 && (p1.y + i) < Board.MAX_COLS
+			if ((p1.x - i) >= 0 && (p1.y + i) < Constants.MAX_COLS
 					&& !pieceToAttackDetected) {
 				possibleMoves.add(new Point(p1.x - i, p1.y + i));
 

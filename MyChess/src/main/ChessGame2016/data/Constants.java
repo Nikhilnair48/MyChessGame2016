@@ -17,6 +17,8 @@ public class Constants {
 	public static final String playerOneDirectory = "img/pieces/white/";
 	public static final String playerTwoDirectory = "img/pieces/black/";
 	
+	public static String CHESSPIECE_DIVIDER = "_";
+	
 	public static String CHESSPIECE_PLAYER_1_PREFIX = "1_";
 	public static String CHESSPIECE_PLAYER_2_PREFIX = "2_";
 	
@@ -48,4 +50,9 @@ public class Constants {
 	public static final String SPLASH_SCREEN = "SPLASH_SCREEN";
 	public static final String SETTINGS_SCREEN = "SETTINGS_SCREEN";
 	public static final String GAME_SCREEN = "GAME_SCREEN";
+
+	// BOARD SIZE AND MAX NUMBER OF PIECES
+	public static int MAX_COLS = 8;
+	public static int MAX_ROWS = 8;
+	public static int TOTAL_PIECES = 32;
 }

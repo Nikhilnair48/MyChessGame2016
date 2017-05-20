@@ -2,7 +2,8 @@ package main.ChessGame2016.myChessGame2016;
 
 import java.awt.Point;
 import java.util.HashMap;
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import main.ChessGame2016.data.Board;
 import main.ChessGame2016.data.ChessGame2016Data;
 import main.ChessGame2016.data.Player;
@@ -12,31 +13,37 @@ import main.ChessGame2016.view.ChessGame2016View;
 	GAMEMANAGER.JAVA
 	THE MOTHER OF ALL CLASSES!
 	THE GAMEMANAGER CLASS WILL HANDLE ANY AND ALL INTERACTIONS FROM THE
-	PLAYER, AND FORWARD THE REQUEST (EX: MOVE A PIECE) TO THE APPROPRIATE
-	OBJECT.
+	PLAYER ON THE VIEW, AND DELEGATE IT TO THE DATA LAYER 
  */
 
 public class GameManager {
+	private static final Logger logger = LogManager.getLogger("GameManager");
+	
 	private ChessGame2016View view;
-	//public static int turn; 				// WHICH PLAYER WILL MAKE THE NEXT MOVE?
 	private ChessGame2016Data data;
 	
 	private HashMap<String, Object> guiButtons;
 	private HashMap<String, Object> guiDecor;
 	
 	public GameManager() {
+		logger.info("GameManager init : starting");
+		
 		guiButtons = new HashMap<>();
 		guiDecor = new HashMap<>();
 		data = new ChessGame2016Data();		// INITIALIZES THE DATA -> INCLUDES PLAYER1, PLAYER2 & BOARD 
 		view = new ChessGame2016View();
-		//turn = 1;	// PLAYER 1 GETS THE FIRST TURN BY DEFAULT
+		
+		logger.info("GameManager init : complete");
 	}
 	
 	public GameManager(ChessGame2016View gameView, HashMap<String, Object> buttons, HashMap<String, Object> decor) {
-		//turn = 1;
+		logger.info("GameManager init : starting");
+		
 		view = gameView;
 		guiButtons = buttons;
 		guiDecor = decor;
+		
+		logger.info("GameManager init : complete");
 	}
 
 	// STEPS -
@@ -45,20 +52,8 @@ public class GameManager {
 	// SET SCORES, IF NECESSARY
 	// LISTEN FOR MOVES
 	public void beginGame() throws ClassNotFoundException {
-		System.out.println("Load images");
+		logger.info("GameManager beginGame : preparing to init view & data");
 		view.initView();
-		System.out.println("Init data");
-		
-		System.out.println("Init view");
-		//view.initView();
-		
-		//BoardSquare testSq = new BoardSquare(new Point(5,4), false, new ChessPieceRook(1, 4));
-		//Board.gameBoard[5][4] = testSq;
-		//player1.addChessPiece(new Point(5,4), testSq);
-		
-		//waitForInput();
-		
-		System.out.println("Goodbye");
 	}
 	
 	/*public void waitForInput() throws ClassNotFoundException {
@@ -123,6 +118,10 @@ public class GameManager {
 	public void setGuiButtons(HashMap<String, Object> guiButtons) { this.guiButtons = guiButtons; }
 	
 	public Object removeGuiButton(String key) { return guiButtons.remove(key); }
+	
+	public void addGuiButton(String key, Object button) {
+		guiButtons.put(key, button);
+	}
 	
 	public void addGuiButtons(HashMap<String, Object> newButtons) {
 		Object[] arr = newButtons.keySet().toArray();

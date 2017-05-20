@@ -1,9 +1,6 @@
 package main.ChessGame2016.data;
 
 import java.awt.Point;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 /* 
 	BOARD.JAVA
@@ -15,15 +12,10 @@ import java.util.List;
 
 public class Board {
 
-	// BOARD SIZE AND MAX NUMBER OF PIECES
-	public static int MAX_COLS = 8;
-	public static int MAX_ROWS = 8;
-	public static int TOTAL_PIECES = 32;
-
-	public static BoardSquare[][] gameBoard = new BoardSquare[MAX_ROWS][MAX_COLS];
-
-	HashMap<Integer, Integer> pieceVals = new HashMap<>();
-	List<Integer> list = new ArrayList<>();
+	public static BoardSquare[][] gameBoard = new BoardSquare[Constants.MAX_ROWS][Constants.MAX_COLS];
+	// NOT SURE WHY I CREATED PIECEVALS & LIST. SO KEEPING IT UNTIL DEEMED USELESS.
+	//HashMap<Integer, Integer> pieceVals = new HashMap<>();
+	//List<Integer> list = new ArrayList<>();
 
 	public Board() {
 		for (int i = 0; i < gameBoard.length; i++) {
@@ -34,13 +26,25 @@ public class Board {
 	}
 
 	public void initBoard() {
-		for (int i = 0; i < MAX_ROWS; i++) {
+		for (int i = 0; i < Constants.MAX_ROWS; i++) {
 			BoardSquare boardPiece = null;
-			for (int j = 0; j < MAX_COLS; j++) {
+			for (int j = 0; j < Constants.MAX_COLS; j++) {
 				boardPiece = new BoardSquare(new Point(i, j), true, null);
 				gameBoard[i][j] = boardPiece;
 			}
 		}
+	}
+	
+	public boolean setPieceOnBoard(Point point, ChessPiece piece) {
+		boolean result = false;
+		if(!(gameBoard[point.x][point.y] != null) || gameBoard[point.x][point.y].getPiece() == null) {
+			gameBoard[point.x][point.y].setPiece(piece);
+			result = true;
+		}
+		// MAKE SURE THE STATE IS CHANGED
+		if(isSquareEmpty(point))	gameBoard[point.x][point.y].setEmpty(false);
+		
+		return result;
 	}
 
 	/*// ONCE THE MOVE HAS BEEN VALIDATED
@@ -102,8 +106,8 @@ public class Board {
 	
 	// TESTING
 	public void printChessBoard() {
-		for (int i = 0; i < MAX_ROWS; i++) {
-			for (int j = 0; j < MAX_COLS; j++) {
+		for (int i = 0; i < Constants.MAX_ROWS; i++) {
+			for (int j = 0; j < Constants.MAX_COLS; j++) {
 				ChessPiece piece = gameBoard[i][j].getPiece();
 				if (piece == null)
 					System.out.print("0");

@@ -2,10 +2,12 @@ package main.ChessGame2016.pieces;
 
 import java.awt.Point;
 import java.util.ArrayList;
+
 import javafx.scene.image.ImageView;
 import main.ChessGame2016.data.Board;
 import main.ChessGame2016.data.ChessGame2016Data;
 import main.ChessGame2016.data.ChessPiece;
+import main.ChessGame2016.data.Constants;
 
 public class ChessPieceKnight extends ChessPiece {
 
@@ -60,42 +62,42 @@ public class ChessPieceKnight extends ChessPiece {
 		ArrayList<Point> possibleMoves = new ArrayList<Point>();
 
 		// MOVE 2 BACK 1 RIGHT
-		if (p1.x + (2 * directionToMove * -1) < Board.MAX_ROWS
-				&& (p1.y + 1) < Board.MAX_COLS)	//&& Board.gameBoard[p1.x + (2 * directionToMove)][p1.y + 1].isEmpty()
+		if (p1.x + (2 * directionToMove * -1) < Constants.MAX_ROWS
+				&& (p1.y + 1) < Constants.MAX_COLS)	//&& Board.gameBoard[p1.x + (2 * directionToMove)][p1.y + 1].isEmpty()
 			possibleMoves.add(new Point(p1.x + (2 * directionToMove * -1), p1.y + 1));
 		
 		// MOVE 2 BACK 1 LEFT
-		if (p1.x + (2 * directionToMove * -1) < Board.MAX_ROWS
+		if (p1.x + (2 * directionToMove * -1) < Constants.MAX_ROWS
 				&& (p1.y - 1) >= 0)	//&& Board.gameBoard[p1.x + (2 * directionToMove)][p1.y - 1].isEmpty()
 			possibleMoves.add(new Point(p1.x + (2 * directionToMove * -1), p1.y - 1));
 
 		// MOVE 1 BACK 2 RIGHT
-		if (p1.x + (1 * directionToMove * -1) < Board.MAX_ROWS
-				&& (p1.y + 2) < Board.MAX_COLS)	//&& Board.gameBoard[p1.x + (1 * directionToMove)][p1.y + 2].isEmpty()
+		if (p1.x + (1 * directionToMove * -1) < Constants.MAX_ROWS
+				&& (p1.y + 2) < Constants.MAX_COLS)	//&& Board.gameBoard[p1.x + (1 * directionToMove)][p1.y + 2].isEmpty()
 			possibleMoves.add(new Point(p1.x + (1 * directionToMove * -1), p1.y + 2));
 
 		// MOVE 1 BACK 2 LEFT
-		if (p1.x + (1 * directionToMove * -1) < Board.MAX_ROWS
+		if (p1.x + (1 * directionToMove * -1) < Constants.MAX_ROWS
 				&& (p1.y - 2) >= 0)	//&& Board.gameBoard[p1.x + (1 * directionToMove)][p1.y - 2].isEmpty()
 			possibleMoves.add(new Point(p1.x + (1 * directionToMove * -1), p1.y - 2));
 		
 		// MOVE 2 FORWARD 1 RIGHT
-		if (p1.x + (2 * directionToMove) < Board.MAX_ROWS
-				&& (p1.y + 1) < Board.MAX_COLS)	//&& Board.gameBoard[p1.x + (2 * directionToMove)][p1.y + 1].isEmpty()
+		if (p1.x + (2 * directionToMove) < Constants.MAX_ROWS
+				&& (p1.y + 1) < Constants.MAX_COLS)	//&& Board.gameBoard[p1.x + (2 * directionToMove)][p1.y + 1].isEmpty()
 			possibleMoves.add(new Point(p1.x + (2 * directionToMove), p1.y + 1));
 
 		// MOVE 2 FORWARD 1 LEFT
-		if (p1.x + (2 * directionToMove) < Board.MAX_ROWS
+		if (p1.x + (2 * directionToMove) < Constants.MAX_ROWS
 				&& (p1.y - 1) >= 0)	//&& Board.gameBoard[p1.x + (2 * directionToMove)][p1.y - 1].isEmpty()
 			possibleMoves.add(new Point(p1.x + (2 * directionToMove), p1.y - 1));
 
 		// MOVE 1 FORWARD 2 RIGHT
-		if (p1.x + (1 * directionToMove) < Board.MAX_ROWS
-				&& (p1.y + 2) < Board.MAX_COLS)	//&& Board.gameBoard[p1.x + (1 * directionToMove)][p1.y + 2].isEmpty()
+		if (p1.x + (1 * directionToMove) < Constants.MAX_ROWS
+				&& (p1.y + 2) < Constants.MAX_COLS)	//&& Board.gameBoard[p1.x + (1 * directionToMove)][p1.y + 2].isEmpty()
 			possibleMoves.add(new Point(p1.x + (1 * directionToMove), p1.y + 2));
 
 		// MOVE 1 FORWARD 2 LEFT
-		if (p1.x + (1 * directionToMove) < Board.MAX_ROWS
+		if (p1.x + (1 * directionToMove) < Constants.MAX_ROWS
 				&& (p1.y - 2) >= 0)	//&& Board.gameBoard[p1.x + (1 * directionToMove)][p1.y - 2].isEmpty()
 			possibleMoves.add(new Point(p1.x + (1 * directionToMove), p1.y - 2));
 		

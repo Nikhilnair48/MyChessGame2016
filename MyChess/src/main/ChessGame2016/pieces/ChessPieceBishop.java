@@ -2,9 +2,11 @@ package main.ChessGame2016.pieces;
 
 import java.awt.Point;
 import java.util.ArrayList;
+
 import javafx.scene.image.ImageView;
 import main.ChessGame2016.data.Board;
 import main.ChessGame2016.data.ChessPiece;
+import main.ChessGame2016.data.Constants;
 
 // ENTERING A RELATIONSHIP IS LIKE WALING INTO THE NO MANS LAND.
 // YOU COULD EITHER WAIT IN THE TRENCH FOREVER OR
@@ -38,7 +40,7 @@ public class ChessPieceBishop extends ChessPiece {
 		int i = 1;
 		boolean pieceToAttackDetected = false;
 		while(result) {
-			if((p1.x+i) < Board.MAX_ROWS && (p1.y+i) < Board.MAX_COLS
+			if((p1.x+i) < Constants.MAX_ROWS && (p1.y+i) < Constants.MAX_COLS
 					&& !pieceToAttackDetected) {
 				possibleMoves.add(new Point(p1.x+i, p1.y+i));
 				
@@ -55,7 +57,7 @@ public class ChessPieceBishop extends ChessPiece {
 		i = 1;
 		pieceToAttackDetected = false;
 		while(result) {
-			if((p1.x+i) < Board.MAX_ROWS && (p1.y-i) >= 0
+			if((p1.x+i) < Constants.MAX_ROWS && (p1.y-i) >= 0
 					&& !pieceToAttackDetected) {
 				possibleMoves.add(new Point(p1.x+i, p1.y-i));
 				
@@ -73,7 +75,7 @@ public class ChessPieceBishop extends ChessPiece {
 		i = 1;
 		pieceToAttackDetected = false;
 		while(result) {
-			if((p1.x-i) >= 0 && (p1.y+i) < Board.MAX_COLS
+			if((p1.x-i) >= 0 && (p1.y+i) < Constants.MAX_COLS
 					&& !pieceToAttackDetected) {
 				possibleMoves.add(new Point(p1.x-i, p1.y+i));
 				

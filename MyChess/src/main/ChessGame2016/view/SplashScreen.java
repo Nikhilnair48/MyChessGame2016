@@ -2,20 +2,12 @@ package main.ChessGame2016.view;
 
 import java.util.ArrayList;
 import java.util.List;
-import main.ChessGame2016.data.Constants;
 import main.ChessGame2016.handlers.CloseGameHandler;
 import main.ChessGame2016.handlers.PlayGameButtonHandler;
-import main.ChessGame2016.myChessGame2016.ChessGame2016;
 import util.ChessGame2016Properties;
-import javafx.scene.Group;
-import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
 public class SplashScreen {
 	
