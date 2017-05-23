@@ -35,6 +35,11 @@ public class ChessPiecePawn extends ChessPiece {
 		int xDifference = Math.abs(p2.x - p1.x);
 		int yDifference = Math.abs(p2.y - p1.y);
 		
+		// TRYING TO MOVE HORIZONTALLY? NOPE!
+		if(xDifference == 0) {
+			result = false;
+		}
+		
 		// ATTEMPTING TO MOVE GREATER THAN 2 SQUARES - NOPE!
 		if(xDifference > 2 || yDifference > 1) { 
 			result = false;  
@@ -52,7 +57,7 @@ public class ChessPiecePawn extends ChessPiece {
 		else directionToMove = -1;
 		
 		ArrayList<Point> possibleMoves = generatePossibleMoves(p1, p2);
-		// IS THE PAWN TRYING TO ATTACK?
+		// IS THE PAWN TRYING TO ATTACK? -- SHOULD WE BE BOTHERED ABOUT ATTACKS HERE? NOT CONSIDERING IT NOW.
 		if(!possibleMoves.contains(p2)	//result &&
 				&& !Board.gameBoard[p2.x][p2.y].isEmpty()) {
 			result = false;

@@ -55,6 +55,10 @@ public class ChessGame2016View extends Application {
 	
 	@Override
 	public void start(Stage stage) throws Exception {
+		// DATA HAS TO BE INITIALIZED HERE SINCE JAVA 8
+		// DOESN'T ALLOW THE APP TO LOAD JAVAFX IMAGE UNTIL THE start()
+		// METHOD IS CALLED. CURRENTLY, THE DATA LAYER WILL LOAD
+		// CHESSPIECE IMAGES WHEN INIT IS INVOKED
 		ChessGame2016.chessManager.getGameData().initData();
 		
 		ChessGame2016View.stage = stage;

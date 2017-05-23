@@ -2,8 +2,10 @@ package main.ChessGame2016.myChessGame2016;
 
 import java.awt.Point;
 import java.util.HashMap;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
 import main.ChessGame2016.data.Board;
 import main.ChessGame2016.data.ChessGame2016Data;
 import main.ChessGame2016.data.Player;
@@ -55,38 +57,6 @@ public class GameManager {
 		logger.info("GameManager beginGame : preparing to init view & data");
 		view.initView();
 	}
-	
-	/*public void waitForInput() throws ClassNotFoundException {
-		// WAIT FOR USER INPUT
-		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-		String input = "";
-		
-		if (turn == 1)
-			System.out.println("Player 1's turn: ");
-		else
-			System.out.println("Player 2's turn: ");
-
-		board.printChessBoard();
-
-		// AS OF NOW USER INPUT WILL BE EITHER "QUIT" OR
-		// START POSITION FOLLOWED BY A SPACE AND THEN END POSITION
-		// Ex: "11 21" MOVES THE PIECE FROM INDEX (1,1) to (2,1)
-		try {
-			while (!(input = reader.readLine()).equals("quit")) {
-
-				Point p1 = new Point();
-				p1.x = Integer.parseInt(input.substring(0, 1));
-				p1.y = Integer.parseInt(input.substring(1, 2));
-				Point p2 = new Point();
-				p2.x = Integer.parseInt(input.substring(3, 4));
-				p2.y = Integer.parseInt(input.substring(4));
-				
-				makeAMove(p1, p2);
-			}
-		} catch (NumberFormatException | IOException e) {
-			System.out.println("Game cannot be started: " + e.getMessage());
-		}
-	}*/
 	
 	public boolean makeAMove(Point p1, Point p2) {
 		boolean result = false;

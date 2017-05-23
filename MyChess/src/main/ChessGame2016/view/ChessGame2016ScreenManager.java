@@ -65,12 +65,15 @@ public class ChessGame2016ScreenManager {
 		
 		// BEFORE WE RENDER, REMOVE UNNECESSARY IMAGEVIEWS, BUTTONS, ETC
 		if(ChessGame2016View.keysOfIDsToBeRemoved.size() > 0) {
-			((Group)ChessGame2016View.scene.getRoot()).getChildren().remove(ChessGame2016View.keysOfIDsToBeRemoved.pop());
+			ImageView imgView = ChessGame2016View.keysOfIDsToBeRemoved.pop();
+			if(imgView != null)
+				((Group)ChessGame2016View.gameScene.getRoot()).getChildren().remove(imgView);
+				//((Group)ChessGame2016View.scene.getRoot()).getChildren().remove(ChessGame2016View.keysOfIDsToBeRemoved.pop());
 		}
 		
 		// BEFORE WE RENDER, ADD ANY NEW KEYS FOR THE USER
 		if(ChessGame2016View.keysOfIDsToBeAdded.size() > 0) {
-			((Group)ChessGame2016View.scene.getRoot()).getChildren().add(ChessGame2016View.keysOfIDsToBeAdded.remove(0));
+			((Group)ChessGame2016View.gameScene.getRoot()).getChildren().add(ChessGame2016View.keysOfIDsToBeAdded.remove(0));
 		}
 		
 		// GET ALL THE UI RELATED STUFF FROM GUIBUTTONS & DISPLAY

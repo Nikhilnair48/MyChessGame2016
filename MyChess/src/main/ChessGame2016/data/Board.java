@@ -46,6 +46,19 @@ public class Board {
 		
 		return result;
 	}
+	
+	/* RETURNS THE CHESSPIECE IF IT WAS FOUND, ELSE NULL */
+	public BoardSquare getBoardSquareWithKey(String key) {
+		BoardSquare square = null;
+		for (int i = 0; i < gameBoard.length; i++) {
+			for (int j = 0; j < gameBoard[i].length; j++) {
+				if(!Board.gameBoard[i][j].isEmpty() && Board.gameBoard[i][j].getPiece().getID().equals(key)) {
+					square = Board.gameBoard[i][j];
+				}
+			}
+		}
+		return square;
+	}
 
 	/*// ONCE THE MOVE HAS BEEN VALIDATED
 	// SET THE FIRST POSITION TO EMPTY, AND MOVE THE

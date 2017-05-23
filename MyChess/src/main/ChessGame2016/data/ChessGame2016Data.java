@@ -196,35 +196,39 @@ public class ChessGame2016Data {
 		}
 		
 		// UPDATE THE POSITION FOR THE PLAYER
-		//BoardSquare square = null;
 		BoardSquare square = Board.gameBoard[p1.x][p1.y];
-		// UPGRADE PAWN TO QUEEN
+		// UPGRADE PAWN TO QUEEN -- ROUGHLY COMPLETE
 		if(piece.getValue() == Constants.PAWN && p2.x == Constants.MAX_COLS-1) {
-			ChessPieceFactory factory = new ChessPieceFactory();
-			// Constants.playerOneDirectory should be reconsidered to handle both players
-			square = factory.createChessPiece(new ChessPieceCreationInfo(Constants.playerOneDirectory, Constants.IMAGE_EXT_PNG, Constants.CHESSPIECE_QUEEN, Board.gameBoard[p1.x][p1.y].getPiece().getPrefixOfID() + "_", Constants.CHESSPIECE_SUFFIX_2),
-					new Point(p2.y, p2.x), ChessGame2016.chessManager.getCurrentPlayer().getColor(), Constants.QUEEN, new ChessPieceQueen());
-			QueenHandler handler = new QueenHandler(square.getPiece());
-			square.getPiece().getImageView().addEventFilter(MouseEvent.ANY, handler);
-			System.out.println("UPGRADE PAWN TO QUEEN");
-			// REMOVE THE PAWN SO THAT IT WON'T BE RENDERED ON SCREEN
-			HashMap<String, Object> guiButtonsMap = ChessGame2016.chessManager.getGuiButtons();
-			guiButtonsMap.remove(piece.getID());
 			
-			ChessGame2016.chessManager.setGuiButtons(guiButtonsMap);
-			ChessGame2016View.keysOfIDsToBeRemoved.push(piece.getImageView());
-			ChessGame2016View.keysOfIDsToBeAdded.push(square.getPiece().getImageView());
-			//System.out.println()
-			ChessGame2016.chessManager.getGuiButtons().put(square.getPiece().getID(), square.getPiece().getImageView());
-			//ChessGame2016View.keyOfClickedPiece = square.getPiece().getID();
+			// GET THE KEYS FOR THE PIECE TO BE REMOVED FROM THE OTHER PLAYER
+			// AND GENERATE THE UNIQUE ID FOR THE NEW QUEEN FOR THE CURRENT PLAYER
+			String pieceToRemove = piece.getID();
+			String pieceKey = "1_queen_1";
+			piece = getCurrentPlayer().getPlayerPieces().get("1_queen_1");
+			if(piece != null) {
+				while(getCurrentPlayer().getPlayerPieces().containsKey(pieceKey)) {
+					piece = getCurrentPlayer().getPlayerPieces().get(piece.getID());
+					pieceKey = getCurrentPlayer().getPlayerPieces().get(piece.getID()).getPrefixOfID() + Constants.CHESSPIECE_DIVIDER
+							+ Constants.CHESSPIECE_QUEEN + Constants.CHESSPIECE_DIVIDER + ((Integer.parseInt(piece.getSuffixOfID()) + 1) );
+				}
+			}
+			
+			ImageView imgV = loadImageViewForPlayer(p2, ChessGame2016Properties.getProperty(piece.getPrefixOfID() + Constants.CHESSPIECE_DIVIDER + Constants.CHESSPIECE_QUEEN));
+			piece = new ChessPieceQueen(getCurrentPlayer().getColor(), Constants.QUEEN, imgV, pieceKey);
+			QueenHandler handler = new QueenHandler(piece);
+			piece.getImageView().addEventFilter(MouseEvent.ANY, handler);
+			System.out.println("UPGRADE PAWN TO QUEEN with new ID " + pieceKey);
+
+			// UPDATE PLAYER PIECES
+			getCurrentPlayer().getPlayerPieces().remove(pieceToRemove);
+			getCurrentPlayer().getPlayerPieces().put(piece.getID(), piece);
+			
+			// REMOVE PAWN FROM VIEW, ADD QUEEN TO VIEW
+			ChessGame2016View.keysOfIDsToBeRemoved.push(square.getPiece().getImageView());
+			ChessGame2016View.keysOfIDsToBeAdded.push(piece.getImageView());
+			
+			ChessGame2016.chessManager.getGuiButtons().put(pieceKey, piece.getImageView());
 		}
-		/*
-		square.setPosition(p2);
-		// REPLACE PAWN WITH THE NEW PIECE
-		piece = square.getPiece();
-		map.put(p2, square);
-		map.remove(p1);
-		getCurrentPlayer().setPlayerPieces(map);*/
 		
 		// IF THE MOVE IS AN ATTACK
 		if(!getCurrentPlayer().getPlayerPieces().containsKey(p1) && !Board.gameBoard[p2.x][p2.y].isEmpty()) {
@@ -242,7 +246,7 @@ public class ChessGame2016Data {
 		Board.gameBoard[p2.x][p2.y].setEmpty(false);
 		Board.gameBoard[p2.x][p2.y].setPiece(piece);
 
-		//checkForCheck();
+		checkForCheck();
 		
 		// SWITCH TURNS
 		ChessGame2016.chessManager.setNextTurn();
@@ -251,9 +255,20 @@ public class ChessGame2016Data {
 		printChessBoard();
 	}
 	
-	/*public void checkForCheck() {
-		ChessGame2016.chessManager.getCurrentPlayer().getPlayerPieces()
-	}*/
+	// HAS THE NEWLY MADE MOVE PUT THE OTHER PLAYERS' KING IN DANGER? 
+	public void checkForCheck() {
+		String key = "";
+		if(turn == 1) key = "2_king_1";
+		else key = "1_king_1";
+		
+		Player nextPlayer = ChessGame2016.chessManager.getNextPlayer();
+		ChessPiece king = nextPlayer.getPlayerPieces().get(key);
+		BoardSquare square = board.getBoardSquareWithKey(king.getID());
+		Point point = square.getPosition();		// POINT WILL BE REQUIRED LATER TO GENERATE POSSIBLE MOVES
+		System.out.println("GENERATING MOVES FOR KING: ");
+		king.generatePossibleMoves(point, new Point(point.x, point.y+1));
+		
+	}
 
 	public boolean processMove(Point p1, Point p2, ChessPiece piece) {
 		boolean result = false;

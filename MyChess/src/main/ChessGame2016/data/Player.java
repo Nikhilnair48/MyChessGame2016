@@ -3,7 +3,6 @@ package main.ChessGame2016.data;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.HashMap;
-import main.ChessGame2016.myChessGame2016.ChessGame2016;
 
 /*
  	PLAYER.JAVA
@@ -93,24 +92,20 @@ public class Player {
 	public void addChessPiece(String p, ChessPiece sq) {
 		playerPieces.put(p, sq);
 	}
-	
-	public void movieAPiece(Point pointFrom, Point pointTo) {
-		ChessPiece square = playerPieces.get("CHAAANGE");
-		//square.setPosition(pointTo);
-		ChessGame2016.chessManager.getBoard().printChessBoard();
-	}
 
+	// SHOULD PROBABLY BE MOVED INTO DATA LAYER?
+	/* RETURNS THE COORDINATE ON THE VIEW FOR THE REMOVED PIECES FOR THE PLAYER */
 	public Point getRemovedPlayerPieceCoordinate() {
 		Point p = new Point();
 		
 		if(color == 1) {
-			p.x = Constants.piecesForEachPlayer * Constants.CHESSPIECE_WIDTH + (removedPieces.size() * Constants.REMOVED_PIECES_WIDTH);
+			p.x = Constants.piecesForEachPlayer * Constants.CHESSPIECE_WIDTH + (removedPieces.size() % 8 * Constants.REMOVED_PIECES_WIDTH);
 			p.y = (removedPieces.size() >= 8) ? Constants.PLAYER_1_REMOVED_PIECES_ROW_2_Y : Constants.PLAYER_1_REMOVED_PIECES_ROW_1_Y;
 		} else {
-			p.x = Constants.piecesForEachPlayer * Constants.CHESSPIECE_WIDTH + (removedPieces.size() * Constants.REMOVED_PIECES_WIDTH);
+			p.x = Constants.piecesForEachPlayer * Constants.CHESSPIECE_WIDTH + (removedPieces.size() % 8 * Constants.REMOVED_PIECES_WIDTH);
 			p.y = (removedPieces.size() >= 8) ? Constants.PLAYER_2_REMOVED_PIECES_ROW_2_Y : Constants.PLAYER_2_REMOVED_PIECES_ROW_1_Y;
 		}
-		System.out.println(p);
+		System.out.println("REMOVED PIECE POINT " + p + " removedPieces size " + removedPieces.size());
 		return p;
 	}
 	

@@ -35,7 +35,12 @@ public class ChessPieceKing extends ChessPiece {
 		ArrayList<Point> possibleMoves = new ArrayList<>();
 		
 		// MOVE FORWARD/BACKWARD BY 1  
-		if(p1.x+1 < Constants.MAX_ROWS)
+		// IF THERE IS A PIECE AT P2, THEN IT SHOULD NOT BELONG TO THE PLAYER
+		// OR
+		// IF THERE ISN'T A PIECE AT P2, THEN JUST CHECK THE BOUNDARIES
+		if((Board.gameBoard[p2.x][p2.y].getPiece() != null 
+				&& !Board.gameBoard[p2.x][p2.y].getPiece().getPrefixOfID().equals(this.getPrefixOfID()))
+				|| (Board.gameBoard[p2.x][p2.y].getPiece() == null && p1.x+1 < Constants.MAX_ROWS))
 			possibleMoves.add(new Point(p1.x+1, p1.y));
 		
 		if((p1.x-1) > 0)
