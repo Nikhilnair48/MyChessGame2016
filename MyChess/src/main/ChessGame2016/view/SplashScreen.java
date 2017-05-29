@@ -11,7 +11,7 @@ import javafx.scene.input.MouseEvent;
 
 public class SplashScreen {
 	
-	private Image backgroundImage;
+	private ImageView backgroundImage;
 	private ImageView playImgV;
 	private ImageView recordImgV;
 	private ImageView exitImgV;
@@ -21,6 +21,13 @@ public class SplashScreen {
 	// READ THE NECESSARY IMAGES, CREATE IMAGEVIEWS AND ADD TO THE LIST TO BE RETURNED
 	public List<ImageView> getButtons() {
 		ArrayList<ImageView> list = new ArrayList<ImageView>();
+		
+		Image backgroundImg = new Image(ChessGame2016Properties.getProperty("background"));
+		backgroundImage = new ImageView(backgroundImg);
+		backgroundImage.setX(0);
+		backgroundImage.setY(0);
+		backgroundImage.setFitWidth(1200);
+		backgroundImage.setFitHeight(800);
 
 		Image playImg = new Image(ChessGame2016Properties.getProperty("playGame"));
 		playImgV = new ImageView(playImg);
@@ -29,28 +36,29 @@ public class SplashScreen {
 		playImgV.setX(0);
 		playImgV.setY(0);
 		
-		Image exitImg = new Image(ChessGame2016Properties.getProperty("records"));
+		/*Image exitImg = new Image(ChessGame2016Properties.getProperty("records"));
 		exitImgV = new ImageView(exitImg);
 		exitImgV.setX(250);
 		exitImgV.setY(0);
 		CloseGameHandler exitHandler = new CloseGameHandler(exitImgV);
-		exitImgV.addEventHandler(MouseEvent.ANY, exitHandler);
+		exitImgV.addEventHandler(MouseEvent.ANY, exitHandler);*/
 		
 		Image recordImg = new Image(ChessGame2016Properties.getProperty("exit"));
 		recordImgV = new ImageView(recordImg);
-		recordImgV.setX(500);
+		recordImgV.setX(250);
 		recordImgV.setY(0);
 		CloseGameHandler recordHandler = new CloseGameHandler(recordImgV);
 		recordImgV.addEventHandler(MouseEvent.ANY, recordHandler);
 		
+		list.add(backgroundImage);
 		list.add(playImgV);
-		list.add(exitImgV);
+		//list.add(exitImgV);
 		list.add(recordImgV);
 		
 		return list;
 	}
 	
-	public List<ImageView> readSplashScreenBackground() {
+	/*public List<ImageView> readSplashScreenBackground() {
 		
 		ArrayList<ImageView> list = new ArrayList<ImageView>();
 		backgroundImage = new Image(ChessGame2016Properties.getProperty("background"));
@@ -62,5 +70,5 @@ public class SplashScreen {
 		list.add(imgV);
 		
 		return list;
-	}
+	}*/
 }

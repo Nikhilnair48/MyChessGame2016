@@ -49,8 +49,8 @@ public class GameScreen {
 		ImageView imgV = new ImageView(closeButton);
 		imgV.setFitWidth(160);
 		imgV.setFitHeight(80);
-		imgV.setX(800);
-		imgV.setY(305);
+		imgV.setX(920);
+		imgV.setY(360);
 		CloseGameHandler handler = new CloseGameHandler(imgV);
 		imgV.addEventHandler(MouseEvent.ANY, handler);
 		
