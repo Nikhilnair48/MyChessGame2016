@@ -4,10 +4,12 @@ import java.awt.Point;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Stack;
+
 import main.ChessGame2016.data.Constants;
 import main.ChessGame2016.handlers.BoardHandler;
 import main.ChessGame2016.myChessGame2016.ChessGame2016;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -47,13 +49,16 @@ public class ChessGame2016View extends Application {
 		gameGroup = new Group();
 	}
 
-	public void initView() {
+	// COMMENTED OUT CODE TO TEST
+	//public void initView(Stage stg) throws Exception {
+	public void initView() throws Exception {
 		launch();
+		//startGame(stg);
 	}
 	
 	public Stage getStage() { return stage;	}
 	
-	@Override
+	//public void startGame(Stage stage) throws Exception {		FOR TESTING
 	public void start(Stage stage) throws Exception {
 		// DATA HAS TO BE INITIALIZED HERE SINCE JAVA 8
 		// DOESN'T ALLOW THE APP TO LOAD JAVAFX IMAGE UNTIL THE start()
@@ -105,5 +110,4 @@ public class ChessGame2016View extends Application {
 	}
 	
 	public Scene getScene() { return scene; }
-	
 }

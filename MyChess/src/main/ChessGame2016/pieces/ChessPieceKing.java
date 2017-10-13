@@ -27,6 +27,12 @@ public class ChessPieceKing extends ChessPiece {
 		if(!generatePossibleMoves(p1, p2).contains(p2) && Board.gameBoard[p2.x][p2.y].isEmpty())
 			result = false;
 		
+		// EVEN IF P2 EXISTS IN POSSIBLE MOVES,
+		// CHECK IF THE KING SHOULD BE ALLOWED TO MOVE
+		// WHAT IF THE MOVE WOULD PUT THE KING IN CHECK? OR CHECK MATE?
+		// SO CHECK THE Ls FOR KNIGHT ATTACKS, DIAGONAL QUEEN/BISHOP/PAWN/KING ATTACKS,
+		// DIRECT ATTACKS FROM QUEEN//ROOK/KING
+		
 		return result;
 	}
 
@@ -69,8 +75,8 @@ public class ChessPieceKing extends ChessPiece {
 		if((p1.y-1) >= 0 && (p1.x-1) >= 0)
 			possibleMoves.add(new Point(p1.x-1, p1.y-1));
 		
-		System.out.println(possibleMoves);
-		System.out.println(possibleMoves.size());
+		//System.out.println(possibleMoves);
+		//System.out.println(possibleMoves.size());
 		return possibleMoves;
 	}
 

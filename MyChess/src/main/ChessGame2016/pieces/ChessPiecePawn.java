@@ -73,7 +73,7 @@ public class ChessPiecePawn extends ChessPiece {
 	public ArrayList<Point> generatePossibleMoves(Point p1, Point p2) {
 		ArrayList<Point> possibleMoves = new ArrayList<Point>();
 				
-		System.out.println("starting x " + p1.x + " starting y " + p1.y);
+		//System.out.println("starting x " + p1.x + " starting y " + p1.y);
 		// MOVE FORWARD BY ONE SQUARE
 		if((p1.x + (1 * directionToMove)) < Constants.MAX_COLS 
 				&& Board.gameBoard[p1.x + (1 * directionToMove)][p1.y].isEmpty())
@@ -98,7 +98,7 @@ public class ChessPiecePawn extends ChessPiece {
 				&& !Board.gameBoard[p1.x + (1 * directionToMove)][p1.y+1].isEmpty())
 			possibleMoves.add(new Point(p1.x + (1 * directionToMove), p1.y+1));
 		
-		System.out.println("chesspiecepawn: possiblemoves - "+ possibleMoves);
+		//System.out.println("chesspiecepawn: possiblemoves - "+ possibleMoves);
 		
 		return possibleMoves;
 	}

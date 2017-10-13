@@ -105,8 +105,8 @@ public class ChessPieceBishop extends ChessPiece {
 				result = false;
 			}
 		}
-		System.out.println(possibleMoves);
-		System.out.println(possibleMoves.size());
+		//System.out.println(possibleMoves);
+		//System.out.println(possibleMoves.size());
 		return possibleMoves;
 	}
 	

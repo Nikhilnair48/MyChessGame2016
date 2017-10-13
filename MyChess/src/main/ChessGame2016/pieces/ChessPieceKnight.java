@@ -101,7 +101,7 @@ public class ChessPieceKnight extends ChessPiece {
 				&& (p1.y - 2) >= 0)	//&& Board.gameBoard[p1.x + (1 * directionToMove)][p1.y - 2].isEmpty()
 			possibleMoves.add(new Point(p1.x + (1 * directionToMove), p1.y - 2));
 		
-		System.out.println(possibleMoves);
+		//System.out.println(possibleMoves);
 		return possibleMoves;
 	}
 

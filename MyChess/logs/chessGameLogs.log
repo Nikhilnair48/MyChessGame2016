@@ -1,0 +1,350 @@
+2017-07-04 15:19:04,706 INFO m.C.m.GameManager [main] GameManager init : starting
+2017-07-04 15:19:04,842 INFO m.C.m.GameManager [main] GameManager init : complete
+2017-07-04 15:19:04,842 INFO m.C.m.ChessGame2016 [main] Starting ChessGame...
+2017-07-04 15:19:04,843 INFO m.C.m.GameManager [main] GameManager beginGame : preparing to init view & data
+2017-07-04 15:22:32,076 INFO m.C.m.GameManager [main] GameManager init : starting
+2017-07-04 15:22:32,211 INFO m.C.m.GameManager [main] GameManager init : complete
+2017-07-04 15:22:32,211 INFO m.C.m.ChessGame2016 [main] Starting ChessGame...
+2017-07-04 15:22:32,211 INFO m.C.m.GameManager [main] GameManager beginGame : preparing to init view & data
+2017-07-04 15:22:46,844 INFO m.C.m.GameManager [main] GameManager init : starting
+2017-07-04 15:22:47,013 INFO m.C.m.GameManager [main] GameManager init : complete
+2017-07-04 15:22:47,014 INFO m.C.m.ChessGame2016 [main] Starting ChessGame...
+2017-07-04 15:22:47,014 INFO m.C.m.GameManager [main] GameManager beginGame : preparing to init view & data
+2017-07-04 15:29:35,624 INFO m.C.m.GameManager [main] GameManager init : starting
+2017-07-04 15:29:35,760 INFO m.C.m.GameManager [main] GameManager init : complete
+2017-07-04 15:29:35,761 INFO m.C.m.ChessGame2016 [main] Starting ChessGame...
+2017-07-04 15:29:35,761 INFO m.C.m.GameManager [main] GameManager beginGame : preparing to init view & data
+2017-07-04 15:36:21,879 INFO m.C.m.GameManager [main] GameManager init : starting
+2017-07-04 15:36:22,016 INFO m.C.m.GameManager [main] GameManager init : complete
+2017-07-04 15:36:22,016 INFO m.C.m.ChessGame2016 [main] Starting ChessGame...
+2017-07-04 15:36:22,016 INFO m.C.m.GameManager [main] GameManager beginGame : preparing to init view & data
+2017-07-04 15:39:38,989 INFO m.C.m.GameManager [main] GameManager init : starting
+2017-07-04 15:39:39,128 INFO m.C.m.GameManager [main] GameManager init : complete
+2017-07-04 15:39:39,129 INFO m.C.m.ChessGame2016 [main] Starting ChessGame...
+2017-07-04 15:39:39,129 INFO m.C.m.GameManager [main] GameManager beginGame : preparing to init view & data
+2017-07-04 15:44:11,641 INFO m.C.m.GameManager [main] GameManager init : starting
+2017-07-04 15:44:11,772 INFO m.C.m.GameManager [main] GameManager init : complete
+2017-07-04 15:44:11,773 INFO m.C.m.ChessGame2016 [main] Starting ChessGame...
+2017-07-04 15:44:11,773 INFO m.C.m.GameManager [main] GameManager beginGame : preparing to init view & data
+2017-07-04 15:45:59,359 INFO m.C.m.GameManager [main] GameManager init : starting
+2017-07-04 15:45:59,522 INFO m.C.m.GameManager [main] GameManager init : complete
+2017-07-04 15:45:59,523 INFO m.C.m.ChessGame2016 [main] Starting ChessGame...
+2017-07-04 15:45:59,523 INFO m.C.m.GameManager [main] GameManager beginGame : preparing to init view & data
+2017-07-04 15:49:12,639 INFO m.C.m.GameManager [main] GameManager init : starting
+2017-07-04 15:49:12,780 INFO m.C.m.GameManager [main] GameManager init : complete
+2017-07-04 15:49:12,780 INFO m.C.m.ChessGame2016 [main] Starting ChessGame...
+2017-07-04 15:49:12,780 INFO m.C.m.GameManager [main] GameManager beginGame : preparing to init view & data
+2017-07-18 20:28:29,461 INFO m.C.m.GameManager [main] GameManager init : starting
+2017-07-18 20:28:30,144 INFO m.C.m.GameManager [main] GameManager init : complete
+2017-07-18 20:28:30,144 INFO m.C.m.ChessGame2016 [main] Starting ChessGame...
+2017-07-18 20:28:30,145 INFO m.C.m.GameManager [main] GameManager beginGame : preparing to init view & data
+2017-07-18 20:30:27,809 INFO m.C.m.GameManager [main] GameManager init : starting
+2017-07-18 20:30:27,975 INFO m.C.m.GameManager [main] GameManager init : complete
+2017-07-18 20:30:27,975 INFO m.C.m.ChessGame2016 [main] Starting ChessGame...
+2017-07-18 20:30:27,975 INFO m.C.m.GameManager [main] GameManager beginGame : preparing to init view & data
+2017-07-18 21:02:53,226 INFO m.C.m.GameManager [main] GameManager init : starting
+2017-07-18 21:02:53,358 INFO m.C.m.GameManager [main] GameManager init : complete
+2017-07-18 21:02:53,358 INFO m.C.m.ChessGame2016 [main] Starting ChessGame...
+2017-07-18 21:02:53,358 INFO m.C.m.GameManager [main] GameManager beginGame : preparing to init view & data
+2017-07-18 21:03:56,439 INFO m.C.m.GameManager [main] GameManager init : starting
+2017-07-18 21:03:56,581 INFO m.C.m.GameManager [main] GameManager init : complete
+2017-07-18 21:03:56,582 INFO m.C.m.ChessGame2016 [main] Starting ChessGame...
+2017-07-18 21:03:56,582 INFO m.C.m.GameManager [main] GameManager beginGame : preparing to init view & data
+2017-07-18 21:27:59,790 INFO m.C.m.GameManager [main] GameManager init : starting
+2017-07-18 21:27:59,925 INFO m.C.m.GameManager [main] GameManager init : complete
+2017-07-18 21:27:59,926 INFO m.C.m.ChessGame2016 [main] Starting ChessGame...
+2017-07-18 21:27:59,926 INFO m.C.m.GameManager [main] GameManager beginGame : preparing to init view & data
+2017-07-18 21:28:46,815 INFO m.C.m.GameManager [main] GameManager init : starting
+2017-07-18 21:28:47,017 INFO m.C.m.GameManager [main] GameManager init : complete
+2017-07-18 21:28:47,017 INFO m.C.m.ChessGame2016 [main] Starting ChessGame...
+2017-07-18 21:28:47,017 INFO m.C.m.GameManager [main] GameManager beginGame : preparing to init view & data
+2017-07-18 21:29:39,349 INFO m.C.m.GameManager [main] GameManager init : starting
+2017-07-18 21:29:39,499 INFO m.C.m.GameManager [main] GameManager init : complete
+2017-07-18 21:29:39,499 INFO m.C.m.ChessGame2016 [main] Starting ChessGame...
+2017-07-18 21:29:39,500 INFO m.C.m.GameManager [main] GameManager beginGame : preparing to init view & data
+2017-07-18 21:29:58,858 INFO m.C.m.GameManager [main] GameManager init : starting
+2017-07-18 21:29:59,031 INFO m.C.m.GameManager [main] GameManager init : complete
+2017-07-18 21:29:59,032 INFO m.C.m.ChessGame2016 [main] Starting ChessGame...
+2017-07-18 21:29:59,032 INFO m.C.m.GameManager [main] GameManager beginGame : preparing to init view & data
+2017-07-18 21:33:35,803 INFO m.C.m.GameManager [main] GameManager init : starting
+2017-07-18 21:33:35,940 INFO m.C.m.GameManager [main] GameManager init : complete
+2017-07-18 21:33:35,941 INFO m.C.m.ChessGame2016 [main] Starting ChessGame...
+2017-07-18 21:33:35,941 INFO m.C.m.GameManager [main] GameManager beginGame : preparing to init view & data
+2017-07-18 21:34:10,540 INFO m.C.m.GameManager [main] GameManager init : starting
+2017-07-18 21:34:10,715 INFO m.C.m.GameManager [main] GameManager init : complete
+2017-07-18 21:34:10,716 INFO m.C.m.ChessGame2016 [main] Starting ChessGame...
+2017-07-18 21:34:10,716 INFO m.C.m.GameManager [main] GameManager beginGame : preparing to init view & data
+2017-07-18 21:34:46,557 INFO m.C.m.GameManager [main] GameManager init : starting
+2017-07-18 21:34:46,686 INFO m.C.m.GameManager [main] GameManager init : complete
+2017-07-18 21:34:46,686 INFO m.C.m.ChessGame2016 [main] Starting ChessGame...
+2017-07-18 21:34:46,687 INFO m.C.m.GameManager [main] GameManager beginGame : preparing to init view & data
+2017-07-18 21:35:58,825 INFO m.C.m.GameManager [main] GameManager init : starting
+2017-07-18 21:35:58,951 INFO m.C.m.GameManager [main] GameManager init : complete
+2017-07-18 21:35:58,951 INFO m.C.m.ChessGame2016 [main] Starting ChessGame...
+2017-07-18 21:35:58,952 INFO m.C.m.GameManager [main] GameManager beginGame : preparing to init view & data
+2017-07-18 21:37:42,505 INFO m.C.m.GameManager [main] GameManager init : starting
+2017-07-18 21:37:42,643 INFO m.C.m.GameManager [main] GameManager init : complete
+2017-07-18 21:37:42,643 INFO m.C.m.ChessGame2016 [main] Starting ChessGame...
+2017-07-18 21:37:42,643 INFO m.C.m.GameManager [main] GameManager beginGame : preparing to init view & data
+2017-07-27 21:07:34,279 INFO m.C.m.GameManager [main] GameManager init : starting
+2017-07-27 21:07:34,560 INFO m.C.m.GameManager [main] GameManager init : complete
+2017-07-27 21:07:34,561 INFO m.C.m.ChessGame2016 [main] Starting ChessGame...
+2017-07-27 21:07:34,561 INFO m.C.m.GameManager [main] GameManager beginGame : preparing to init view & data
+2017-07-27 21:17:09,508 INFO m.C.m.GameManager [main] GameManager init : starting
+2017-07-27 21:17:09,666 INFO m.C.m.GameManager [main] GameManager init : complete
+2017-07-27 21:17:09,666 INFO m.C.m.ChessGame2016 [main] Starting ChessGame...
+2017-07-27 21:17:09,666 INFO m.C.m.GameManager [main] GameManager beginGame : preparing to init view & data
+2017-07-27 21:21:00,257 INFO m.C.m.GameManager [main] GameManager init : starting
+2017-07-27 21:21:00,412 INFO m.C.m.GameManager [main] GameManager init : complete
+2017-07-27 21:21:00,413 INFO m.C.m.ChessGame2016 [main] Starting ChessGame...
+2017-07-27 21:21:00,413 INFO m.C.m.GameManager [main] GameManager beginGame : preparing to init view & data
+2017-07-27 22:28:03,971 INFO m.C.m.GameManager [main] GameManager init : starting
+2017-07-27 22:28:04,129 INFO m.C.m.GameManager [main] GameManager init : complete
+2017-07-27 22:28:04,129 INFO m.C.m.ChessGame2016 [main] Starting ChessGame...
+2017-07-27 22:28:04,129 INFO m.C.m.GameManager [main] GameManager beginGame : preparing to init view & data
+2017-07-27 22:36:09,929 INFO m.C.m.GameManager [main] GameManager init : starting
+2017-07-27 22:36:10,088 INFO m.C.m.GameManager [main] GameManager init : complete
+2017-07-27 22:36:10,088 INFO m.C.m.ChessGame2016 [main] Starting ChessGame...
+2017-07-27 22:36:10,089 INFO m.C.m.GameManager [main] GameManager beginGame : preparing to init view & data
+2017-10-03 18:44:14,357 INFO m.C.m.GameManager [main] GameManager init : starting
+2017-10-03 18:44:14,605 INFO m.C.m.GameManager [main] GameManager init : complete
+2017-10-03 18:44:14,605 INFO m.C.m.ChessGame2016 [main] Starting ChessGame...
+2017-10-03 18:44:14,605 INFO m.C.m.GameManager [main] GameManager beginGame : preparing to init view & data
+2017-10-03 20:18:19,448 INFO m.C.m.GameManager [main] GameManager init : starting
+2017-10-03 20:18:19,660 INFO m.C.m.GameManager [main] GameManager init : complete
+2017-10-03 20:18:19,661 INFO m.C.m.ChessGame2016 [main] Starting ChessGame...
+2017-10-03 20:18:19,661 INFO m.C.m.GameManager [main] GameManager beginGame : preparing to init view & data
+2017-10-03 20:18:37,937 INFO m.C.m.GameManager [main] GameManager init : starting
+2017-10-03 20:18:38,097 INFO m.C.m.GameManager [main] GameManager init : complete
+2017-10-03 20:18:38,097 INFO m.C.m.ChessGame2016 [main] Starting ChessGame...
+2017-10-03 20:18:38,097 INFO m.C.m.GameManager [main] GameManager beginGame : preparing to init view & data
+2017-10-03 20:24:34,594 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : starting
+2017-10-03 20:24:34,649 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : complete
+2017-10-03 20:24:34,649 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager beginGame : preparing to init view & data
+2017-10-03 20:25:14,440 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : starting
+2017-10-03 20:25:14,478 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : complete
+2017-10-03 20:25:14,478 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager beginGame : preparing to init view & data
+2017-10-03 20:25:34,781 INFO m.C.m.GameManager [main] GameManager init : starting
+2017-10-03 20:25:34,929 INFO m.C.m.GameManager [main] GameManager init : complete
+2017-10-03 20:25:34,929 INFO m.C.m.ChessGame2016 [main] Starting ChessGame...
+2017-10-03 20:25:34,929 INFO m.C.m.GameManager [main] GameManager beginGame : preparing to init view & data
+2017-10-03 20:25:55,771 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : starting
+2017-10-03 20:25:55,803 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : complete
+2017-10-03 20:25:55,803 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager beginGame : preparing to init view & data
+2017-10-03 20:28:34,946 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : starting
+2017-10-03 20:28:34,977 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : complete
+2017-10-03 20:28:34,977 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager beginGame : preparing to init view & data
+2017-10-03 20:31:58,631 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : starting
+2017-10-03 20:31:58,680 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : complete
+2017-10-03 20:31:58,680 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager beginGame : preparing to init view & data
+2017-10-03 20:32:07,199 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : starting
+2017-10-03 20:32:07,229 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : complete
+2017-10-03 20:32:07,230 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager beginGame : preparing to init view & data
+2017-10-03 20:32:33,259 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : starting
+2017-10-03 20:32:33,291 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : complete
+2017-10-03 20:32:33,292 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager beginGame : preparing to init view & data
+2017-10-03 20:34:30,456 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : starting
+2017-10-03 20:34:30,502 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : complete
+2017-10-03 20:34:30,502 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager beginGame : preparing to init view & data
+2017-10-03 20:34:37,812 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : starting
+2017-10-03 20:34:37,844 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : complete
+2017-10-03 20:34:37,844 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager beginGame : preparing to init view & data
+2017-10-03 20:37:38,720 INFO m.C.m.GameManager [main] GameManager init : starting
+2017-10-03 20:37:38,771 INFO m.C.m.GameManager [main] GameManager init : complete
+2017-10-03 20:37:38,771 INFO m.C.m.GameManager [main] GameManager beginGame : preparing to init view & data
+2017-10-03 20:38:00,441 INFO m.C.m.GameManager [main] GameManager init : starting
+2017-10-03 20:38:00,475 INFO m.C.m.GameManager [main] GameManager init : complete
+2017-10-03 20:38:00,475 INFO m.C.m.GameManager [main] GameManager beginGame : preparing to init view & data
+2017-10-03 20:38:22,253 INFO m.C.m.GameManager [main] GameManager init : starting
+2017-10-03 20:38:22,283 INFO m.C.m.GameManager [main] GameManager init : complete
+2017-10-03 20:38:22,283 INFO m.C.m.GameManager [main] GameManager beginGame : preparing to init view & data
+2017-10-03 20:38:36,425 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : starting
+2017-10-03 20:38:36,461 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : complete
+2017-10-03 20:38:36,462 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager beginGame : preparing to init view & data
+2017-10-03 20:38:59,616 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : starting
+2017-10-03 20:38:59,657 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : complete
+2017-10-03 20:38:59,657 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager beginGame : preparing to init view & data
+2017-10-03 20:40:05,186 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : starting
+2017-10-03 20:40:05,221 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : complete
+2017-10-03 20:40:05,221 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager beginGame : preparing to init view & data
+2017-10-03 20:44:21,224 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : starting
+2017-10-03 20:44:21,270 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : complete
+2017-10-03 20:44:21,270 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager beginGame : preparing to init view & data
+2017-10-03 20:44:21,271 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : starting
+2017-10-03 20:44:21,272 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : complete
+2017-10-04 18:38:41,300 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : starting
+2017-10-04 18:38:41,346 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : complete
+2017-10-04 18:38:41,347 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager beginGame : preparing to init view & data
+2017-10-04 18:38:41,348 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : starting
+2017-10-04 18:38:41,348 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : complete
+2017-10-04 18:40:00,476 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : starting
+2017-10-04 18:40:00,507 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : complete
+2017-10-04 18:40:00,507 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager beginGame : preparing to init view & data
+2017-10-04 18:40:00,508 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : starting
+2017-10-04 18:40:00,509 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : complete
+2017-10-04 18:40:11,818 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : starting
+2017-10-04 18:40:11,850 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : complete
+2017-10-04 18:40:11,850 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager beginGame : preparing to init view & data
+2017-10-04 18:40:11,852 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : starting
+2017-10-04 18:40:11,852 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : complete
+2017-10-04 18:46:28,070 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : starting
+2017-10-04 18:46:28,105 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : complete
+2017-10-04 18:46:28,105 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager beginGame : preparing to init view & data
+2017-10-04 18:46:28,107 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : starting
+2017-10-04 18:46:28,108 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : complete
+2017-10-04 18:46:37,807 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : starting
+2017-10-04 18:46:37,836 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : complete
+2017-10-04 18:46:37,836 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager beginGame : preparing to init view & data
+2017-10-04 18:46:37,837 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : starting
+2017-10-04 18:46:37,837 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : complete
+2017-10-04 18:48:49,222 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : starting
+2017-10-04 18:48:49,250 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : complete
+2017-10-04 18:48:49,251 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager beginGame : preparing to init view & data
+2017-10-04 18:48:49,252 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : starting
+2017-10-04 18:48:49,252 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : complete
+2017-10-04 18:52:57,894 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : starting
+2017-10-04 18:52:57,926 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : complete
+2017-10-04 18:52:57,927 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager beginGame : preparing to init view & data
+2017-10-04 18:52:57,928 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : starting
+2017-10-04 18:52:57,928 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : complete
+2017-10-04 18:54:35,818 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : starting
+2017-10-04 18:54:35,850 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : complete
+2017-10-04 18:54:35,850 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager beginGame : preparing to init view & data
+2017-10-04 18:54:35,851 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : starting
+2017-10-04 18:54:35,851 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : complete
+2017-10-04 18:54:36,336 INFO m.C.m.GameManager [main] GameManager init : starting
+2017-10-04 18:54:36,339 INFO m.C.m.GameManager [main] GameManager init : complete
+2017-10-04 18:54:36,340 INFO m.C.m.GameManager [main] GameManager beginGame : preparing to init view & data
+2017-10-04 18:59:24,955 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : starting
+2017-10-04 18:59:24,987 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : complete
+2017-10-04 18:59:24,988 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager beginGame : preparing to init view & data
+2017-10-04 18:59:24,989 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : starting
+2017-10-04 18:59:24,989 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : complete
+2017-10-04 18:59:25,480 INFO m.C.m.GameManager [main] GameManager init : starting
+2017-10-04 18:59:25,482 INFO m.C.m.GameManager [main] GameManager init : complete
+2017-10-04 18:59:25,483 INFO m.C.m.GameManager [main] GameManager beginGame : preparing to init view & data
+2017-10-04 18:59:46,626 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : starting
+2017-10-04 18:59:46,657 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : complete
+2017-10-04 18:59:46,657 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager beginGame : preparing to init view & data
+2017-10-04 18:59:46,658 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : starting
+2017-10-04 18:59:46,659 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : complete
+2017-10-04 19:03:55,702 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : starting
+2017-10-04 19:03:55,748 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : complete
+2017-10-04 19:03:55,748 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager beginGame : preparing to init view & data
+2017-10-04 19:03:55,749 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : starting
+2017-10-04 19:03:55,750 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : complete
+2017-10-04 19:04:11,431 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : starting
+2017-10-04 19:04:11,460 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : complete
+2017-10-04 19:04:11,461 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager beginGame : preparing to init view & data
+2017-10-04 19:04:11,462 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : starting
+2017-10-04 19:04:11,462 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : complete
+2017-10-04 19:04:23,787 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : starting
+2017-10-04 19:04:23,818 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : complete
+2017-10-04 19:04:23,819 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager beginGame : preparing to init view & data
+2017-10-04 19:04:23,820 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : starting
+2017-10-04 19:04:23,820 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : complete
+2017-10-04 19:23:09,658 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : starting
+2017-10-04 19:23:09,705 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : complete
+2017-10-04 19:23:09,705 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager beginGame : preparing to init view & data
+2017-10-04 19:23:09,706 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : starting
+2017-10-04 19:23:09,707 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : complete
+2017-10-04 19:30:01,953 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : starting
+2017-10-04 19:30:01,987 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : complete
+2017-10-04 19:30:01,988 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager beginGame : preparing to init view & data
+2017-10-04 19:30:01,989 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : starting
+2017-10-04 19:30:01,989 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : complete
+2017-10-04 19:30:23,678 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : starting
+2017-10-04 19:30:23,706 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : complete
+2017-10-04 19:30:23,706 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager beginGame : preparing to init view & data
+2017-10-04 19:30:23,707 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : starting
+2017-10-04 19:30:23,708 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : complete
+2017-10-04 19:35:32,540 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : starting
+2017-10-04 19:35:32,571 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : complete
+2017-10-04 19:35:32,571 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager beginGame : preparing to init view & data
+2017-10-04 19:35:32,572 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : starting
+2017-10-04 19:35:32,573 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : complete
+2017-10-04 20:20:38,877 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : starting
+2017-10-04 20:20:38,925 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : complete
+2017-10-04 20:20:38,926 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager beginGame : preparing to init view & data
+2017-10-04 20:20:38,927 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : starting
+2017-10-04 20:20:38,928 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : complete
+2017-10-04 20:20:59,598 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : starting
+2017-10-04 20:20:59,627 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : complete
+2017-10-04 20:20:59,628 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager beginGame : preparing to init view & data
+2017-10-04 20:20:59,629 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : starting
+2017-10-04 20:20:59,629 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : complete
+2017-10-04 20:21:21,963 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : starting
+2017-10-04 20:21:22,000 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : complete
+2017-10-04 20:21:22,001 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager beginGame : preparing to init view & data
+2017-10-04 20:21:22,002 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : starting
+2017-10-04 20:21:22,002 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : complete
+2017-10-04 20:21:46,651 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : starting
+2017-10-04 20:21:46,681 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : complete
+2017-10-04 20:21:46,682 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager beginGame : preparing to init view & data
+2017-10-04 20:21:46,682 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : starting
+2017-10-04 20:21:46,683 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : complete
+2017-10-04 20:28:24,781 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : starting
+2017-10-04 20:28:24,829 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : complete
+2017-10-04 20:28:24,830 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager beginGame : preparing to init view & data
+2017-10-04 20:28:24,831 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : starting
+2017-10-04 20:28:24,831 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : complete
+2017-10-04 20:30:38,359 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : starting
+2017-10-04 20:30:38,388 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : complete
+2017-10-04 20:30:38,388 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager beginGame : preparing to init view & data
+2017-10-04 20:30:38,389 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : starting
+2017-10-04 20:30:38,389 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : complete
+2017-10-12 21:07:13,445 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : starting
+2017-10-12 21:07:13,525 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : complete
+2017-10-12 21:07:13,525 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager beginGame : preparing to init view & data
+2017-10-12 21:07:13,527 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : starting
+2017-10-12 21:07:13,527 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : complete
+2017-10-12 21:10:03,187 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : starting
+2017-10-12 21:10:03,214 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : complete
+2017-10-12 21:10:03,214 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager beginGame : preparing to init view & data
+2017-10-12 21:10:03,215 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : starting
+2017-10-12 21:10:03,216 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : complete
+2017-10-12 21:10:10,371 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : starting
+2017-10-12 21:10:10,403 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : complete
+2017-10-12 21:10:10,403 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager beginGame : preparing to init view & data
+2017-10-12 21:10:10,405 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : starting
+2017-10-12 21:10:10,405 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : complete
+2017-10-12 21:11:21,949 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : starting
+2017-10-12 21:11:21,979 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : complete
+2017-10-12 21:11:21,979 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager beginGame : preparing to init view & data
+2017-10-12 21:11:21,980 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : starting
+2017-10-12 21:11:21,981 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : complete
+2017-10-12 21:11:23,356 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : starting
+2017-10-12 21:11:23,357 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : complete
+2017-10-12 21:11:23,357 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager beginGame : preparing to init view & data
+2017-10-12 21:11:40,181 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : starting
+2017-10-12 21:11:40,213 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : complete
+2017-10-12 21:11:40,213 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager beginGame : preparing to init view & data
+2017-10-12 21:11:40,215 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : starting
+2017-10-12 21:11:40,215 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : complete
+2017-10-12 21:11:41,222 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : starting
+2017-10-12 21:11:41,222 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager init : complete
+2017-10-12 21:11:41,222 INFO m.C.m.GameManager [JavaFX Application Thread] GameManager beginGame : preparing to init view & data
+2017-10-12 21:15:17,491 INFO m.C.m.GameManager [main] GameManager init : starting
+2017-10-12 21:15:17,636 INFO m.C.m.GameManager [main] GameManager init : complete
+2017-10-12 21:15:17,636 INFO m.C.m.ChessGame2016 [main] Starting ChessGame...
+2017-10-12 21:15:17,636 INFO m.C.m.GameManager [main] GameManager beginGame : preparing to init view & data
+2017-10-12 21:16:01,277 INFO m.C.m.GameManager [main] GameManager init : starting
+2017-10-12 21:16:01,412 INFO m.C.m.GameManager [main] GameManager init : complete
+2017-10-12 21:16:01,412 INFO m.C.m.ChessGame2016 [main] Starting ChessGame...
+2017-10-12 21:16:01,412 INFO m.C.m.GameManager [main] GameManager beginGame : preparing to init view & data
+2017-10-12 21:18:21,938 INFO m.C.m.GameManager [main] GameManager init : starting
+2017-10-12 21:18:22,080 INFO m.C.m.GameManager [main] GameManager init : complete
+2017-10-12 21:18:22,080 INFO m.C.m.ChessGame2016 [main] Starting ChessGame...
+2017-10-12 21:18:22,081 INFO m.C.m.GameManager [main] GameManager beginGame : preparing to init view & data
+2017-10-12 21:18:31,926 INFO m.C.m.GameManager [main] GameManager init : starting
+2017-10-12 21:18:32,064 INFO m.C.m.GameManager [main] GameManager init : complete
+2017-10-12 21:18:32,064 INFO m.C.m.ChessGame2016 [main] Starting ChessGame...
+2017-10-12 21:18:32,065 INFO m.C.m.GameManager [main] GameManager beginGame : preparing to init view & data
+2017-10-12 21:21:43,835 INFO m.C.m.GameManager [main] GameManager init : starting
+2017-10-12 21:21:44,039 INFO m.C.m.GameManager [main] GameManager init : complete
+2017-10-12 21:21:44,040 INFO m.C.m.ChessGame2016 [main] Starting ChessGame...
+2017-10-12 21:21:44,040 INFO m.C.m.GameManager [main] GameManager beginGame : preparing to init view & data
+2017-10-12 21:26:30,683 INFO m.C.m.GameManager [main] GameManager init : starting
+2017-10-12 21:26:30,828 INFO m.C.m.GameManager [main] GameManager init : complete
+2017-10-12 21:26:30,829 INFO m.C.m.ChessGame2016 [main] Starting ChessGame...
+2017-10-12 21:26:30,829 INFO m.C.m.GameManager [main] GameManager beginGame : preparing to init view & data

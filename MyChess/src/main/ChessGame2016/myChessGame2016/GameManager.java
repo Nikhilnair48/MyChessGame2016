@@ -3,6 +3,8 @@ package main.ChessGame2016.myChessGame2016;
 import java.awt.Point;
 import java.util.HashMap;
 
+import javafx.stage.Stage;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -53,7 +55,8 @@ public class GameManager {
 	// SET THE TURN FOR PLAYER '?' - ENSURE THAT OPPOSITE PLAYER'S PIECES ARE DISABLED
 	// SET SCORES, IF NECESSARY
 	// LISTEN FOR MOVES
-	public void beginGame() throws ClassNotFoundException {
+	//public void beginGame(Stage stg) throws Exception {
+	public void beginGame() throws Exception {
 		logger.info("GameManager beginGame : preparing to init view & data");
 		view.initView();
 	}

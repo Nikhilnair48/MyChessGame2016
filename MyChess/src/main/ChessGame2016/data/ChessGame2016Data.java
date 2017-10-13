@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
+
 import util.ChessGame2016Properties;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -19,7 +21,6 @@ import main.ChessGame2016.handlers.QueenHandler;
 import main.ChessGame2016.handlers.RookHandler;
 import main.ChessGame2016.myChessGame2016.ChessGame2016;
 import main.ChessGame2016.pieces.ChessPieceBishop;
-import main.ChessGame2016.pieces.ChessPieceFactory;
 import main.ChessGame2016.pieces.ChessPieceKing;
 import main.ChessGame2016.pieces.ChessPieceKnight;
 import main.ChessGame2016.pieces.ChessPiecePawn;
@@ -265,9 +266,87 @@ public class ChessGame2016Data {
 		ChessPiece king = nextPlayer.getPlayerPieces().get(key);
 		BoardSquare square = board.getBoardSquareWithKey(king.getID());
 		Point point = square.getPosition();		// POINT WILL BE REQUIRED LATER TO GENERATE POSSIBLE MOVES
-		System.out.println("GENERATING MOVES FOR KING: ");
-		king.generatePossibleMoves(point, new Point(point.x, point.y+1));
+		System.out.println("GENERATING POSSIBLE MOVES FOR KING TO TEST IF CHECK IS IN PLAY: ");
+		ArrayList<Point> listOfMovesForKing = getPossibleSquaresForKing(point);
+		System.out.println(listOfMovesForKing);
 		
+		System.out.println("PRINTING POSSIBLE MOVES FOR OPPOSING PLAYER: MAY INTERSECT WITH CURRENT PLAYER: ");
+		// GET ALL THE PIECES FOR THE ATTACKING PLAYER (A.K.A, THE PLAYER WHO JUST MADE THE MOVE)
+		// GET ALL THE KEYS FOR THE PLAYERS' CHESS PIECES
+		// FOR EACH PIECE, FIND IF THE PIECE IS ATTACKING THE OPPOSITE KING
+		HashMap<String,ChessPiece> attackingPlayerPieces = ChessGame2016.chessManager.getCurrentPlayer().getPlayerPieces();
+		Set<String> attackingPlayerPiecesKeys = attackingPlayerPieces.keySet();
+		ArrayList<Point> listOfMovesForAttackingPiece = new ArrayList<Point>();
+		for(String attackingPlayerPieceKey : attackingPlayerPiecesKeys) {
+			if(listOfMovesForKing.size() > 0) {
+				ChessPiece attackingPlayerPiece = attackingPlayerPieces.get(attackingPlayerPieceKey);
+				listOfMovesForAttackingPiece.addAll(attackingPlayerPiece.generatePossibleMoves(board.getPointForPieceKey(attackingPlayerPieceKey), listOfMovesForKing.get(0)));
+			}
+		}
+		
+		for(Point p : listOfMovesForAttackingPiece) {
+			if(listOfMovesForKing.contains(p)) {
+				System.out.println("CHECK: " + p);
+			}
+		}
+	}
+	
+	/**
+	 * getPossibleSquaresForKing - ONCE A PLAYER HAD A MADE A MOVE, GENERATE POSSIBLE MOVES THE 
+	 * OPPOSSING PLAYERS' KING. NOTE ON DIRECTIONTOMOVE - THE LEFT/RIGHT POSSIBILITIES ARE BASED
+	 * ON THE PERSPECTIVE OF THE KING.
+	 * @param currentPoint
+	 * @return
+	 */
+	public ArrayList<Point> getPossibleSquaresForKing(Point currentPoint) {
+		ArrayList<Point> possibleMoves = new ArrayList<>();
+		int directionToMove = (turn == 1 ? -1 : 1);		// NORMAL LOGIC: IF TURN IS 1 (WHITE) MAKE SURE THE VALUES INCREASE IN THE ARRAY; 2 (BLACK) WOULD MEAN WE SHOULD DECREMENT THE INDICIES
+														// LOGIC IS FLIPPED HERE, SINCE THE TURN FOR THE CURRENT PLAYER ISN'T OVER & WE'RE CHECKING IF THIS TURN WILL END THE GAME, I.E, AFFECT THE NEXT PLAYERS' KING
+		// MOVE FORWARD BY 1
+		if((currentPoint.x + (1 * directionToMove) > 0 && currentPoint.x + (1 * directionToMove) < Constants.MAX_COLS) 
+				&& board.isSquareEmpty(new Point(currentPoint.x + (1 * directionToMove), currentPoint.y)))
+			possibleMoves.add(new Point(currentPoint.x + (1 * directionToMove), currentPoint.y));
+		
+		// MOVE LEFT BY 1
+		if((currentPoint.y + (1 * directionToMove) > 0 && currentPoint.y + (1 * directionToMove) < Constants.MAX_COLS) 
+				&& board.isSquareEmpty(new Point(currentPoint.x, currentPoint.y+1)))
+			possibleMoves.add(new Point(currentPoint.x, currentPoint.y+1));
+		
+		// MOVE RIGHT BY ONE
+		if((currentPoint.y - (1 * directionToMove) > 0 && currentPoint.y - (1 * directionToMove) < Constants.MAX_COLS) 
+				&& board.isSquareEmpty(new Point(currentPoint.x, currentPoint.y - (1 * directionToMove))))
+			possibleMoves.add(new Point(currentPoint.x, currentPoint.y - (1 * directionToMove)));
+		
+		// MOVE 1 UP 1 RIGHT
+		if((currentPoint.x + (1 * directionToMove) > 0 && currentPoint.x + (1 * directionToMove) < Constants.MAX_COLS)
+				&& (currentPoint.y - (1 * directionToMove) > 0 && (currentPoint.y - (1 * directionToMove)) < Constants.MAX_COLS)
+				 && board.isSquareEmpty(new Point(currentPoint.x + (1 * directionToMove), currentPoint.y - (1 * directionToMove))))
+			possibleMoves.add(new Point(currentPoint.x + (1 * directionToMove), currentPoint.y - (1 * directionToMove)));
+		
+		// MOVE 1 UP 1 LEFT
+		if((currentPoint.x + (1 * directionToMove) > 0 && currentPoint.x + (1 * directionToMove) < Constants.MAX_COLS)
+				&& (currentPoint.y + (1 * directionToMove) > 0 && (currentPoint.y + (1 * directionToMove)) < Constants.MAX_COLS)
+				&& board.isSquareEmpty(new Point(currentPoint.x + (1 * directionToMove), currentPoint.y + (1 * directionToMove))))
+			possibleMoves.add(new Point(currentPoint.x + (1 * directionToMove), currentPoint.y + (1 * directionToMove)));
+		
+		// MOVE 1 BACK 1 RIGHT
+		if((currentPoint.x - (1 * directionToMove) > 0 && currentPoint.x - (1 * directionToMove) < Constants.MAX_COLS)
+				&& (currentPoint.y - (1 * directionToMove) > 0 && (currentPoint.y - (1 * directionToMove)) < Constants.MAX_COLS)
+				 && board.isSquareEmpty(new Point(currentPoint.x - (1 * directionToMove), currentPoint.y - (1 * directionToMove))))
+			possibleMoves.add(new Point(currentPoint.x - (1 * directionToMove), currentPoint.y - (1 * directionToMove)));
+		
+		// MOVE 1 BACK 1 LEFT 
+		if((currentPoint.x - (1 * directionToMove) > 0 && currentPoint.x - (1 * directionToMove) < Constants.MAX_COLS)
+				&& (currentPoint.y + (1 * directionToMove) > 0 && (currentPoint.y + (1 * directionToMove)) < Constants.MAX_COLS)
+				&& board.isSquareEmpty(new Point(currentPoint.x - (1 * directionToMove), currentPoint.y + (1 * directionToMove))))
+			possibleMoves.add(new Point(currentPoint.x+1, currentPoint.y + (1 * directionToMove)));
+		
+		// MOVE BACK BY 1
+		if((currentPoint.x - (1 * directionToMove) > 0 && currentPoint.x - (1 * directionToMove) < Constants.MAX_COLS)
+				 && board.isSquareEmpty(new Point(currentPoint.x- (1 * directionToMove), currentPoint.y)))
+			possibleMoves.add(new Point(currentPoint.x - (1 * directionToMove), currentPoint.y));
+		
+		return possibleMoves;
 	}
 
 	public boolean processMove(Point p1, Point p2, ChessPiece piece) {

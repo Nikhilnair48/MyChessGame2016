@@ -117,6 +117,20 @@ public class Board {
 		return gameBoard[p.x][p.y].isEmpty();
 	}
 	
+	// IF WE HAVE THE KEY THAT'S USED TO IDENTIFY PIECES ON THE UI, USE THIS FUNCTION TO MAP IT TO THE POSITION ON THE BOARD
+	public Point getPointForPieceKey(String key) {
+		Point point = null;
+		// SHOULD JUST WHILE LOOPS. TO BE FIXED
+		for(int i = 0; i < Constants.MAX_ROWS; i++) {
+			for(int j = 0; j < Constants.MAX_COLS; j++) {
+				if(!gameBoard[i][j].isEmpty() && gameBoard[i][j].getPiece().getID().equals(key)) {
+					point = new Point(i, j);
+				}
+			}
+		}
+		return point;
+	}
+	
 	// TESTING
 	public void printChessBoard() {
 		for (int i = 0; i < Constants.MAX_ROWS; i++) {

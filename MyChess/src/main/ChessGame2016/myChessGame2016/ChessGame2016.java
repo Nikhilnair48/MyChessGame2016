@@ -23,7 +23,7 @@ public class ChessGame2016 {
 	private static final Logger logger = LogManager.getLogger("ChessGame2016");
 	public static GameManager chessManager = new GameManager();
 	
-	public static void main(String[] args) throws ClassNotFoundException {
+	public static void main(String[] args) throws Exception {
 		logger.info("Starting ChessGame...");
 		
 		// SET THE TWO PLAYERS, AND BEGIN THE GAME. REST OF THE GAME IS

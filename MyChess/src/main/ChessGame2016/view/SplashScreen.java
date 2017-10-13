@@ -35,6 +35,7 @@ public class SplashScreen {
 		playImgV.addEventHandler(MouseEvent.ANY, playHandler);
 		playImgV.setX(0);
 		playImgV.setY(0);
+		playImgV.setId("PLAY");
 		
 		/*Image exitImg = new Image(ChessGame2016Properties.getProperty("records"));
 		exitImgV = new ImageView(exitImg);

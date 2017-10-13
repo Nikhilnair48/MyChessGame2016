@@ -170,8 +170,8 @@ public class ChessPieceQueen extends ChessPiece {
 			}
 		}
 		
-		System.out.println(possibleMoves);
-		System.out.println(possibleMoves.size());
+		//System.out.println(possibleMoves);
+		//System.out.println(possibleMoves.size());
 		return possibleMoves;
 	}
 
